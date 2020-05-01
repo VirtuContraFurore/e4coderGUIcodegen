@@ -4,10 +4,6 @@
 ```C
 // widget.h
 struct widget{
-    int x;
-    int y;
-    int w;
-    int h;
     bool visible; //if false the widget will not be drawn and can't be touched
     struct widget_func* funcs;
     void* widget_data;
@@ -69,6 +65,10 @@ For each widget type (e.g. roller):
 // roller.h
 
 struct roller_widget_data{
+    int x;
+    int y;
+    int w;
+    int h;
     bool vertical;
     double min;
     double max;
