@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="gui">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="inputs" type="portset"/>
+        <xs:element name="outputs" type="portset"/>
+        <xs:element name="frame">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string"/>
+              <xs:element name="size" type="point"/>
+              <xs:element name="fullScreen" type="xs:boolean"/>
+              <xs:element name="element" type="widget" minOccurs="0" maxOccurs="unbounded" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="portset">
+    <xs:sequence>
+      <xs:element name="port" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:attribute name="type" type="xs:string"/>
+            <xs:attribute name="name" type="xs:string"/>
+            <xs:attribute name="scicosDesc" type="xs:string"/>
+            <xs:attribute name="size" type="xs:integer"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="point">
+    <xs:attribute name="x" use="required" type="xs:integer"/>
+    <xs:attribute name="y" use="required" type="xs:integer"/>
+  </xs:complexType>
+  
+  <xs:complexType name="widget">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+
+      <xs:element name="position" type="point"/>
+      <xs:element name="size" type="point"/>
+      
+      <xs:choice minOccurs="0">
+        <xs:element name="outputPort" type="xs:NCName"/>
+        <xs:element name="inputPort" type="xs:NCName"/>
+      </xs:choice>
+
+      <xs:choice>
+        <!-- roller or slider -->
+        <xs:sequence>
+          <xs:element name="vertical" type="xs:boolean"/>
+          <xs:element name="minimum" type="xs:double"/>
+          <xs:element name="maximum" type="xs:double"/>
+          <xs:element name="value" type="xs:double"/>
+        </xs:sequence>
+
+        <!-- spinbox -->
+        <xs:sequence>
+          <xs:element name="minimum" type="xs:double"/>
+          <xs:element name="maximum" type="xs:double"/>
+          <xs:element name="value" type="xs:double"/>
+          <xs:element name="font" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+
+        <!-- switch -->
+        <xs:sequence>
+          <xs:element name="onImagePath" type="path"/>
+          <xs:element name="offImagePath" type="path"/>
+        </xs:sequence>
+
+        <!-- plot -->
+        <xs:sequence>
+          <xs:element name="lineColor" type="color" minOccurs="0"/>
+          <xs:element name="scrollWindow" type="xs:double"/>
+          <xs:element name="yScaleType" type="xs:string" minOccurs="0"/>
+          <xs:element name="yMinimum" type="xs:double" minOccurs="0"/>
+          <xs:element name="yMaximum" type="xs:double" minOccurs="0"/>
+        </xs:sequence>
+
+        <!-- needle -->
+        <xs:sequence>
+          <xs:element name="needleImagePath" type="path"/>
+          <xs:element name="imagePivotPoint" type="point"/>
+          <xs:element name="elementPivotPoint" type="point"/>
+          <xs:element name="initialValue" type="xs:double"/>
+        </xs:sequence>
+
+        <!-- text -->
+        <xs:sequence>
+          <xs:element name="font" type="xs:string"/>
+          <xs:element name="textColor" type="color" minOccurs="0"/>
+          <xs:element name="backgroundColor" type="color" minOccurs="0"/>
+          <xs:element name="initialText" type="xs:string"/>
+          <xs:element name="horizontalAlignment" type="xs:NCName"/>
+          <xs:element name="verticalAlignment" type="xs:NCName"/>
+        </xs:sequence>
+
+        <!-- image -->
+        <xs:sequence>
+          <xs:element name="activeImagePath" type="path" minOccurs="0"/>
+          <xs:element name="inactiveImagePath" type="path" minOccurs="0"/>
+          <xs:element name="initialState" type="xs:boolean"/>
+        </xs:sequence>
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="type" type="xs:NCName"/>
+  </xs:complexType>
+
+  <xs:complexType name="path">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="defaultFolder" use="required" type="xs:boolean"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="color">
+    <xs:attribute name="alpha" use="required" type="xs:integer"/>
+    <xs:attribute name="blue" use="required" type="xs:integer"/>
+    <xs:attribute name="green" use="required" type="xs:integer"/>
+    <xs:attribute name="red" use="required" type="xs:integer"/>
+  </xs:complexType>
+
+</xs:schema>
