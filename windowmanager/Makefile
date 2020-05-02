@@ -38,6 +38,3 @@ $(DEPFOLDERS) : $(DEPDIR)/% :  $(DEPDIR) ; @mkdir -p $@
 
 clean:
 	rm -rf build/
-
-$(info $(DEPFOLDERS))
-$(info $(OBJFOLDERS))
