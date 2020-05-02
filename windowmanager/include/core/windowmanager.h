@@ -38,7 +38,6 @@ void WM_setCurrentWindow(unsigned int window_idx);
 struct Window* WM_getWindow(unsigned int window_idx);
 struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx);
 
-int WM_SI_getTouchEvent(struct TouchEvent* event);
-void WM_SI_drawPixel(struct Point p, struct Color c);
+inline struct ScreenInterface* WM_getScreenInterface();
 
 #endif
