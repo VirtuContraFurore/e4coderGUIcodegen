@@ -12,7 +12,7 @@ DEPDIR := $(OBJDIR)/.deps
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 DEPFOLDERS := $(FOLDERS:%=$(DEPDIR)/%)
 
-CFLAGS = -I include/
+CFLAGS = -I include/ -I ../logging/include/
 
 COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(TARGET_ARCH) -c
 
@@ -38,6 +38,3 @@ $(DEPFOLDERS) : $(DEPDIR)/% :  $(DEPDIR) ; @mkdir -p $@
 
 clean:
 	rm -rf build/
-
-$(info $(DEPFOLDERS))
-$(info $(OBJFOLDERS))

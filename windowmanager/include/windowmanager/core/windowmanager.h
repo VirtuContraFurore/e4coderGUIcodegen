@@ -2,11 +2,11 @@
 #ifndef WINDOW_MANAGER_H
 #define WINDOW_MANAGER_H
 
-#include "widget/widget.h"
-#include "utility/color.h"
-#include "utility/blas.h"
+#include "windowmanager/widget/widget.h"
+#include "windowmanager/utility/color.h"
+#include "windowmanager/utility/geometry.h"
 
-#include "touch.h"
+#include "windowmanager/core/touch.h"
 
 struct ScreenInterface{
   int (*getTouchEvent)(struct TouchEvent* event);
@@ -38,7 +38,6 @@ void WM_setCurrentWindow(unsigned int window_idx);
 struct Window* WM_getWindow(unsigned int window_idx);
 struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx);
 
-int WM_SI_getTouchEvent(struct TouchEvent* event);
-void WM_SI_drawPixel(struct Point p, struct Color c);
+struct ScreenInterface* WM_getScreenInterface();
 
 #endif

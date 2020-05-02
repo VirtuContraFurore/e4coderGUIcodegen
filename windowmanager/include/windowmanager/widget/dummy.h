@@ -5,9 +5,9 @@
 
 #include "logging.h"
 
-#include "widget/widget.h"
-#include "core/touch.h"
-#include "utility/blas.h"
+#include "windowmanager/widget/widget.h"
+#include "windowmanager/core/touch.h"
+#include "windowmanager/utility/geometry.h"
 
 struct dummy_WidgetData{
     void (*onTouch)(struct Widget *self, struct TouchEvent *event);

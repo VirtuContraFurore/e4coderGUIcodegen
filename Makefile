@@ -1,3 +1,4 @@
+LOG_INCLUDE = $(abspath logging/include)
 WM_INCLUDE = $(abspath windowmanager/include)
 WM_LIBDIR = $(abspath windowmanager/build/lib)
 WM_LIBNAME = windowmanager
@@ -10,7 +11,7 @@ windowmanager:
 examples: dummy_example
 
 dummy_example: windowmanager
-	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME)"
+	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME)"
 
 clean: windowmanager_clean dummy_example_clean
 

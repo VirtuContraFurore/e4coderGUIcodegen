@@ -2,8 +2,8 @@
 
 #include "logging.h"
 
-#include "core/windowmanager.h"
-#include "widget/dummy.h"
+#include "windowmanager/core/windowmanager.h"
+#include "windowmanager/widget/dummy.h"
 
 int dummy_getTouchEvent(struct TouchEvent *event){
     LOG_INFO("Generated dummy touch event");

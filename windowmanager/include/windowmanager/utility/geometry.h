@@ -1,5 +1,5 @@
-#ifndef BLAS_H
-#define BLAS_H
+#ifndef GEOMETRY_H
+#define GEOMETRY_H
 
 struct Point{
   int x;
