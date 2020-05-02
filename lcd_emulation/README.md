@@ -1,7 +1,7 @@
-#Quick start guide:
+# Quick start guide:
 
 
-##Dependecies
+## Dependecies
 
 Libs used: 
 
@@ -17,6 +17,6 @@ Then you should be able to type:
 
 ```glxinfo | grep version```
 
-##Build & run
+## Build & run
 
 ```make all clean run```
