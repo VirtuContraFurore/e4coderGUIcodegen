@@ -4,7 +4,7 @@
 
 #include "widget/widget.h"
 #include "utility/color.h"
-#include "utility/blas.h"
+#include "utility/geometry.h"
 
 #include "touch.h"
 
