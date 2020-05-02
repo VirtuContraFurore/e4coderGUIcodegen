@@ -17,6 +17,7 @@ static inline void setCursor(int x, int y){
 void mainLoop(int value);
 void mouseKeyPress(int button, int state,int x, int y);
 void mouseMovement(int x, int y);
+void display(){}
 
 void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
 	printf("Starting LCD Emulation.\n");
@@ -35,6 +36,7 @@ void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
 	
 	glutMouseFunc(mouseKeyPress);
 	glutMotionFunc(mouseMovement);
+	glutDisplayFunc(display);
 	
 	//Start main loop timer
 	glutTimerFunc(LCD_UPDATE_PERIOD_MS, mainLoop, 0);
