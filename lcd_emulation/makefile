@@ -14,7 +14,7 @@ OBJ = lcd_demo.o lcd_emulation.o
 lcd_demo: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS) $(LIBS)
 
-.PHONY: clean
+.PHONY: all clean run
 
 clean:
 	rm -f *.o
