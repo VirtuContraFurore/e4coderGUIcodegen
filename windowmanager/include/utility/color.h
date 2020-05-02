@@ -8,12 +8,12 @@ struct Color{
   unsigned char a;
 };
 
-#define RED (Color){.r = 255, .g = 0, .b = 0, .a = 0}
-#define GREEN (Color){.r = 0, .g = 255, .b = 0, .a = 0}
-#define BLUE (Color){.r = 0, .g = 0, .b = 255, .a = 0}
-#define BLACK (Color){.r = 0, .g = 0, .b = 0, .a = 0}
-#define WHITE (Color){.r = 255, .g = 255, .b = 255, .a = 0}
-#define TRANSPARENT (Color){.r = 0, .g = 0, .b = 255, .a = 0}
+#define RED (struct Color){.r = 255, .g = 0, .b = 0, .a = 0}
+#define GREEN (struct Color){.r = 0, .g = 255, .b = 0, .a = 0}
+#define BLUE (struct Color){.r = 0, .g = 0, .b = 255, .a = 0}
+#define BLACK (struct Color){.r = 0, .g = 0, .b = 0, .a = 0}
+#define WHITE (struct Color){.r = 255, .g = 255, .b = 255, .a = 0}
+#define TRANSPARENT (struct Color){.r = 0, .g = 0, .b = 255, .a = 0}
 
 inline unsigned short int to565(struct Color c){
   return (unsigned short) (
