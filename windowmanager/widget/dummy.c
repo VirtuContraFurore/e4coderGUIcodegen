@@ -1,6 +1,7 @@
 #include "logging.h"
 
-#include "widget/dummy.h"
+#include "windowmanager/core/windowmanager.h"
+#include "windowmanager/widget/dummy.h"
 
 struct WidgetFunctions dummy_WidgetFunctions = {
     .draw = &dummy_draw,

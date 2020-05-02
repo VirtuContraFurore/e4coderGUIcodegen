@@ -1,6 +1,6 @@
 #include "logging.h"
 
-#include "core/windowmanager.h"
+#include "windowmanager/core/windowmanager.h"
 
 struct WindowManager WINDOW_MANAGER;
 

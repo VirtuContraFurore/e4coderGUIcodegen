@@ -3,8 +3,8 @@
 
 #include "stdbool.h"
 
-#include "core/windowmanager.h"
-#include "core/touch.h"
+#include "windowmanager/core/windowmanager.h"
+#include "windowmanager/core/touch.h"
 
 struct Widget{
     bool visible; //if false the widget will not be drawn and can't be touched
