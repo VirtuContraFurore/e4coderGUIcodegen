@@ -23,4 +23,21 @@ glxinfo | grep version
 
 ## Build & run
 
-```make all clean run```
+To build the library liblcdemulation:
+
+```
+make lib
+```
+
+To ran the test demo:
+
+```
+make demo run
+```
+
+## Using liblcdemulation
+
+```
+gcc ... -Lbuild/lib -llcdemulation
+
+```
