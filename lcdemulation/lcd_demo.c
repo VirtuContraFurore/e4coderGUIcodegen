@@ -48,6 +48,6 @@ void my_update(){
 	angle1+=0.5f;
 	angle+=0.1f;
 	
-	printf("Update excuted every %i milliseconds! Try to click on the screen and drag something!\n", LCD_UPDATE_PERIOD_MS);
+	printf("Update executed every %i milliseconds! Try to click on the screen and drag something!\n", LCD_UPDATE_PERIOD_MS);
 	fflush(stdout); //needed otherwise printf would be delayed by glut
 }

@@ -24,7 +24,7 @@ int LcdTouchY();
 void LcdFlush();
 
 void LcdClear();
-void LcdClearColor(short color);
+void LcdClearColor(unsigned short color);
 void LcdPutPixel(int x, int y, unsigned short color);
 void LcdDrawLine(int x, int y, int lenght, enum Direction direction, unsigned short color);
 void LcdDrawUniLine(int x1, int y1, int x2, int y2, unsigned short color);
@@ -33,7 +33,9 @@ void LcdDrawRect(int x, int y, int w, int h, unsigned short color);
 void LcdDrawRect2(int x, int y, int w, int h, unsigned short color);
 void LcdFillRect(int x, int y, int w, int h, unsigned short color);
 
+//todo:
 void LcdDrawBitmap(int x, int y, int bmp_addr);
+void LcdDrawString(int x, int y, char * string, int charset, unsigned short color);
 
 
 #endif /* LCD_EMULATION_H */

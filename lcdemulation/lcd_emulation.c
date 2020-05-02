@@ -104,7 +104,7 @@ void LcdClear(){
 
 }
 
-void LcdClearColor(short color){
+void LcdClearColor(unsigned short color){
 	glClearColor((color & 0x1F)/32, ((color >> 5) & 0x3F)/32, (color >> 11)/32, 1.0f); 
 	glClear(GL_COLOR_BUFFER_BIT);
 }
