@@ -94,3 +94,11 @@ struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx){
         return NULL;
     }
 }
+
+inline int WM_SI_getTouchEvent(struct TouchEvent* event){
+    return WINDOW_MANAGER.screen_interface->getTouchEvent(event);
+}
+
+inline void WM_SI_drawPixel(struct Point p, struct Color c){
+    return WINDOW_MANAGER.screen_interface->drawPixel(p, c);
+}
