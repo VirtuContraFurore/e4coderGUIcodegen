@@ -13,6 +13,8 @@
 struct ScreenInterface{
   int (*getTouchEvent)(struct TouchEvent* event);
 
+  void (*clear)();
+  void (*clearColor)(struct Color c);
   void (*putPixel)(struct Point p, struct Color c);
   void (*drawLine)(struct Point from, int length, enum Direction direction, struct Color c);
   void (*drawUniLine)(struct Point from, struct Point to, struct Color c);

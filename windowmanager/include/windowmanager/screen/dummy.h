@@ -4,6 +4,8 @@
 #include "windowmanager/core/windowmanager.h"
 
 int dummy_getTouchEvent(struct TouchEvent *event);
+void dummy_clear();
+void dummy_clearColor(struct Color c);
 void dummy_putPixel(struct Point p, struct Color c);
 void dummy_drawLine(struct Point from, int length, enum Direction direction, struct Color c);
 void dummy_drawUniLine(struct Point from, struct Point to, struct Color c);

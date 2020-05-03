@@ -3,6 +3,8 @@
 
 struct ScreenInterface dummy_ScreenInterface = {
   .getTouchEvent = &dummy_getTouchEvent,
+  .clear = &dummy_clear,
+  .clearColor = &dummy_clearColor,
   .putPixel = &dummy_putPixel,
   .drawLine = &dummy_drawLine,
   .drawUniLine = &dummy_drawUniLine,
@@ -17,6 +19,16 @@ int dummy_getTouchEvent(struct TouchEvent *event){
     LOG_INFO("Generated dummy touch event");
     return 1;
 }
+
+void dummy_clear(){
+    LOG_INFO("Clear screen.");
+}
+
+void dummy_clearColor(struct Color c){
+    LOG_INFO("Clear screen with color (%d, %d, %d, %d)",
+            c.r, c.g, c.b, c.a);
+}
+
 void dummy_putPixel(struct Point p, struct Color c){
     LOG_INFO("Put dummy pixel in point (%d, %d) with color (%d, %d, %d, %d)",
             p.x, p.y,
