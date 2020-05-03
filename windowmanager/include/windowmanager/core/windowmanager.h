@@ -3,6 +3,7 @@
 #define WINDOW_MANAGER_H
 
 #include "windowmanager/widget/widget.h"
+#include "windowmanager/graphics/color.h"
 #include "windowmanager/utility/color.h"
 #include "windowmanager/utility/geometry.h"
 
