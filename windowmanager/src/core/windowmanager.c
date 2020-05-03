@@ -36,6 +36,10 @@ void WM_update(){
     struct Window *window = CURRENT_WINDOW;
 
     if (WINDOW_MANAGER.redraw || WINDOW_MANAGER.force_redraw){
+        if (WINDOW_MANAGER.force_redraw){
+            WM_SCRIF_clearColor(window->background);
+        }
+        
         bool domino_redraw = WINDOW_MANAGER.force_redraw;
 
         for (int i = 0; i < window->n_widgets; i++){

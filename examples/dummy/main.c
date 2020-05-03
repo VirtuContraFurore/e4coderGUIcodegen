@@ -34,7 +34,8 @@ struct Widget widget = {
 
 struct Window window = {
     .widgets = &widget,
-    .n_widgets = 1
+    .n_widgets = 1,
+    .background = BLACK
 };
 
 void loop(){

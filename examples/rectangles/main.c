@@ -109,7 +109,8 @@ int main(int argc, char ** argv){
 
     struct Window window = {
         .widgets = widgets,
-        .n_widgets = 3
+        .n_widgets = 3,
+        .background = WHITE
     };
 
     WM_init(&window, 1, 320, 240);

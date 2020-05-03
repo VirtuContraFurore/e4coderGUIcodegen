@@ -14,6 +14,7 @@
 struct Window{
   struct Widget *widgets;
   unsigned int n_widgets;
+  struct Color background;
 };
 
 struct WindowManager{
