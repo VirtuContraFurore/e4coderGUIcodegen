@@ -5,7 +5,9 @@
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/core/touch.h"
 #include "windowmanager/widget/dummy.h"
-#include "windowmanager/utility/color.h"
+
+#include "windowmanager/graphics/color.h"
+
 
 void m_dummy_onTouch(struct Widget *self, struct TouchEvent *event){
     LOG_INFO("Handled dummy touch event");
@@ -45,3 +47,4 @@ int main(int argc, char ** argv){
 
     WM_getScreenInterface()->initEmulation(argc, argv, loop);
 }
+

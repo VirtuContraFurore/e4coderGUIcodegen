@@ -3,7 +3,9 @@
 #define WINDOW_MANAGER_H
 
 #include "windowmanager/widget/widget.h"
-#include "windowmanager/utility/color.h"
+#include "windowmanager/graphics/color.h"
+#include "windowmanager/graphics/bitmap.h"
+#include "windowmanager/graphics/font.h"
 #include "windowmanager/utility/geometry.h"
 
 #include "windowmanager/core/screeninterface.h"
@@ -21,6 +23,9 @@ struct WindowManager{
   const struct ScreenInterface * screen_interface;
   unsigned int curr_window;
   unsigned int n_windows;
+
+  struct Point last_touch;
+  bool last_touch_valid;
 };
 
 void WM_init(struct Window *windows, unsigned int n_windows);
