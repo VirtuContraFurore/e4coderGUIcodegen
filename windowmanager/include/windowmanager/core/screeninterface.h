@@ -13,11 +13,10 @@
 #include "windowmanager/graphics/font.h"
 #include "windowmanager/graphics/color.h"
 
-#if TARGET == TARGET_LCDEMULATION
 void WM_SCRIF_initEmulation(int argc, char ** argv, void (*mainFunc)());
-#endif /* TARGET = TARGET_LCDEMULATION*/
 
 int WM_SCRIF_getTouch(struct Point *p);
+
 void WM_SCRIF_flush();
 void WM_SCRIF_clear();
 void WM_SCRIF_clearColor(struct Color c);
