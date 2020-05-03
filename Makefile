@@ -19,11 +19,14 @@ all: lcdemulation windowmanager examples
 windowmanager: lcdemulation			## Build widow manager static library
 	$(MAKE) -C windowmanager CFLAGS="-I $(LEMU_INCLUDE)"  TARGET="$(TARGET)"
 
-examples: dummy_example
+examples: dummy_example rectangles_example
 
 
 dummy_example: windowmanager		## Dummy example which uses windowmanager lib
 	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"   
+
+rectangles_example: windowmanager		## Rectangle example which uses windowmanager lib
+	$(MAKE) -C examples/rectangles CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"   
 
 clean: windowmanager_clean dummy_example_clean lcdemulation_clean
 
@@ -31,6 +34,9 @@ windowmanager_clean:
 	$(MAKE) -C windowmanager clean
 
 dummy_example_clean:
+	$(MAKE) -C examples/dummy clean
+
+rectangles_example_clean:
 	$(MAKE) -C examples/dummy clean
 	
 lcdemulation:  						## Build Lcd emulation static library
@@ -45,4 +51,4 @@ lcdemulation_demo: 					## Build and run a demo which test the Lcd emulation lib
 help:          						## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-.PHONY: all dummy_example windowmanager examples clean windowmanager_clean dummy_example_clean lcdemulation lcdemulation_clean 
+.PHONY: all dummy_example windowmanager examples clean windowmanager_clean dummy_example_clean lcdemulation lcdemulation_clean rectangles_example_clean
