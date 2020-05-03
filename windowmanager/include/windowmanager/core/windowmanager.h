@@ -4,14 +4,23 @@
 
 #include "windowmanager/widget/widget.h"
 #include "windowmanager/graphics/color.h"
-#include "windowmanager/utility/color.h"
+#include "windowmanager/graphics/bitmap.h"
+#include "windowmanager/graphics/font.h"
 #include "windowmanager/utility/geometry.h"
 
 #include "windowmanager/core/touch.h"
 
 struct ScreenInterface{
   int (*getTouchEvent)(struct TouchEvent* event);
-  void (*drawPixel)(struct Point p, struct Color c);
+
+  void (*putPixel)(struct Point p, struct Color c);
+  void (*drawLine)(struct Point from, int length, enum Direction direction, struct Color c);
+  void (*drawUniLine)(struct Point from, struct Point to, struct Color c);
+  void (*drawUniLineRelative)(struct Point from, struct Point dist, struct Color c);
+  void (*drawRect)(struct Point pos, int w, int h, struct Color c);
+  void (*fillRect)(struct Point pos, int w, int h, struct Color c);
+  void (*drawBitmap)(struct Point pos, struct Bitmap* bitmap);
+  void (*drawString)(struct Point pos, char* string, struct Font* font, struct Color c);
   // TODO add what is needed
 };
 

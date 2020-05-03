@@ -10,7 +10,7 @@ struct WidgetFunctions dummy_WidgetFunctions = {
 
 void dummy_draw(struct Widget *self){
     LOG_INFO("Call dummy draw");
-    WM_getScreenInterface()->drawPixel((struct Point){0,0}, RED);
+    WM_getScreenInterface()->drawRect((struct Point){0,0}, 10, 10, RED);
     LOG_INFO("Exit dummy draw");
 }
 
