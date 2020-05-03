@@ -12,13 +12,13 @@
 
 #define ABS(x) ((x)>0) ? (x) : -(x)
 
-bool was_touched = false;
-int last_x, last_y;
-int first_x, first_y;
+static bool was_touched = false;
+static int last_x, last_y;
+static int first_x, first_y;
 //avoid malloc and free using singletons
-struct TouchEvent te;
-struct SingleTouchData std;
-struct DragTouchData dtd;
+static struct TouchEvent te;
+static struct SingleTouchData std;
+static struct DragTouchData dtd;
 
 struct TouchEvent* getTouchEvent_default(){
 	int x = (*default_screen_interface->getTouchX)();

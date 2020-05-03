@@ -6,19 +6,19 @@
 
 #include "lcdemulation/lcd_emulation.h"
 
-int last_x, last_y, pressed;
-void (*_mainFunc)();
+static int last_x, last_y, pressed;
+static void (*_mainFunc)();
 
 //adjust x,y mapping to OpenGL window's coordinates (y start from top)
 static inline void setCursor(int x, int y){
 	glWindowPos2i(x,LCD_HEIGHT-y);
 }
 
-void mainLoop(int value);
-void mouseKeyPress(int button, int state,int x, int y);
-void mouseMovement(int x, int y);
+static void mainLoop(int value);
+static void mouseKeyPress(int button, int state,int x, int y);
+static void mouseMovement(int x, int y);
 
-void display(){}
+static void display(){}
 
 void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
 	printf("Starting LCD Emulation.\n");

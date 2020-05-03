@@ -2,7 +2,7 @@
 
 IDIR =./include
 CC=gcc
-CFLAGS=-I$(IDIR)
+CFLAGS=-I$(IDIR) -fPIC
 
 LIBS=-lGL -lglut -lGLEW -lm
 
@@ -18,7 +18,7 @@ $(OBJDIR)/%.o: %.c $(OBJDIR)
 	$(CC) -c -o $@ $< $(CFLAGS) $(LIBS)
 
 $(OUT): $(OBJDIR)/lcd_emulation.o $(OUTDIR)
-	ar rcs $@ $<
+	ar r $@ $<
 
 demo: $(OBJDIR)/lcd_demo.o $(OUT)
 	$(CC) -o lcd_demo $^ $(CFLAGS) $(LIBS) -L$(OUTDIR) -l$(LIBNAME)

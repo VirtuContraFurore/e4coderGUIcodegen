@@ -12,12 +12,12 @@ DEPDIR := $(OBJDIR)/.deps
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 DEPFOLDERS := $(FOLDERS:%=$(DEPDIR)/%)
 
-CFLAGS = -I include/ -I ../logging/include/
+override CFLAGS += -I include/ -I ../logging/include/ -fPIC
 
-COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(EXT_CFLAGS) $(TARGET_ARCH) -c
+COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(TARGET_ARCH) -c
 
 $(OUT): $(OBJS) | $(OUTDIR)
-	ar rcs $@ $^
+	ar r $@ $^
 
 %.o : %.c
 $(OBJDIR)/%.o : %.c $(DEPDIR)/%.d | $(DEPDIR) $(OBJFOLDERS) $(DEPFOLDERS)
