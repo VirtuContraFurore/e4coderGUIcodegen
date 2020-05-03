@@ -4,20 +4,7 @@
 
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/widget/dummy.h"
-
-int dummy_getTouchEvent(struct TouchEvent *event){
-    LOG_INFO("Generated dummy touch event");
-    return 1;
-}
-
-void dummy_drawPixel(struct Point p, struct Color c){
-    LOG_INFO("Drew dummy pixel at (%d, %d)", p.x, p.y);
-}
-
-struct ScreenInterface dummy_interface = {
-    .getTouchEvent = &dummy_getTouchEvent,
-    .drawPixel = &dummy_drawPixel
-};
+#include "windowmanager/screen/dummy.h"
 
 void m_dummy_onTouch(struct Widget *self, struct TouchEvent *event){
     LOG_INFO("Handled dummy touch event");
@@ -41,7 +28,7 @@ struct Window window = {
 };
 
 int main(){
-    WM_init(&window, 1, &dummy_interface);
+    WM_init(&window, 1, &dummy_ScreenInterface);
     while(1){
         WM_handleEvents();
         WM_update();
