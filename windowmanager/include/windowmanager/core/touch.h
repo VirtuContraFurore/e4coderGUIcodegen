@@ -17,8 +17,7 @@ struct TouchEvent{
 };
 
 struct SingleTouchData {
-	int x;
-	int y;
+	struct Point p;
 	enum TouchEventType type;
 };
 
@@ -28,10 +27,8 @@ struct MultiTouchData {
 };
 
 struct DragTouchData {
-	int start_x;
-	int start_y;
-	int end_x;
-	int end_y;
+	struct Point start;
+	struct Point end;
 };
 
 struct TouchEvent* WM_getTouchEvent();

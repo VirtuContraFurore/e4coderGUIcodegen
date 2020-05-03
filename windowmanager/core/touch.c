@@ -10,8 +10,8 @@
 #define ABS(x) ((x)>0) ? (x) : -(x)
 
 static bool was_touched = false;
-static int last_x, last_y;
-static int first_x, first_y;
+static struct Point last;
+static struct Point first;
 //avoid malloc and free using singletons
 static struct TouchEvent te;
 static struct SingleTouchData std;
@@ -28,23 +28,24 @@ struct TouchEvent* WM_getTouchEvent(){
 			return NULL;
 		} else {
 			was_touched = false;
-			std = (struct SingleTouchData) {.type=TOUCH_UP, .x = last_x, .y = last_y};
+			std = (struct SingleTouchData) {
+                .type=TOUCH_UP, 
+                .p = last
+            };
 			te = (struct TouchEvent) {.type=SINGLE_TOUCH, &std};
 			return &te;
 		}
 	} else if (ret == 1) {
-		last_x = p.x;
-		last_y = p.y;
+		last = p;
 		if(was_touched == false){
 			was_touched = true;
-			first_x = p.x;
-			first_y = p.y;
-			std = (struct SingleTouchData) {.type=TOUCH_DOWN, .x = last_x, .y = last_x};
+			first = p;
+			std = (struct SingleTouchData) {.type=TOUCH_DOWN, .p = last};
 			te = (struct TouchEvent) {.type=SINGLE_TOUCH, &std};
 			return &te;
 		} else {
-			if(ABS(first_x-last_x) > DELTA_DRAG_PX || ABS(first_y-last_y) > DELTA_DRAG_PX){
-				dtd = (struct DragTouchData) {.start_x = first_x, .start_y = first_y, .end_x = last_x, .end_y = last_y};
+			if(ABS(first.x-last.x) > DELTA_DRAG_PX || ABS(first.y-last.y) > DELTA_DRAG_PX){
+				dtd = (struct DragTouchData) {.start = first, .end = last};
 				te = (struct TouchEvent) {.type=DRAG_TOUCH, &std};
 				return &te;
 			} else
