@@ -56,12 +56,12 @@ void WM_SCRIF_drawUniLineRelative(struct Point from, struct Point dist, struct C
     LcdDrawUniLine(from.x, from.y, dist.x, dist.y, TO_565(c));
 }
 
-void WM_SCRIF_drawRect(struct Point pos, int w, int h, struct Color c){
-    LcdDrawRect(pos.x, pos.y, w, h, TO_565(c));
+void WM_SCRIF_drawRect(struct Rect rect, struct Color c){
+    LcdDrawRect(rect.pos.x, rect.pos.y, rect.w, rect.h, TO_565(c));
 }
 
-void WM_SCRIF_fillRect(struct Point pos, int w, int h, struct Color c){
-    LcdFillRect(pos.x, pos.y, w, h, TO_565(c));
+void WM_SCRIF_fillRect(struct Rect rect, struct Color c){
+    LcdFillRect(rect.pos.x, rect.pos.y, rect.w, rect.h, TO_565(c));
 }
 
 void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){

@@ -13,7 +13,7 @@ struct WidgetFunctions rectangle_WidgetFunctions = {
 void rectangle_draw(struct Widget *self){
     struct rectangle_WidgetData* data = (struct rectangle_WidgetData*) self->data;
 
-    WM_SCRIF_fillRect(data->rect.pos, data->rect.w, data->rect.h, data->color);
+    WM_SCRIF_fillRect(data->rect, data->color);
     WM_SCRIF_flush();
 }
 
