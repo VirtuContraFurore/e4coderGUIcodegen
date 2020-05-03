@@ -9,12 +9,14 @@ LEMU_LIBNAME = lcdemulation
 
 all: lcdemulation windowmanager examples
 
+$(WM_LIBDIR)/libwindowmanager.a: windowmanager
+
 windowmanager: ## Build widow manager static library
 	$(MAKE) -C windowmanager
 
-examples: dummy_example
+examples: dummy_example lcdemulation_demo
 
-dummy_example: windowmanager ## Dummy example which uses windowmanager lib
+dummy_example: windowmanager/build/lib/libwindowmanager.a ## Dummy example which uses windowmanager lib
 	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME)"
 
 clean: windowmanager_clean dummy_example_clean lcdemulation_clean
