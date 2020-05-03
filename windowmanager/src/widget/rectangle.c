@@ -14,7 +14,6 @@ void rectangle_draw(struct Widget *self){
     struct rectangle_WidgetData* data = (struct rectangle_WidgetData*) self->data;
 
     WM_SCRIF_fillRect(data->rect, data->color);
-    WM_SCRIF_flush();
 }
 
 bool rectangle_onTouch(struct Widget *self, struct TouchEvent *event){
