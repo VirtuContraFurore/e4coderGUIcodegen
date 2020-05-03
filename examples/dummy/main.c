@@ -16,9 +16,9 @@ void m_dummy_onTouch(struct Widget *self, struct TouchEvent *event){
 
     if(event->type == SINGLE_TOUCH){
     	struct SingleTouchData * data = (struct SingleTouchData*) event->event_data;
-    	unsigned short color = (data->type == TOUCH_DOWN) ? TO_565(RED) : TO_565(BLUE);
-		WM_getScreenInterface()->clearScreenColor(color);
-		WM_getScreenInterface()->flush();
+    	struct Color color = (data->type == TOUCH_DOWN) ? RED : BLUE;
+		WM_SCRIF_clearColor(color);
+		WM_SCRIF_flush();
     }
 }
 
@@ -43,8 +43,8 @@ void loop(){
 }
 
 int main(int argc, char ** argv){
-    WM_init(&window, 1);
+    WM_init(&window, 1, 320, 240);
 
-    WM_getScreenInterface()->initEmulation(argc, argv, loop);
+    WM_SCRIF_initEmulation(argc, argv, loop);
 }
 

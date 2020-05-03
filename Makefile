@@ -1,20 +1,26 @@
+TARGET := lcdemulation
+
 LOG_INCLUDE = $(abspath logging/include)
 WM_INCLUDE = $(abspath windowmanager/include)
-WM_LIBDIR = $(abspath windowmanager/build/lib)
+WM_LIBDIR = $(abspath windowmanager/build/$(TARGET)/lib)
 WM_LIBNAME = windowmanager
 LEMU_INCLUDE = $(abspath lcdemulation/include)
 LEMU_LIBDIR = $(abspath lcdemulation/build/lib)
 LEMU_LIBNAME = lcdemulation
 
+ifeq ($(TARGET), lcdemulation)
+CC = gcc
+endif
+
 
 all: lcdemulation windowmanager examples
 
-windowmanager: lcdemulation					## Build widow manager static library
-	$(MAKE) -C windowmanager CFLAGS="-I $(LEMU_INCLUDE)"
 
-$(WM_LIBDIR)/libwindowmanager.a: windowmanager
+windowmanager: lcdemulation			## Build widow manager static library
+	$(MAKE) -C windowmanager CFLAGS="-I $(LEMU_INCLUDE)"  TARGET="$(TARGET)"
 
 examples: dummy_example
+
 
 dummy_example: windowmanager		## Dummy example which uses windowmanager lib
 	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"   

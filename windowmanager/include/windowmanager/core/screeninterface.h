@@ -1,52 +1,33 @@
 #ifndef SCREENINTERFACE_H
 #define SCREENINTERFACE_H
 
+#define TARGET_LCDEMULATION 0
+#define TARGET_DISCOVERY 1
+
+// Default target
+#define TARGET TARGET_LCDEMULATION
+
 #include "windowmanager/core/touch.h"
-#include "lcdemulation/directions.h"
+#include "windowmanager/utility/geometry.h"
+#include "windowmanager/graphics/bitmap.h"
+#include "windowmanager/graphics/font.h"
+#include "windowmanager/graphics/color.h"
 
-/* SCRIF stands from SCreen InterFace  */
+#if TARGET == TARGET_LCDEMULATION
+void WM_SCRIF_initEmulation(int argc, char ** argv, void (*mainFunc)());
+#endif /* TARGET = TARGET_LCDEMULATION*/
 
-#define SCRIF_EMULATED_OPENGL		0
-#define SCRIF_HARD_DISCOVERY		1
-
-/* Setting up a default screen interface */
-#define SCRIF_DEF					SCRIF_EMULATED_OPENGL
-
-/* Default screen interface implementation, defined inside screeinterface.c */
-#ifdef SCRIF_DEF
-extern const struct ScreenInterface * const default_screen_interface;
-#endif /* SCRIF_DEF */
-
-static const char IF_DIR_UP=0, IF_DIR_DOWN=1, IF_DIR_RIGHT=2, IF_DIR_LEFT=3;
-
-struct ScreenInterface{
-	int width;
-	int height;
-
-#if defined SCRIF_DEF && SCRIF_DEF == SCRIF_EMULATED_OPENGL
-	void (*initEmulation)(int argc, char ** argv, void (*mainFunc)());
-#endif /* SCRIF_DEF = SCRIF_EMULATED_OPENGL */
-
-	struct TouchEvent* (*getTouchEvent)();
-	int (*getTouchX)();
-	int (*getTouchY)();
-
-	//This must be called after each draw sequence to avoid flickering, due to OpenGL frame buffering
-	void (*flush)();
-
-	void (*clearScreen)();
-	void (*clearScreenColor)(unsigned short color);
-	void (*drawPixel)(int x, int y, unsigned short color);
-	void (*drawLine)(int x, int y, int lenght, enum Direction direction, unsigned short color);
-	void (*drawUniLine)(int x1, int y1, int x2, int y2, unsigned short color);
-	void (*drawUniLineRelative)(int x, int y, int x_rel, int y_rel, unsigned short color);
-	void (*drawRect)(int x, int y, int w, int h, unsigned short color);
-	void (*drawRect2)(int x, int y, int w, int h, unsigned short color);
-	void (*drawFillRect)(int x, int y, int w, int h, unsigned short color);
-
-	//todo: not implemented yet
-	void (*drawBitmap)(int x, int y, int bmp_addr);
-	void (*drawString)(int x, int y, char * string, int charset, unsigned short color);
-};
+int WM_SCRIF_getTouch(struct Point *p);
+void WM_SCRIF_flush();
+void WM_SCRIF_clear();
+void WM_SCRIF_clearColor(struct Color c);
+void WM_SCRIF_drawPixel(struct Point p, struct Color c);
+void WM_SCRIF_drawLine(struct Point from, int length, enum Direction direction, struct Color c);
+void WM_SCRIF_drawUniLine(struct Point from, struct Point to, struct Color c);
+void WM_SCRIF_drawUniLineRelative(struct Point from, struct Point dist, struct Color c);
+void WM_SCRIF_drawRect(struct Point pos, int w, int h, struct Color c);
+void WM_SCRIF_fillRect(struct Point pos, int w, int h, struct Color c);
+void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap);
+void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c);
 
 #endif /* SCREENINTERFACE_H */

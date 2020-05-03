@@ -1,5 +1,7 @@
+TARGET := lcdemulation
+
 SRCS := $(shell find . -name "*.c")
-OBJDIR := build
+OBJDIR := build/$(TARGET)
 OUTDIR := $(OBJDIR)/lib
 
 FOLDERS := $(strip $(shell find . -type d -not -path "*build*" -not -path "*include*" -printf '%P\n'))
@@ -12,7 +14,14 @@ DEPDIR := $(OBJDIR)/.deps
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 DEPFOLDERS := $(FOLDERS:%=$(DEPDIR)/%)
 
-override CFLAGS += -I include/ -I ../logging/include/ -fPIC
+ifeq ($(TARGET), lcdemulation)
+TARGET_MACRO = TARGET_LCDEMULATION
+endif
+ifeq ($(TARGET), discovery)
+TARGET_MACRO = TARGET_DISCOVERY
+endif
+
+override CFLAGS += -I include/ -I ../logging/include/ -fPIC -DTARGET=$(TARGET_MACRO)
 
 COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(TARGET_ARCH) -c
 

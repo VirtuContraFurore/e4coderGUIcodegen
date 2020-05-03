@@ -34,6 +34,6 @@ struct DragTouchData {
 	int end_y;
 };
 
-struct TouchEvent getTouchEvent(struct Point *newp, struct Point *oldp);
+struct TouchEvent* WM_getTouchEvent();
 
 #endif

@@ -26,7 +26,7 @@ void LcdFlush();
 void LcdClear();
 void LcdClearColor(unsigned short color);
 void LcdPutPixel(int x, int y, unsigned short color);
-void LcdDrawLine(int x, int y, int lenght, enum Direction direction, unsigned short color);
+void LcdDrawLine(int x, int y, int lenght, enum LEMU_Direction direction, unsigned short color);
 void LcdDrawUniLine(int x1, int y1, int x2, int y2, unsigned short color);
 void LcdDrawUniLineRelative(int x, int y, int x_rel, int y_rel, unsigned short color);
 void LcdDrawRect(int x, int y, int w, int h, unsigned short color);

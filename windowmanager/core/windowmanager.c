@@ -8,18 +8,19 @@ struct WindowManager WINDOW_MANAGER;
 
 #define CURRENT_WINDOW &(WINDOW_MANAGER.windows[WINDOW_MANAGER.curr_window])
 
-void WM_init(struct Window *windows, unsigned int n_windows){
-    WINDOW_MANAGER.screen_interface = default_screen_interface;
+void WM_init(struct Window *windows, unsigned int n_windows, unsigned int width, unsigned int height){
     WINDOW_MANAGER.windows = windows;
     WINDOW_MANAGER.n_windows = n_windows;
     WINDOW_MANAGER.redraw = false;
     WINDOW_MANAGER.force_redraw = true;
+    WINDOW_MANAGER.width = width;
+    WINDOW_MANAGER.height = height;
 }
 
 void WM_handleEvents(){
     struct TouchEvent *event;
 
-    event = WINDOW_MANAGER.screen_interface->getTouchEvent();
+    event = WM_getTouchEvent();
     if (event != NULL){
         struct Window *window = CURRENT_WINDOW;
         for (int i = window->n_widgets - 1; i >= 0; i--){
@@ -46,7 +47,7 @@ void WM_update(){
             }
         }
 
-        WINDOW_MANAGER.screen_interface->flush(); //finalize drawing
+        WM_SCRIF_flush(); //finalize drawing
         WINDOW_MANAGER.redraw = false;
         WINDOW_MANAGER.force_redraw = false;
     }
@@ -95,6 +96,3 @@ struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx){
     }
 }
 
-inline const struct ScreenInterface* WM_getScreenInterface(){
-    return WINDOW_MANAGER.screen_interface;
-}

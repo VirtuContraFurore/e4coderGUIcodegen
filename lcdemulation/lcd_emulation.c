@@ -111,7 +111,7 @@ void LcdClearColor(unsigned short color){
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void LcdDrawLine(int x, int y, int lenght, enum Direction direction, unsigned short color){
+void LcdDrawLine(int x, int y, int lenght, enum LEMU_Direction direction, unsigned short color){
 	GLushort * pixels = malloc(lenght*sizeof(GLushort));
 	for(int i = 0; i<lenght; i++)
 		pixels[i] = color;
@@ -236,3 +236,8 @@ void LcdDrawUniLine(int x1, int y1, int x2, int y2, unsigned short color)
 void LcdDrawUniLineRelative(int x, int y, int x_rel, int y_rel, unsigned short color){
 	LcdDrawUniLine(x, y, x+x_rel-1, y+y_rel-1, color);
 }
+
+
+// TODO 
+void LcdDrawBitmap(int x, int y, int bmp_addr){}
+void LcdDrawString(int x, int y, char * string, int charset, unsigned short color){}

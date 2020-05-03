@@ -20,15 +20,14 @@ struct WindowManager{
   bool redraw;
   bool force_redraw;
   struct Window *windows;
-  const struct ScreenInterface * screen_interface;
   unsigned int curr_window;
   unsigned int n_windows;
 
-  struct Point last_touch;
-  bool last_touch_valid;
+  unsigned int width;
+  unsigned int height;
 };
 
-void WM_init(struct Window *windows, unsigned int n_windows);
+void WM_init(struct Window *windows, unsigned int n_windows, unsigned int width, unsigned int height);
 void WM_handleEvents();
 void WM_update();
 void WM_scheduleRedraw();
@@ -36,7 +35,5 @@ void WM_scheduleForcedRedraw();
 void WM_setCurrentWindow(unsigned int window_idx);
 struct Window* WM_getWindow(unsigned int window_idx);
 struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx);
-
-const struct ScreenInterface* WM_getScreenInterface();
 
 #endif
