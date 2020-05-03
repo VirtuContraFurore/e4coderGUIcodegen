@@ -5,7 +5,7 @@
 #define LCD_WIDTH	320
 #define LCD_HEIGHT	240
 
-enum Direction {DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT};
+#include "directions.h"
 
 /**
  * Init the LCD emulaton using OpenGL.

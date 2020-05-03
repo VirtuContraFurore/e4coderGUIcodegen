@@ -14,14 +14,14 @@ DEPFOLDERS := $(FOLDERS:%=$(DEPDIR)/%)
 
 CFLAGS = -I include/ -I ../logging/include/
 
-COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(TARGET_ARCH) -c
+COMPILE.c = $(CC) $(DEPFLAGS) $(CFLAGS) $(EXT_CFLAGS) $(TARGET_ARCH) -c
 
 $(OUT): $(OBJS) | $(OUTDIR)
 	ar rcs $@ $^
 
 %.o : %.c
 $(OBJDIR)/%.o : %.c $(DEPDIR)/%.d | $(DEPDIR) $(OBJFOLDERS) $(DEPFOLDERS)
-	$(COMPILE.c) $(OUTPUT_OPTION) $<
+	$(COMPILE.c) $(OUTPUT_OPTION) $< 
 
 $(OBJDIR): ; @mkdir -p $@
 $(DEPDIR): $(OBJDIR) ; @mkdir -p $@

@@ -1,3 +1,5 @@
+#include <stddef.h>
+
 #include "logging.h"
 
 #include "windowmanager/core/windowmanager.h"
@@ -6,30 +8,26 @@ struct WindowManager WINDOW_MANAGER;
 
 #define CURRENT_WINDOW &(WINDOW_MANAGER.windows[WINDOW_MANAGER.curr_window])
 
-void WM_init(struct Window *windows, unsigned int n_windows, 
-             struct ScreenInterface *screen_interface){
-    WINDOW_MANAGER.screen_interface = screen_interface;
+void WM_init(struct Window *windows, unsigned int n_windows){
+    WINDOW_MANAGER.screen_interface = default_screen_interface;
     WINDOW_MANAGER.windows = windows;
     WINDOW_MANAGER.n_windows = n_windows;
-    WINDOW_MANAGER.redraw = true;
-    WINDOW_MANAGER.force_redraw = false;
+    WINDOW_MANAGER.redraw = false;
+    WINDOW_MANAGER.force_redraw = true;
 }
 
 void WM_handleEvents(){
-    int ret;
-    struct TouchEvent event;
+    struct TouchEvent *event;
 
-    ret = WINDOW_MANAGER.screen_interface->getTouchEvent(&event);
-    if (ret > 0){
+    event = WINDOW_MANAGER.screen_interface->getTouchEvent();
+    if (event != NULL){
         struct Window *window = CURRENT_WINDOW;
         for (int i = window->n_widgets - 1; i >= 0; i--){
             struct Widget *widget = &(window->widgets[i]);
-            if (widget->funcs->onTouch(widget, &event)){
+            if (widget->funcs->onTouch(widget, event)){
                 break;
             }
         }
-    } else if (ret < 0){
-        LOG_ERROR("getTouchEvent returned %d", ret);
     }
 }
 
@@ -47,6 +45,8 @@ void WM_update(){
                 domino_redraw = true;
             }
         }
+
+        WINDOW_MANAGER.screen_interface->flush(); //finalize drawing
         WINDOW_MANAGER.redraw = false;
         WINDOW_MANAGER.force_redraw = false;
     }
@@ -95,6 +95,6 @@ struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx){
     }
 }
 
-inline struct ScreenInterface* WM_getScreenInterface(){
+inline const struct ScreenInterface* WM_getScreenInterface(){
     return WINDOW_MANAGER.screen_interface;
 }

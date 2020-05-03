@@ -2,6 +2,7 @@
 
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/widget/dummy.h"
+#include "windowmanager/utility/color.h"
 
 struct WidgetFunctions dummy_WidgetFunctions = {
     .draw = &dummy_draw,
@@ -10,7 +11,7 @@ struct WidgetFunctions dummy_WidgetFunctions = {
 
 void dummy_draw(struct Widget *self){
     LOG_INFO("Call dummy draw");
-    WM_getScreenInterface()->drawPixel((struct Point){0,0}, RED);
+    WM_getScreenInterface()->drawPixel(50, 50, TO_565(RED));
     LOG_INFO("Exit dummy draw");
 }
 

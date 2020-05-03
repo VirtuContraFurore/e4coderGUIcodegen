@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include <GL/glut.h>
 
-#include "lcd_emulation.h"
+#include "lcdemulation/lcd_emulation.h"
 
 int last_x, last_y, pressed;
 void (*_mainFunc)();
@@ -17,6 +17,7 @@ static inline void setCursor(int x, int y){
 void mainLoop(int value);
 void mouseKeyPress(int button, int state,int x, int y);
 void mouseMovement(int x, int y);
+
 void display(){}
 
 void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
@@ -37,8 +38,6 @@ void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
 	glutMouseFunc(mouseKeyPress);
 	glutMotionFunc(mouseMovement);
 	glutDisplayFunc(display);
-	
-	//Start main loop timer
 	glutTimerFunc(LCD_UPDATE_PERIOD_MS, mainLoop, 0);
 	
 	//initialize this library because glWindowPos is provided by glew.h
@@ -65,7 +64,7 @@ void mainLoop(int value){
 	//try to avoid reshape
 	if((glutGet(GLUT_WINDOW_WIDTH) != LCD_WIDTH) || (glutGet(GLUT_WINDOW_HEIGHT) != LCD_HEIGHT))
 		glutReshapeWindow(LCD_WIDTH,LCD_HEIGHT);
-	
+
 	/*Set up the next event timer*/
 	glutTimerFunc(LCD_UPDATE_PERIOD_MS, mainLoop, value);
 }
@@ -101,15 +100,18 @@ void LcdFlush(){
 void LcdClear(){
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f); 
 	glClear(GL_COLOR_BUFFER_BIT);
-
 }
 
 void LcdClearColor(unsigned short color){
-	glClearColor((color & 0x1F)/32, ((color >> 5) & 0x3F)/32, (color >> 11)/32, 1.0f); 
+	float red = (float) (color>>11)/32;
+	float green = (float) ((color>>5) & 0x3F)/64;
+	float blue = (float) (color & 0x1F)/32;
+
+	glClearColor(red, green, blue, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void LcdDrawLine(int x, int y, int lenght, enum Direction direction, unsigned short color){	
+void LcdDrawLine(int x, int y, int lenght, enum Direction direction, unsigned short color){
 	GLushort * pixels = malloc(lenght*sizeof(GLushort));
 	for(int i = 0; i<lenght; i++)
 		pixels[i] = color;

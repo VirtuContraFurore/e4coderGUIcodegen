@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include <math.h>
 
-#include "lcd_emulation.h"
+#include "lcdemulation/lcd_emulation.h"
 
 void my_update();
 

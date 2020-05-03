@@ -3,26 +3,21 @@
 #include "logging.h"
 
 #include "windowmanager/core/windowmanager.h"
+#include "windowmanager/core/touch.h"
 #include "windowmanager/widget/dummy.h"
-
-int dummy_getTouchEvent(struct TouchEvent *event){
-    LOG_INFO("Generated dummy touch event");
-    return 1;
-}
-
-void dummy_drawPixel(struct Point p, struct Color c){
-    LOG_INFO("Drew dummy pixel at (%d, %d)", p.x, p.y);
-}
-
-struct ScreenInterface dummy_interface = {
-    .getTouchEvent = &dummy_getTouchEvent,
-    .drawPixel = &dummy_drawPixel
-};
+#include "windowmanager/utility/color.h"
 
 void m_dummy_onTouch(struct Widget *self, struct TouchEvent *event){
     LOG_INFO("Handled dummy touch event");
     self->redraw = true;
     WM_scheduleRedraw();
+
+    if(event->type == SINGLE_TOUCH){
+    	struct SingleTouchData * data = (struct SingleTouchData*) event->event_data;
+    	unsigned short color = (data->type == TOUCH_DOWN) ? TO_565(RED) : TO_565(BLUE);
+		WM_getScreenInterface()->clearScreenColor(color);
+		WM_getScreenInterface()->flush();
+    }
 }
 
 struct dummy_WidgetData dummy_widget_data = {
@@ -40,11 +35,13 @@ struct Window window = {
     .n_widgets = 1
 };
 
-int main(){
-    WM_init(&window, 1, &dummy_interface);
-    while(1){
-        WM_handleEvents();
-        WM_update();
-        usleep(30000);
-    }
+void loop(){
+    WM_handleEvents();
+    WM_update();
+}
+
+int main(int argc, char ** argv){
+    WM_init(&window, 1);
+
+    WM_getScreenInterface()->initEmulation(argc, argv, loop);
 }

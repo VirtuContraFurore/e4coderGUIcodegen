@@ -15,11 +15,5 @@ struct Color{
 #define WHITE (struct Color){.r = 255, .g = 255, .b = 255, .a = 0}
 #define TRANSPARENT (struct Color){.r = 0, .g = 0, .b = 255, .a = 0}
 
-inline unsigned short int to565(struct Color c){
-  return (unsigned short) (
-    (0b1111100000000000 & c.r) |
-    (0b0000011111100000 & c.g) |
-    (0b0000000000011111 & c.b)
-    );
-}
+#define TO_565(color) ((unsigned short) (((0xF8 & (color).r)<<8) | ((0xFC & (color).g)<<3) | ((0xF8 & (color).b)>>3)))
 #endif
