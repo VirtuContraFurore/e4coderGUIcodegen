@@ -2,7 +2,7 @@
 #include "windowmanager/screen/dummy.h"
 
 struct ScreenInterface dummy_ScreenInterface = {
-  .getTouchEvent = &dummy_getTouchEvent,
+  .getTouch = &dummy_getTouch,
   .clear = &dummy_clear,
   .clearColor = &dummy_clearColor,
   .putPixel = &dummy_putPixel,
@@ -15,8 +15,10 @@ struct ScreenInterface dummy_ScreenInterface = {
   .drawString = &dummy_drawString
 };
 
-int dummy_getTouchEvent(struct TouchEvent *event){
+int dummy_getTouch(struct Point *p){
     LOG_INFO("Generated dummy touch event");
+    p->x = 0;
+    p->y = 0;
     return 1;
 }
 

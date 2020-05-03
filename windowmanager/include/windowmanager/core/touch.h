@@ -1,7 +1,9 @@
 #ifndef TOUCH_H
 #define TOUCH_H
 
-enum TouchEventType {SINGLE_TOUCH, MULTI_TOUCH, DRAG_TOUCH};
+#include "windowmanager/utility/geometry.h"
+
+enum TouchEventType {SINGLE_TOUCH, MULTI_TOUCH, DRAG_TOUCH, NO_TOUCH};
 
 enum TouchType {TOUCH_DOWN, TOUCH_UP};
 
@@ -31,5 +33,7 @@ struct DragTouchData {
 	int end_x;
 	int end_y;
 };
+
+struct TouchEvent getTouchEvent(struct Point *newp, struct Point *oldp);
 
 #endif

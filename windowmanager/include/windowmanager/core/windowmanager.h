@@ -11,7 +11,7 @@
 #include "windowmanager/core/touch.h"
 
 struct ScreenInterface{
-  int (*getTouchEvent)(struct TouchEvent* event);
+  int (*getTouch)(struct Point *p);
 
   void (*clear)();
   void (*clearColor)(struct Color c);
@@ -38,6 +38,9 @@ struct WindowManager{
   struct ScreenInterface *screen_interface;
   unsigned int curr_window;
   unsigned int n_windows;
+
+  struct Point last_touch;
+  bool last_touch_valid;
 };
 
 void WM_init(struct Window *windows, unsigned int n_windows, 

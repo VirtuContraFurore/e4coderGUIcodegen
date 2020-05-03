@@ -3,7 +3,7 @@
 
 #include "windowmanager/core/windowmanager.h"
 
-int dummy_getTouchEvent(struct TouchEvent *event);
+int dummy_getTouch(struct Point *p);
 void dummy_clear();
 void dummy_clearColor(struct Color c);
 void dummy_putPixel(struct Point p, struct Color c);

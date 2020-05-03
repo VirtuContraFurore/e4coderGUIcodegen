@@ -1,3 +1,5 @@
+#include "stdlib.h"
+
 #include "logging.h"
 
 #include "windowmanager/core/windowmanager.h"
@@ -18,16 +20,29 @@ void WM_init(struct Window *windows, unsigned int n_windows,
 void WM_handleEvents(){
     int ret;
     struct TouchEvent event;
+    struct Point p;
 
-    ret = WINDOW_MANAGER.screen_interface->getTouchEvent(&event);
-    if (ret > 0){
-        struct Window *window = CURRENT_WINDOW;
-        for (int i = window->n_widgets - 1; i >= 0; i--){
-            struct Widget *widget = &(window->widgets[i]);
-            if (widget->funcs->onTouch(widget, &event)){
-                break;
+    ret = WINDOW_MANAGER.screen_interface->getTouch(&p);
+    if (ret >= 0){
+        event = getTouchEvent(
+            ret ? &p : NULL, 
+            WINDOW_MANAGER.last_touch_valid ? &WINDOW_MANAGER.last_touch : NULL
+        );
+
+        if (event.type != NO_TOUCH){
+            struct Window *window = CURRENT_WINDOW;
+            for (int i = window->n_widgets - 1; i >= 0; i--){
+                struct Widget *widget = &(window->widgets[i]);
+                if (widget->funcs->onTouch(widget, &event)){
+                    break;
+                }
             }
         }
+
+        WINDOW_MANAGER.last_touch = p;
+        WINDOW_MANAGER.last_touch_valid = ret != 0;
+        if (event.event_data != NULL)
+            free(event.event_data);
     } else if (ret < 0){
         LOG_ERROR("getTouchEvent returned %d", ret);
     }
