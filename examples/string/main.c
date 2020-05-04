@@ -23,10 +23,18 @@ void loop(){
 
     if(!fatto){
       WM_SCRIF_drawBitmap(p, &bitmap_immagine);
-      p.x = 10;
+      p = (struct Point) {20, 20};
+      WM_SCRIF_drawString(p, "ave!", &font_courier_new48px, BLACK);
+      p = (struct Point) {20+1, 20-1};
+      WM_SCRIF_drawString(p, "ave!", &font_courier_new48px, BLACK);
+      p = (struct Point) {20+2, 20-2};
       WM_SCRIF_drawString(p, "ave!", &font_courier_new48px, RED);
-      p.y = 100;
-      WM_SCRIF_drawString(p, "satana!! f s", &font_arial48px, BLUE);
+      p = (struct Point) {140, 180};
+      WM_SCRIF_drawString(p, "satana!!", &font_arial48px, BLACK);
+      p = (struct Point) {140+1, 180-1};
+      WM_SCRIF_drawString(p, "satana!!", &font_arial48px, BLACK);
+      p = (struct Point) {140+2, 180-2};
+      WM_SCRIF_drawString(p, "satana!!", &font_arial48px, BLUE);
       fatto = true;
       WM_SCRIF_flush();
     }
