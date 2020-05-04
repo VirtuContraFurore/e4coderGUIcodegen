@@ -81,6 +81,13 @@ void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, stru
     int i = 0;
 
     while(string[i] != '\0'){
+      /* Manage space char */
+      if(string[i] == ' '){
+    	  pos.x +=font->symbols[(int)'a'-33].width;
+    	  i++;
+    	  continue;
+      }
+
       int index = (int)string[i] - 33;
       int w = font->symbols[index].width;
       int h = font->symbols[index].height;
@@ -98,7 +105,8 @@ void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, stru
           mask >>= 1;
         }
       }
-      pos.x += w - 5;
+
+      pos.x += w;
       i++;
     }
 }
