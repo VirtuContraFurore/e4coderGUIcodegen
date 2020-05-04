@@ -11,7 +11,7 @@ static void (*_mainFunc)();
 
 //adjust x,y mapping to OpenGL window's coordinates (y start from top)
 static inline void setCursor(int x, int y){
-	glWindowPos2i(x,LCD_HEIGHT-y);
+	glWindowPos2i(x,LCD_HEIGHT-1-y);
 }
 
 static void mainLoop(int value);
@@ -238,15 +238,14 @@ void LcdDrawUniLineRelative(int x, int y, int x_rel, int y_rel, unsigned short c
 	LcdDrawUniLine(x, y, x+x_rel-1, y+y_rel-1, color);
 }
 
-
-// TODO
 void LcdDrawBitmap(int x, int y, int w, int h, void * bitmap){
   short* arr = (short*) bitmap;
   GLushort * pixels = malloc((w * h) * sizeof(GLushort));
 
-	for(int y = 0; y < h; y++)
-    for(int x = 0; x < w; x++)
-		  pixels[x + (h - 1 - y) * w] = arr[x + y * w];
+    //sam, porco dio, non sovrascrivere la visibilità dei parametri dento ai cicli
+	for(int img_y = 0; img_y < h; img_y++)
+		for(int img_x = 0; img_x < w; img_x++)
+			  pixels[img_x + (h - 1 - img_y) * w] = arr[img_x + img_y * w];
 
     setCursor(x, y + h - 1);
     glDrawPixels(w, h, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
