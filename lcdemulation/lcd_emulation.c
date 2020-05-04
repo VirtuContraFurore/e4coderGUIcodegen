@@ -239,5 +239,5 @@ void LcdDrawUniLineRelative(int x, int y, int x_rel, int y_rel, unsigned short c
 
 
 // TODO 
-void LcdDrawBitmap(int x, int y, int bmp_addr){}
-void LcdDrawString(int x, int y, char * string, int charset, unsigned short color){}
+void LcdDrawBitmap(int x, int y, void * bitmap){}
+void LcdDrawString(int x, int y, void * font, int charset, unsigned short color){}

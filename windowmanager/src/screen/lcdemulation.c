@@ -83,7 +83,7 @@ void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, stru
     while(string[i] != '\0'){
       /* Manage space char */
       if(string[i] == ' '){
-    	  pos.x +=font->symbols[(int)'a'-33].width;
+    	  pos.x +=font->symbols[(int)'a'-33].width; /* Use the same width of 'a' character. */
     	  i++;
     	  continue;
       }
