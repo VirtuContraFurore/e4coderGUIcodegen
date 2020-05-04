@@ -78,27 +78,27 @@ void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
 
 void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c){
     unsigned short color = TO_565(c);
-    int i = 0, j, k, x, y, N, index, mask, w, h;
+    int i = 0;
 
     while(string[i] != '\0'){
-      index = (int)string[i] - 33;
-      w = font->symbols[index].width;
-      h = font->symbols[index].height;
-      N = w * h;
+      int index = (int)string[i] - 33;
+      int w = font->symbols[index].width;
+      int h = font->symbols[index].height;
+      int N = w * h;
 
-      for(j = 0; j < N + 8; j += 8){
-        mask = 128;
-        for(k = 0; k < 8; k++){
+      for(int j = 0; j < N + 8; j += 8){
+        int mask = 128;
+        for(int k = 0; k < 8; k++){
           if(j + k < N && (mask & font->symbols[index].data[j / 8])){
-            x = (j + k) % w;
-            y = (j + k) / w;
+            int x = (j + k) % w;
+            int y = (j + k) / w;
 
             LcdPutPixel(x + pos.x, y + pos.y, color);
           }
           mask >>= 1;
         }
       }
-      pos.x += w + 5;
+      pos.x += w - 5;
       i++;
     }
 }
