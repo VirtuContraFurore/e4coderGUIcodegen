@@ -1,5 +1,3 @@
-#include <time.h>
-
 #include "logging.h"
 
 #include "immagine.h"
@@ -30,6 +28,7 @@ void loop(){
       p.y = 100;
       WM_SCRIF_drawString(p, "satana", &font_arial48px, BLUE);
       fatto = true;
+      WM_SCRIF_flush();
     }
 }
 
