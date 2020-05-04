@@ -65,15 +65,7 @@ void WM_SCRIF_fillRect(struct Rect rect, struct Color c){
 }
 
 void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
-    int x, y, x0 = pos.x, y0 = pos.y, x1, y1;
-    x1 = pos.x + bitmap->width;
-    y1 = pos.y + bitmap->height;
-
-    for(y = y0; y < y1; y++){
-      for(x = x0; x < x1; x++){
-        LcdPutPixel(x, y, bitmap->bmp[(y - y0) * (x1 - x0) + (x - x0)]);
-      }
-    }
+  LcdDrawBitmap(pos.x, pos.y, bitmap->width, bitmap->height, (void*) bitmap->bmp);
 }
 
 void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c){
@@ -87,13 +79,14 @@ void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, stru
     	  i++;
     	  continue;
       }
-
       int index = (int)string[i] - 33;
       int w = font->symbols[index].width;
       int h = font->symbols[index].height;
       int N = w * h;
 
-      for(int j = 0; j < N + 8; j += 8){
+      LcdDrawChar(pos.x, pos.y, w, h, (void*) font->symbols[index].data, color);
+
+      /*for(int j = 0; j < N + 8; j += 8){
         int mask = 128;
         for(int k = 0; k < 8; k++){
           if(j + k < N && (mask & font->symbols[index].data[j / 8])){
@@ -104,7 +97,7 @@ void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, stru
           }
           mask >>= 1;
         }
-      }
+      }*/
 
       pos.x += w;
       i++;

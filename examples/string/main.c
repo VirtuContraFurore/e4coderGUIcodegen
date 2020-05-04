@@ -37,7 +37,7 @@ int main(int argc, char ** argv){
   struct Window window = {
       .widgets = NULL,
       .n_widgets = 0,
-      .background = WHITE
+      .background = BLACK
   };
 
   WM_init(&window, 1, 320, 240);

@@ -34,8 +34,11 @@ void LcdDrawRect2(int x, int y, int w, int h, unsigned short color);
 void LcdFillRect(int x, int y, int w, int h, unsigned short color);
 
 //todo:
-void LcdDrawBitmap(int x, int y, int bmp_addr);
-void LcdDrawString(int x, int y, char * string, int charset, unsigned short color);
+void LcdDrawBitmap(int x, int y, int w, int h, void* bmp_addr);
+
+void LcdDrawChar(int x, int y, int w, int h, void* bmp_addr, unsigned short color);
+
+//void LcdDrawString(int x, int y, char * string, int charset, unsigned short color);
 
 
 #endif /* LCD_EMULATION_H */
