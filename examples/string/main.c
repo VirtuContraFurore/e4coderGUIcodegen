@@ -24,9 +24,9 @@ void loop(){
     if(!fatto){
       WM_SCRIF_drawBitmap(p, &bitmap_immagine);
       p.x = 10;
-      WM_SCRIF_drawString(p, "ave", &font_courier_new48px, RED);
+      WM_SCRIF_drawString(p, "ave!", &font_courier_new48px, RED);
       p.y = 100;
-      WM_SCRIF_drawString(p, "satana", &font_arial48px, BLUE);
+      WM_SCRIF_drawString(p, "satana!! f s", &font_arial48px, BLUE);
       fatto = true;
       WM_SCRIF_flush();
     }

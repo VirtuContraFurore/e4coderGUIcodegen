@@ -31,7 +31,7 @@ string_example: windowmanager		## string example which uses windowmanager lib
 		$(MAKE) -C examples/string CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
 
 
-clean: windowmanager_clean dummy_example_clean lcdemulation_clean
+clean: string_example_clean windowmanager_clean dummy_example_clean lcdemulation_clean
 
 windowmanager_clean:
 	$(MAKE) -C windowmanager clean
