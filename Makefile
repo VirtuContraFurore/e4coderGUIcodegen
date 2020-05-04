@@ -19,14 +19,17 @@ all: lcdemulation windowmanager examples
 windowmanager: lcdemulation			## Build widow manager static library
 	$(MAKE) -C windowmanager CFLAGS="-I $(LEMU_INCLUDE)"  TARGET="$(TARGET)"
 
-examples: dummy_example rectangles_example
-
+examples: dummy_example rectangles_example string_example
 
 dummy_example: windowmanager		## Dummy example which uses windowmanager lib
-	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"   
+	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
 
 rectangles_example: windowmanager		## Rectangle example which uses windowmanager lib
-	$(MAKE) -C examples/rectangles CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"   
+	$(MAKE) -C examples/rectangles CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
+
+string_example: windowmanager		## string example which uses windowmanager lib
+		$(MAKE) -C examples/string CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
+
 
 clean: windowmanager_clean dummy_example_clean lcdemulation_clean
 
@@ -38,17 +41,20 @@ dummy_example_clean:
 
 rectangles_example_clean:
 	$(MAKE) -C examples/dummy clean
-	
+
+string_example_clean:
+	$(MAKE) -C examples/string clean
+
 lcdemulation:  						## Build Lcd emulation static library
 	$(MAKE) -C lcdemulation lib
-	
+
 lcdemulation_clean:
 	$(MAKE) -C lcdemulation clean
 
 lcdemulation_demo: 					## Build and run a demo which test the Lcd emulation lib
 	$(MAKE) -C lcdemulation demo run
-	
+
 help:          						## Show this help.
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-.PHONY: all dummy_example windowmanager examples clean windowmanager_clean dummy_example_clean lcdemulation lcdemulation_clean rectangles_example_clean
+.PHONY: all dummy_example string_example_clean windowmanager examples clean windowmanager_clean dummy_example_clean lcdemulation lcdemulation_clean rectangles_example_clean

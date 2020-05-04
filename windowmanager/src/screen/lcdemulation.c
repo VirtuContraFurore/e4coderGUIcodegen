@@ -24,7 +24,7 @@ int WM_SCRIF_getTouch(struct Point *p){
 
     if (p->x < 0 || p->y < 0)
         return 0;
-    else 
+    else
         return 1;
 }
 
@@ -65,11 +65,42 @@ void WM_SCRIF_fillRect(struct Rect rect, struct Color c){
 }
 
 void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
-    LcdDrawBitmap(pos.x, pos.y, (int)bitmap->bmp);
+    int x, y, x0 = pos.x, y0 = pos.y, x1, y1;
+    x1 = pos.x + bitmap->width;
+    y1 = pos.y + bitmap->height;
+
+    for(y = y0; y < y1; y++){
+      for(x = x0; x < x1; x++){
+        LcdPutPixel(x, y, bitmap->bmp[(y - y0) * (x1 - x0) + (x - x0)]);
+      }
+    }
 }
 
 void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c){
-    LOG_ERROR("Function not implemented");
+    unsigned short color = TO_565(c);
+    int i = 0, j, k, x, y, N, index, mask, w, h;
+
+    while(string[i] != '\0'){
+      index = (int)string[i] - 33;
+      w = font->symbols[index].width;
+      h = font->symbols[index].height;
+      N = w * h;
+
+      for(j = 0; j < N + 8; j += 8){
+        mask = 128;
+        for(k = 0; k < 8; k++){
+          if(j + k < N && (mask & font->symbols[index].data[j / 8])){
+            x = (j + k) % w;
+            y = (j + k) / w;
+
+            LcdPutPixel(x + pos.x, y + pos.y, color);
+          }
+          mask >>= 1;
+        }
+      }
+      pos.x += w + 5;
+      i++;
+    }
 }
 
 #endif /* TARGET == TARGET_LCDEMULATION */

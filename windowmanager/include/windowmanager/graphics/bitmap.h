@@ -2,9 +2,9 @@
 #define BITMAP_H
 
 struct Bitmap {
-    unsigned short* bmp;
-    int w;
-    int h;
+    const unsigned short* bmp;
+    int width;
+    int height;
 };
 
 #endif
