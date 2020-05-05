@@ -16,7 +16,7 @@ struct text_widget{
 	char* initialText;
 	char* horizontalAlignment;
 	char* verticalAlignment;
-	void (*value_changed_callback)(struct widget *self, double new_value, double old_value);
+	void (*value_changed_callback)(struct widget *self, char* new_value, char* old_value);
 };
 
 void text_draw(struct widget *self);
