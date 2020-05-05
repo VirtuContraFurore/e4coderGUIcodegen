@@ -13,8 +13,6 @@ struct text_Widget{
 	struct Color textColor;
 	struct Color backgroundColor;
 	char* initialText;
-	char* horizontalAlignment;
-	char* verticalAlignment;
 	void (*valueChangedCallback)(struct Widget *self, char* new_value, char* old_value);
 };
 
