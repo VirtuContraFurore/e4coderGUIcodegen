@@ -1,8 +1,8 @@
 
-#include "windowmanager/widget/button.h"
+#include "windowmanager/widget/switch.h"
 
-void buttonDraw(struct Widget *self){
-    struct button_Widget data = (struct button_Widget*) self->data;
+void switchDraw(struct Widget *self){
+    struct switch_Widget data = (struct switch_Widget*) self->data;
     
     if(*data->state){
       WM_SCRIF_drawBitmap({*data->dim.x,*data->dim.y}, *data->onImage);
@@ -12,8 +12,8 @@ void buttonDraw(struct Widget *self){
       }
 }
 
-bool buttonOnTouch(struct Widget *self, struct TouchEvent *event){
-    struct button_Widget data = (struct button_Widget*) self->data;
+bool switchOnTouch(struct Widget *self, struct TouchEvent *event){
+    struct switch_Widget data = (struct button_Widget*) self->data;
     
     if (event->type == SINGLE_TOUCH){
         struct SingleTouchData* touch_data = (struct SingleTouchData*) event->event_data;
