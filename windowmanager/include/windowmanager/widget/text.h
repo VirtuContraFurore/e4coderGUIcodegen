@@ -15,14 +15,14 @@ struct text_Widget{
 	char* initialText;
 	char* horizontalAlignment;
 	char* verticalAlignment;
-	void (*value_changed_callback)(struct Widget *self, char* new_value, char* old_value);
+	void (*valueChangedCallback)(struct Widget *self, char* new_value, char* old_value);
 };
 
-void text_draw(struct Widget *self);
-void text_on_touch(struct Widget *self, struct TouchEvent type, void * event_data);
+void textDraw(struct Widget *self);
+void textOnTouch(struct Widget *self, struct TouchEvent type, void * event_data);
 
 struct WidgetFunctions text_WidgetFunctions = {
-    .draw = &text_draw,
-    .on_touch = &text_on_touch,
+    .draw = &textDraw,
+    .on_touch = &textOnTouch,
 };
 #endif
