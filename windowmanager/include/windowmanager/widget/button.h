@@ -9,9 +9,7 @@
 
 struct button_Widget{
 	struct Rect dim;
-	bool state;
-	struct Bitmap onImage;
-	struct Bitmap offImage;
+	struct Bitmap Image;
 	void (*valueChangedCallback)(struct Widget *self, bool new_value, bool old_value);
 };
 
