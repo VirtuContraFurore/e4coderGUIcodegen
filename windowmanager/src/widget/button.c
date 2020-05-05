@@ -1,7 +1,7 @@
 #include "windowmanager/widget/button.h"
 
 void buttonDraw(struct Widget *self){
-    struct button_Widget data = (struct button_Widget*) self->data;
+    struct button_Widget* data = (struct button_Widget*) self->data;
     
       WM_SCRIF_drawBitmap({*data->dim.x,*data->dim.y}, *data->Image);
 }
