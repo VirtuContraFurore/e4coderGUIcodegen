@@ -21,7 +21,7 @@ struct text_Widget{
 void textDraw(struct Widget *self);
 void textOnTouch(struct Widget *self, struct TouchEvent type, void * event_data);
 
-struct WidgetFunctions text_WidgetFunctions = {
+struct WidgetFunctions textWidgetFunctions = {
     .draw = &textDraw,
     .on_touch = &textOnTouch,
 };
