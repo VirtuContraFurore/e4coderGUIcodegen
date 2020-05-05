@@ -20,7 +20,7 @@ void buttonOnTouch(struct Widget *self, struct TouchEvent type, void * event_dat
 
 struct WidgetFunctions buttonWidgetFunctions = {
     .draw = &buttonDraw,
-    .on_touch = &buttonOnTouch,
+    .onTouch = &buttonOnTouch,
 };
 
 #endif
