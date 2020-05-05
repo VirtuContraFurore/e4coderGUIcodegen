@@ -7,7 +7,7 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
-struct text_widget{
+struct text_Widget{
 	struct Rect dim;
 	struct Font font;
 	struct Color textColor;
@@ -15,11 +15,11 @@ struct text_widget{
 	char* initialText;
 	char* horizontalAlignment;
 	char* verticalAlignment;
-	void (*value_changed_callback)(struct widget *self, char* new_value, char* old_value);
+	void (*value_changed_callback)(struct Widget *self, char* new_value, char* old_value);
 };
 
-void text_draw(struct widget *self);
-void text_on_touch(struct widget *self, struct TouchEvent type, void * event_data);
+void text_draw(struct Widget *self);
+void text_on_touch(struct Widget *self, struct TouchEvent type, void * event_data);
 
 struct WidgetFunctions text_WidgetFunctions = {
     .draw = &text_draw,
