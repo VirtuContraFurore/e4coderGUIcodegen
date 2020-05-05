@@ -21,6 +21,7 @@ bool buttonOnTouch(struct Widget *self, struct TouchEvent *event){
         if (touch_data->type == TOUCH_DOWN){
             if (pointInRect(touch_data->p, data->dim)){
                 if (data->onTouch != NULL)
+                    data->state=!data->state;
                     return data->onTouch(self, event);
                 else
                     return false;
