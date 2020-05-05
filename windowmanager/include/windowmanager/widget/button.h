@@ -8,7 +8,7 @@
 #include "windowmanager/utility/geometry.h"
 
 struct button_Widget{
-	struct Rect dim;
+	struct Point pos;
 	bool state;
 	struct Bitmap onImage;
 	struct Bitmap offImage;
