@@ -23,6 +23,6 @@ void textOnTouch(struct Widget *self, struct TouchEvent type, void * event_data)
 
 struct WidgetFunctions textWidgetFunctions = {
     .draw = &textDraw,
-    .on_touch = &textOnTouch,
+    .onTouch = &textOnTouch,
 };
 #endif
