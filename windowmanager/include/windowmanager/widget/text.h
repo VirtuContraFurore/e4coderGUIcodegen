@@ -9,8 +9,7 @@
 
 struct text_widget{
 	struct Rect dim;
-	bool visible;
-	char* font;
+	struct Font font;
 	struct Color textColor;
 	struct Color backgroundColor;
 	char* initialText;
@@ -20,12 +19,10 @@ struct text_widget{
 };
 
 void text_draw(struct widget *self);
-void text_on_touch(struct widget *self, touch_event type, void * event_data);
-void text_check_boundaries(struct widget *self, touch_event type, void * event_data);
+void text_on_touch(struct widget *self, struct TouchEvent type, void * event_data);
 
-struct widget_func text_widget_func = {
+struct WidgetFunctions text_WidgetFunctions = {
     .draw = &text_draw,
     .on_touch = &text_on_touch,
-    .check_bounaries = &text_check_boundaries
 };
 #endif
