@@ -14,7 +14,7 @@ struct button_Widget{
 };
 
 void buttonDraw(struct Widget *self);
-void buttonOnTouch(struct Widget *self, struct TouchEvent type, void * event_data);
+bool buttonOnTouch(struct Widget *self, struct TouchEvent type, void * event_data);
 
 struct WidgetFunctions buttonWidgetFunctions = {
     .draw = &buttonDraw,
