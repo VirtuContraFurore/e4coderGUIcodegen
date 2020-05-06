@@ -9,9 +9,8 @@
 
 struct image_widget_data{
     struct Rect dim;
-		bool visible;
-		bitmap activeImagePath;
-		bitmap inactiveImagePath;
+		struct Bitmap activeImage;
+		struct Bitmap inactiveImage;
 		bool initialState;
 		bool state;
     void (*value_changed_callback)(struct widget *self, double new_value, double old_value);//not sure
