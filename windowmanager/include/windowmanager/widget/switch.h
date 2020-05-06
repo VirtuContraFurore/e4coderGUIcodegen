@@ -9,7 +9,6 @@
 
 struct switch_widget{
 	struct Rect dim;
-	bool visible;
 	bool state;
 	bitmap onImagePath;
 	bitmap offImagePath;
