@@ -10,6 +10,11 @@
 
 struct button_Widget *bottone;
 
+struct WidgetFunctions buttonWidgetFunctions = {
+    .draw = &buttonDraw,
+    .onTouch = &buttonOnTouch,
+};
+
 struct Widget widget = {
     .visible = true,
     .funcs = &buttonWidgetFunctions,
@@ -21,6 +26,8 @@ struct Window window = {
     .n_widgets = 1,
     .background = BLACK
 };
+
+
 
 void loop(){
     WM_handleEvents();

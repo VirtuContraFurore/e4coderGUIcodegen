@@ -6,6 +6,7 @@
 #include "windowmanager/widget/widget.h"
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
+extern struct WidgetFunctions buttonWidgetFunctions;
 
 struct button_Widget{
 	struct Rect dim;
@@ -16,9 +17,5 @@ struct button_Widget{
 void buttonDraw(struct Widget *self);
 bool buttonOnTouch(struct Widget *self, struct TouchEvent *type);
 
-struct WidgetFunctions buttonWidgetFunctions = {
-    .draw = &buttonDraw,
-    .onTouch = &buttonOnTouch,
-};
 
 #endif
