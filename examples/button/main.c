@@ -1,15 +1,14 @@
-#include <time.h>
-
 #include "logging.h"
-
+#include "immagine.h"
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/core/touch.h"
 #include "windowmanager/widget/button.h"
+#include "windowmanager/graphics/color.h"
 
 
 
 
-struct button_Widget *bottone
+struct button_Widget *bottone;
 
 struct Widget widget = {
     .visible = true,
@@ -30,7 +29,8 @@ void loop(){
 
 int main(int argc, char ** argv){
 
-    bottone->dim.pos={50,50};
+    bottone->dim.pos.x=50;
+    bottone->dim.pos.y=50;
     bottone->dim.w=100;
     bottone->dim.h=100;
     bottone->Image=bitmap_immagine;

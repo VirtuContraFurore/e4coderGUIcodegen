@@ -4,7 +4,7 @@
 void buttonDraw(struct Widget *self){
     struct button_Widget* data = (struct button_Widget*) self->data;
 
-      WM_SCRIF_drawBitmap(data->dim.pos, data->Image);
+      WM_SCRIF_drawBitmap(data->dim.pos, &data->Image);
 }
 
 bool buttonOnTouch(struct Widget *self, struct TouchEvent *event){
