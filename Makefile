@@ -12,7 +12,7 @@ ifeq ($(TARGET), lcdemulation)
 CC = gcc
 endif
 
-
+export
 all: lcdemulation windowmanager examples
 
 
@@ -21,17 +21,17 @@ windowmanager: lcdemulation			## Build widow manager static library
 
 examples: dummy_example rectangles_example string_example button_example
 
-dummy_example: windowmanager		## Dummy example which uses windowmanager lib
-	$(MAKE) -C examples/dummy CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
+dummy_example: windowmanager lcdemulation		## Dummy example which uses windowmanager lib
+	$(MAKE) -C examples/dummy 
 
-rectangles_example: windowmanager		## Rectangle example which uses windowmanager lib
-	$(MAKE) -C examples/rectangles CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
+rectangles_example: windowmanager lcdemulation		## Rectangle example which uses windowmanager lib
+	$(MAKE) -C examples/rectangles
 
-string_example: windowmanager		## string example which uses windowmanager lib
-		$(MAKE) -C examples/string CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
+string_example: windowmanager lcdemulation		## string example which uses windowmanager lib
+	$(MAKE) -C examples/string
 
-button_example: windowmanager		## button example which uses windowmanager lib
-				$(MAKE) -C examples/button CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW"
+button_example: windowmanager lcdemulation		## button example which uses windowmanager lib
+	$(MAKE) -C examples/button 
 
 
 clean: string_example_clean windowmanager_clean dummy_example_clean button_example_clean lcdemulation_clean
