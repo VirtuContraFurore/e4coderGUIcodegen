@@ -48,6 +48,7 @@ void WM_update(){
             if (domino_redraw || widget->redraw){
                 widget->funcs->draw(widget);
                 domino_redraw = true;
+                widget->redraw = false;
             }
         }
 
