@@ -9,7 +9,7 @@
 struct Point const punto = {.x=50,.y=50};
 struct Rect ret = {.pos=punto,.w=100,.h=100};
 
-struct button_Widget* bottone;
+struct button_Widget bottone;
 
 struct WidgetFunctions buttonWidgetFunctions = {
     .draw = &buttonDraw,
@@ -36,9 +36,8 @@ void loop(){
 }
 
 int main(int argc, char ** argv){
-    bottone = malloc(sizeof(*bottone));
-    bottone->dim=ret;
-    bottone->Image=bitmap_immagine;
+    bottone.dim=ret;
+    bottone.Image=bitmap_immagine;
 
     WM_init(&window, 1, 320, 240);
 
