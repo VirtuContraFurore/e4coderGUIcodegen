@@ -1,13 +1,18 @@
 #include <stddef.h>
 #include "windowmanager/widget/button.h"
 
-void buttonDraw(struct Widget *self){
+struct WidgetFunctions button_WidgetFunctions = {
+    .draw = &button_draw,
+    .onTouch = &button_onTouch,
+};
+
+void button_draw(struct Widget *self){
     struct button_Widget* data = (struct button_Widget*) self->data;
 
       WM_SCRIF_drawBitmap(data->dim.pos, &data->Image);
 }
 
-bool buttonOnTouch(struct Widget *self, struct TouchEvent *event){
+bool button_onTouch(struct Widget *self, struct TouchEvent *event){
     struct button_Widget* data = (struct button_Widget*) self->data;
 
     if (event->type == SINGLE_TOUCH){
@@ -15,7 +20,8 @@ bool buttonOnTouch(struct Widget *self, struct TouchEvent *event){
 
         if (touch_data->type == TOUCH_DOWN){
             if (pointInRect(touch_data->p, data->dim)){
-                return true;
+                if (data->onTouch != NULL)
+                    return data->onTouch(self, event);
             }
         }
     }
