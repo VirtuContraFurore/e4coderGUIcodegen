@@ -13,10 +13,10 @@ void loop(){
     WM_update();
 
     struct Point p = {160, 120};
-    static float fatto = 0;
-    fatto += 0.01;
+    static float angle = 0;
+    angle += 0.01;
     WM_SCRIF_clear();
-    WM_SCRIF_drawRotateBitmap(p, &bitmap_needle, fatto);
+    WM_SCRIF_drawRotateBitmap(p, &bitmap_needle, angle);
     WM_SCRIF_flush();
 }
 

@@ -1,6 +1,6 @@
 CFILES   = $(wildcard *.c)
 OBJFILES = $(CFILES:.c=.o)
-OUT      = rectangles
+OUT      = misc
 
 WM_LIB = $(WM_LIBDIR)/lib${WM_LIBNAME}.a
 LEMU_LIB = $(LEMU_LIBDIR)/lib${LEMU_LIBNAME}.a
