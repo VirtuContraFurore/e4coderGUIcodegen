@@ -16,11 +16,11 @@ struct text_Widget{
 	void (*valueChangedCallback)(struct Widget *self, char* new_value, char* old_value);
 };
 
-void textDraw(struct Widget *self);
-void textOnTouch(struct Widget *self, struct TouchEvent type, void * event_data);
+void text_draw(struct Widget *self);
+bool text_onTouch(struct Widget *self, struct TouchEvent *type);
 
 struct WidgetFunctions textWidgetFunctions = {
-    .draw = &textDraw,
-    .onTouch = &textOnTouch,
+    .draw = &text_draw,
+    .onTouch = &text_onTouch,
 };
 #endif

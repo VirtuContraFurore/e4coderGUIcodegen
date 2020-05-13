@@ -15,17 +15,15 @@ struct roller_widget_data{
     double minimum;
     double maximum;
     double value;
-    void (*value_changed_callback)(struct widget *self, double new_value, double old_value);
+    void (*value_changed_callback)(struct Widget *self, double new_value, double old_value);
 };
 
-void roller_draw(struct widget *self);
-void roller_on_touch(struct widget *self, touch_event type, void * event_data);
-void roller_check_boundaries(struct widget *self, touch_event type, void * event_data);
+void roller_draw(struct Widget *self);
+bool roller_on_touch(struct Widget *self, struct TouchEvent *type);
 
-struct widget_func roller_widget_func = {
+struct WidgetFunctions roller_widget_func = {
     .draw = &roller_draw,
-    .on_touch = &roller_on_touch,
-    .check_bounaries = &roller_check_boundaries
+    .onTouch = &roller_on_touch,
 };
 
 #endif

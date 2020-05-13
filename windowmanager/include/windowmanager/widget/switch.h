@@ -10,19 +10,19 @@
 struct switch_widget{
 	struct Rect dim;
 	bool state;
-	bitmap onImagePath;
-	bitmap offImagePath;
-	void (*value_changed_callback)(struct widget *self, bool new_value, bool old_value);
+	struct Bitmap onImagePath;
+	struct Bitmap offImagePath;
+	void (*value_changed_callback)(struct Widget *self, bool new_value, bool old_value);
 };
 
-void switch_draw(struct widget *self);
-void switch_on_touch(struct widget *self, touch_event type, void * event_data);
-void switch_check_boundaries(struct widget *self, touch_event type, void * event_data);
+void switch_draw(struct Widget *self);
+bool switch_on_touch(struct Widget *self, struct TouchEvent *type);
 
-struct widget_func switch_widget_func = {
+
+struct WidgetFunctions switch_widget_func = {
     .draw = &switch_draw,
-    .on_touch = &switch_on_touch,
-    .check_bounaries = &switch_check_boundaries
+    .onTouch = &switch_on_touch,
+
 };
 
 #endif

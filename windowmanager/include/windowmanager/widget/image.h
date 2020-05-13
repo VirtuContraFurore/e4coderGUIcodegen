@@ -13,17 +13,16 @@ struct image_widget_data{
 		struct Bitmap inactiveImage;
 		bool initialState;
 		bool state;
-    void (*value_changed_callback)(struct widget *self, double new_value, double old_value);//not sure
+    void (*value_changed_callback)(struct Widget *self, double new_value, double old_value);//not sure
 };
 
-void image_draw(struct widget *self);
-void image_on_touch(struct widget *self, touch_event type, void * event_data);
-void image_check_boundaries(struct widget *self, touch_event type, void * event_data);
+void image_draw(struct Widget *self);
+bool image_on_touch(struct Widget *self, struct TouchEvent *type);
 
-struct widget_func image_widget_func = {
+
+struct WidgetFunctions image_widget_func = {
     .draw = &image_draw,
-    .on_touch = &image_on_touch,
-    .check_bounaries = &image_check_boundaries
+    .onTouch = &image_on_touch,
 };
 
 #endif

@@ -15,17 +15,17 @@ struct plot_widget_data{
     double yMinimum;
     double yMaximum;
     double scrollWindow;
-    void (*value_changed_callback)(struct widget *self, double new_value, double old_value);
+    void (*value_changed_callback)(struct Widget *self, double new_value, double old_value);
 };
 
-void plot_draw(struct widget *self);
-void plot_on_touch(struct widget *self, touch_event type, void * event_data);
-void plot_check_boundaries(struct widget *self, touch_event type, void * event_data);
+void plot_draw(struct Widget *self);
+bool plot_on_touch(struct Widget *self, struct TouchEvent *type);
 
-struct widget_func plot_widget_func = {
+
+struct WidgetFunctions plot_widget_func = {
     .draw = &plot_draw,
-    .on_touch = &plot_on_touch,
-    .check_bounaries = &plot_check_boundaries
+    .onTouch = &plot_on_touch,
+
 };
 
 #endif
