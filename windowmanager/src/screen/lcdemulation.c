@@ -68,6 +68,36 @@ void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
   LcdDrawBitmap(pos.x, pos.y, bitmap->width, bitmap->height, (void*) bitmap->bmp);
 }
 
+void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, float alpha){
+  int i, j;
+  short color;
+  unsigned char mask = 1;
+  float cosA, sinA;
+
+  cosA = cos(alpha);
+  sinA = sin(alpha);
+
+  for(i = 0; i < bitmap->height; i++){
+    for(j = 0; j < bitmap->width; j++){
+      int r_x, r_y, x, y;
+
+      mask = (mask == 1) ? 128 : (mask >> 1);
+      if((bitmap->alpha[(i * bitmap->width + j) / 8] & mask) == 0)
+        continue;
+
+      color = bitmap->bmp[i * bitmap->width + j];
+
+      x = j - bitmap->width / 2;
+      y = i - bitmap->height / 2;
+      r_x = x * cosA - y * sinA + pos.x;
+      r_y = x * sinA + y * cosA + pos.y;
+
+      // fatto veloce
+      LcdDrawRect(r_x, r_y, 2, 2, color);
+    }
+  }
+}
+
 void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c){
     unsigned short color = TO_565(c);
     int i = 0;

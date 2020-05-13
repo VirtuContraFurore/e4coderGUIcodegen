@@ -242,7 +242,6 @@ void LcdDrawBitmap(int x, int y, int w, int h, void * bitmap){
   short* arr = (short*) bitmap;
   GLushort * pixels = malloc((w * h) * sizeof(GLushort));
 
-    //sam, porco dio, non sovrascrivere la visibilità dei parametri dento ai cicli
 	for(int img_y = 0; img_y < h; img_y++)
 		for(int img_x = 0; img_x < w; img_x++)
 			  pixels[img_x + (h - 1 - img_y) * w] = arr[img_x + img_y * w];

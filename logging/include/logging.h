@@ -30,6 +30,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
+#include <math.h>
 #endif
 
 // === auxiliar functions
@@ -101,12 +102,12 @@ static inline char *timenow() {
     static char buffer[64];
     time_t rawtime;
     struct tm *timeinfo;
-    
+
     time(&rawtime);
     timeinfo = localtime(&rawtime);
-    
+
     strftime(buffer, 64, "%Y-%m-%d %H:%M:%S", timeinfo);
-    
+
     return buffer;
 }
 
