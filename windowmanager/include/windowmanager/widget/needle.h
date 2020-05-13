@@ -20,7 +20,7 @@ struct needle_widget_data{
 void needle_draw(struct Widget *self);
 bool needle_on_touch(struct Widget *self, struct TouchEvent *type);
 
-
+// TODO: make extern and move definition to .c
 struct WidgetFunctions needle_widget_func = {
     .draw = &needle_draw,
     .onTouch = &needle_on_touch,

@@ -20,7 +20,7 @@ struct spinbox_widget_data{
 void spinbox_draw(struct Widget *self);
 bool spinbox_on_touch(struct Widget *self, struct TouchEvent *type);
 
-
+// TODO: make extern and move definition to .c
 struct WidgetFunctions spinbox_widget_func = {
     .draw = &spinbox_draw,
     .onTouch = &spinbox_on_touch,

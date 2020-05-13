@@ -21,6 +21,7 @@ struct roller_widget_data{
 void roller_draw(struct Widget *self);
 bool roller_on_touch(struct Widget *self, struct TouchEvent *type);
 
+// TODO: make extern and move definition to .c
 struct WidgetFunctions roller_widget_func = {
     .draw = &roller_draw,
     .onTouch = &roller_on_touch,

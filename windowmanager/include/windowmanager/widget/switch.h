@@ -18,7 +18,7 @@ struct switch_widget{
 void switch_draw(struct Widget *self);
 bool switch_on_touch(struct Widget *self, struct TouchEvent *type);
 
-
+// TODO: make extern and move definition to .c
 struct WidgetFunctions switch_widget_func = {
     .draw = &switch_draw,
     .onTouch = &switch_on_touch,

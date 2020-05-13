@@ -19,6 +19,7 @@ struct text_Widget{
 void text_draw(struct Widget *self);
 bool text_onTouch(struct Widget *self, struct TouchEvent *type);
 
+// TODO: make extern and move definition to .c
 struct WidgetFunctions textWidgetFunctions = {
     .draw = &text_draw,
     .onTouch = &text_onTouch,
