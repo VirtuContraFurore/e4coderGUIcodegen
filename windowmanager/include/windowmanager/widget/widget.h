@@ -24,4 +24,7 @@ struct WidgetFunctions{
      */
     bool (*onTouch)(struct Widget *self, struct TouchEvent *event);
 };
+
+void widgetRedraw(struct Widget* widget);
+
 #endif
