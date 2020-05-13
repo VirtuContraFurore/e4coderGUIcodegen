@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "logging.h"
 #include "immagine.h"
 #include "windowmanager/core/windowmanager.h"
@@ -5,10 +6,10 @@
 #include "windowmanager/widget/button.h"
 #include "windowmanager/graphics/color.h"
 
+struct Point const punto = {.x=50,.y=50};
+struct Rect ret = {.pos=punto,.w=100,.h=100};
 
-
-
-struct button_Widget *bottone;
+struct button_Widget* bottone;
 
 struct WidgetFunctions buttonWidgetFunctions = {
     .draw = &buttonDraw,
@@ -35,11 +36,8 @@ void loop(){
 }
 
 int main(int argc, char ** argv){
-
-    bottone->dim.pos.x=50;
-    bottone->dim.pos.y=50;
-    bottone->dim.w=100;
-    bottone->dim.h=100;
+    bottone = malloc(sizeof(*bottone));
+    bottone->dim=ret;
     bottone->Image=bitmap_immagine;
 
     WM_init(&window, 1, 320, 240);
