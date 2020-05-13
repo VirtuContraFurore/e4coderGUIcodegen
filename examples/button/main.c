@@ -45,7 +45,7 @@ bool m_onTouch(struct Widget *self, struct TouchEvent *event){
     LOG_INFO("Ya touch'd me! Arr. %d", count);
     LOG_DEBUG("%s", testo.initialText);
     LOG_DEBUG("%d", (int)widgets[1].redraw);
-    widgetRedraw(&widgets[1]);
+    WM_Widget_redrawAll(&widgets[1]);
     LOG_DEBUG("%d", (int)widgets[1].redraw);
     return true;
 }
@@ -55,7 +55,7 @@ int main(int argc, char ** argv){
     bottone.Image = bitmap_button;
     bottone.onTouch = m_onTouch;
     
-    testo.backgroundColor = GREEN;
+    testo.backgroundColor = TRANSPARENT;
     testo.textColor = RED;
     testo.dim = (struct Rect){
         .pos = { 
