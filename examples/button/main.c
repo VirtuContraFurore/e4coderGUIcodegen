@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "logging.h"
-#include "immagine.h"
+#include "button_image.h"
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/core/touch.h"
 #include "windowmanager/widget/button.h"
@@ -52,7 +52,7 @@ bool m_onTouch(struct Widget *self, struct TouchEvent *event){
 
 int main(int argc, char ** argv){
     bottone.dim = ret;
-    bottone.Image = bitmap_immagine;
+    bottone.Image = bitmap_button;
     bottone.onTouch = m_onTouch;
     
     testo.backgroundColor = GREEN;
