@@ -11,6 +11,7 @@ override LDLIBS += -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lGL -lglut -lGLEW
 
 $(OUT): $(OBJFILES) $(WM_LIB) $(LEMU_LIB)
 	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	chmod +x $(OUT)
 
 .PHONY: clean
 clean:
