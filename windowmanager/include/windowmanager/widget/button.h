@@ -7,15 +7,15 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
-extern struct WidgetFunctions buttonWidgetFunctions;
+extern struct WidgetFunctions button_WidgetFunctions;
 
 struct button_Widget{
 	struct Rect dim;
 	struct Bitmap Image;
-	void (*valueChangedCallback)(struct Widget *self, bool new_value, bool old_value);
+	bool (*onTouch)(struct Widget *self, struct TouchEvent *event);
 };
 
-void buttonDraw(struct Widget *self);
-bool buttonOnTouch(struct Widget *self, struct TouchEvent *type);
+void button_draw(struct Widget *self);
+bool button_onTouch(struct Widget *self, struct TouchEvent *type);
 
 #endif

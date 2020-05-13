@@ -19,7 +19,7 @@ struct image_widget_data{
 void image_draw(struct Widget *self);
 bool image_on_touch(struct Widget *self, struct TouchEvent *type);
 
-
+// TODO: make extern and move definition to .c
 struct WidgetFunctions image_widget_func = {
     .draw = &image_draw,
     .onTouch = &image_on_touch,

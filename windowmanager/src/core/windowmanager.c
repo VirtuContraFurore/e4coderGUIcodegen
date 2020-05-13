@@ -40,14 +40,12 @@ void WM_update(){
             WM_SCRIF_clearColor(window->background);
         }
         
-        bool domino_redraw = WINDOW_MANAGER.force_redraw;
-
         for (int i = 0; i < window->n_widgets; i++){
             struct Widget *widget = &(window->widgets[i]);
 
-            if (domino_redraw || widget->redraw){
+            if (WINDOW_MANAGER.force_redraw || widget->redraw){
                 widget->funcs->draw(widget);
-                domino_redraw = true;
+                widget->redraw = false;
             }
         }
 
