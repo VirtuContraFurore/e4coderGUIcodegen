@@ -1,12 +1,12 @@
 #include "logging.h"
 
 #include "immagine.h"
-#include "arial12.h"
-#include "arial24.h"
-#include "arial48.h"
-#include "courier_new12.h"
-#include "courier_new24.h"
-#include "courier_new48.h"
+#include "windowmanager/graphics/fonts/arial12.h"
+#include "windowmanager/graphics/fonts/arial24.h"
+#include "windowmanager/graphics/fonts/arial48.h"
+#include "windowmanager/graphics/fonts/courier_new12.h"
+#include "windowmanager/graphics/fonts/courier_new24.h"
+#include "windowmanager/graphics/fonts/courier_new48.h"
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/core/touch.h"
 
