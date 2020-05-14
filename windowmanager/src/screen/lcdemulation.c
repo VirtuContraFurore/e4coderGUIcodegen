@@ -65,35 +65,53 @@ void WM_SCRIF_fillRect(struct Rect rect, struct Color c){
 }
 
 void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
-  LcdDrawBitmap(pos.x, pos.y, bitmap->width, bitmap->height, (void*) bitmap->bmp);
+    LcdDrawBitmap(pos.x, pos.y, bitmap->width, bitmap->height, (void*) bitmap->bmp);
 }
 
-void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, float alpha){
+void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct Point axis, float angle){
   int i, j;
   short color;
   unsigned char mask = 1;
-  float cosA, sinA;
+  float cosA, sinA, x0, y0;
 
-  cosA = cos(alpha);
-  sinA = sin(alpha);
+  cosA = cos(angle);
+  sinA = sin(angle);
+
+  x0 = (-1-axis.x) * cosA - (-axis.y) * sinA + pos.x;
+  y0 = (-1-axis.x) * sinA + (-axis.y) * cosA + pos.y;
 
   for(i = 0; i < bitmap->height; i++){
+    float left_x = x0, left_y = y0;
+
+    x0 -= sinA;
+    y0 += cosA;
+
     for(j = 0; j < bitmap->width; j++){
-      int r_x, r_y, x, y;
+      float down_x, down_y, x, y;
+      bool alpha;
 
       mask = (mask == 1) ? 128 : (mask >> 1);
-      if((bitmap->alpha[(i * bitmap->width + j) / 8] & mask) == 0)
-        continue;
 
       color = bitmap->bmp[i * bitmap->width + j];
 
-      x = j - bitmap->width / 2;
-      y = i - bitmap->height / 2;
-      r_x = x * cosA - y * sinA + pos.x;
-      r_y = x * sinA + y * cosA + pos.y;
+      x = left_x + cosA;
+      y = left_y + sinA;
 
-      // fatto veloce
-      LcdDrawRect(r_x, r_y, 2, 2, color);
+      down_x = x - sinA;
+      down_y = y + cosA;
+
+      alpha = (bitmap->alpha[(i * bitmap->width + j) / 8] & mask);
+
+      if(alpha){
+        int l_x = left_x, f_x = x, d_x = down_x, l_y = left_y, f_y = y, d_y = down_y;
+        if((l_x != f_x || l_y != f_y) && (d_x != f_x || d_y != f_y)){
+          LcdPutPixel(f_x, f_y, color);
+          LcdPutPixel(f_x + 1, f_y, color);
+          LcdPutPixel(f_x, f_y + 1, color);
+        }
+      }
+      left_x = x;
+      left_y = y;
     }
   }
 }

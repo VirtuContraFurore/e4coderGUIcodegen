@@ -12,11 +12,11 @@ void loop(){
     WM_handleEvents();
     WM_update();
 
-    struct Point p = {160, 120};
+    struct Point p = {160, 120}, axis = {bitmap_needle.width / 2, bitmap_needle.height / 2};
     static float angle = 0;
     angle += 0.01;
     WM_SCRIF_clear();
-    WM_SCRIF_drawRotateBitmap(p, &bitmap_needle, angle);
+    WM_SCRIF_drawRotateBitmap(p, &bitmap_needle, axis, angle);
     WM_SCRIF_flush();
 }
 
