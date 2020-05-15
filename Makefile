@@ -34,8 +34,7 @@ button_example: windowmanager lcdemulation		## button example which uses windowm
 		$(MAKE) -C examples/button
 
 misc_example: windowmanager		## misc for some example which uses windowmanager lib
-				$(MAKE) -C examples/misc CC="$(CC)" CFLAGS="$(CFLAGS) -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)" LDFLAGS="$(LDFLAGS) -L  $(WM_LIBDIR) -L $(LEMU_LIBDIR)" LDLIBS="$(LDLIBS) -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lm -lGL -lglut -lGLEW"
-
+	$(MAKE) -C examples/misc 
 
 clean: misc_example_clean string_example_clean windowmanager_clean dummy_example_clean button_example_clean lcdemulation_clean
 
