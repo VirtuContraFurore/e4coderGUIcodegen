@@ -40,8 +40,7 @@ bool m_rect_onTouch(struct Widget *self, struct TouchEvent *event){
     curr_idx[i] = (curr_idx[i] + 1) % tot_colors;
     data->color = colors[curr_idx[i]];
     
-    self->redraw = true;
-    WM_scheduleRedraw();
+    WM_Widget_redrawAll(self);
 
     return true;
 }

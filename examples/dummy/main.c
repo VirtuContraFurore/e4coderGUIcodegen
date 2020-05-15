@@ -11,8 +11,7 @@
 
 void m_dummy_onTouch(struct Widget *self, struct TouchEvent *event){
     LOG_INFO("Handled dummy touch event");
-    self->redraw = true;
-    WM_scheduleRedraw();
+    WM_Widget_redrawAll(self);
 
     if(event->type == SINGLE_TOUCH){
     	struct SingleTouchData * data = (struct SingleTouchData*) event->event_data;
