@@ -1,6 +1,7 @@
 import PIL
 from PIL import Image
 import numpy as np
+import math
 
 path = raw_input("inserisci il percorso dell'immagine (digitate exit per uscire): ")
 while path != "exit":
@@ -18,6 +19,8 @@ while path != "exit":
     # trasformo in un array numpy
     arr = np.array(img)
 
+    alpha_bitmask = np.zeros(int(math.ceil(width * height / 8)));
+
     with open(name + ".h", 'a') as f:
         #cancello il file se esiste gia'
         f.seek(0)
@@ -31,6 +34,7 @@ while path != "exit":
         f.write("const unsigned short bmp_data_" + name + "[" + str(width * height) + "] = {\n\t");
 
         #per ogni pixel dell'immagine
+        counter = 0
         for i in range(len(arr)):
             for j in range(len(arr[i])):
 
@@ -38,6 +42,17 @@ while path != "exit":
                 r = arr[i][j][0] >> 3
                 g = arr[i][j][1] >> 2
                 b = arr[i][j][2] >> 3
+
+                a = arr[i][j][3];
+                if a == 0:
+                    a = 0
+                else:
+                    a = (1 << (7 - (counter % 8)))
+
+                alpha_index = int(counter / 8)
+                pre_value = int(alpha_bitmask[alpha_index])
+                alpha_bitmask[alpha_index] = pre_value + a
+                counter = counter + 1
 
                 # converto in uno short rgb 565
                 short = (r << 11) + (g << 5) + b;
@@ -53,10 +68,18 @@ while path != "exit":
 
         f.write("\n};\n\n")
 
+        f.write("const unsigned char bitmask_data_" + name + "[" + str(int(math.ceil(width * height / 8))) + "] = {\n\t")
+        for i in range(len(alpha_bitmask)):
+            f.write("0x{:02x}, ".format(int(alpha_bitmask[i])))
+            if (i + 1) % 16 == 0:
+                f.write("\n\t")
+        f.write("\n};\n\n")
+
         f.write("struct Bitmap bitmap_" + name + " = {\n")
         f.write("\t.width = " + str(width) + ",\n")
         f.write("\t.height = " + str(height) + ",\n")
         f.write("\t.bmp = bmp_data_" + name + ",\n")
+        f.write("\t.alpha = bitmask_data_" + name + ",\n")
         f.write("};\n\n")
 
         f.write("#endif")
