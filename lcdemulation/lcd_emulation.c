@@ -259,7 +259,7 @@ void LcdDrawChar(int x0, int y0, int w, int h, void* bitmap, unsigned short c){
       if(a && preX == -1){
         preX = x;
       }else if(preX != -1 && !a){
-    	for(int my_x = preX; my_x < x0; my_x++)
+    	for(int my_x = preX+x0; my_x < x+x0; my_x++)
     		LcdPutPixel(my_x, y+y0, c);
         //setCursor(preX + x0, y + y0);
         //glDrawPixels(x - preX, 1, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
@@ -271,7 +271,7 @@ void LcdDrawChar(int x0, int y0, int w, int h, void* bitmap, unsigned short c){
     }
 
     if(preX != -1){
-      for(int my_x = preX; my_x < x0+w-1; my_x++)
+      for(int my_x = preX+x0; my_x < x0+w-1; my_x++)
     	  LcdPutPixel(my_x, y+y0, c);
       //setCursor(preX + x0, y + y0);
       //glDrawPixels(w - 1 - preX, 1, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
