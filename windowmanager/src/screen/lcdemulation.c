@@ -1,14 +1,7 @@
-#if TARGET == TARGET_LCDEMULATION
-
 #include <stdbool.h>
 #include <stddef.h>
 
-#include <GL/glew.h>
-#include <GL/glut.h>
-
 #include "logging.h"
-
-#include "lcdemulation/lcd_emulation.h"
 
 #include "windowmanager/core/screeninterface.h"
 #include "windowmanager/core/touch.h"
@@ -16,6 +9,12 @@
 #include "windowmanager/graphics/color.h"
 #include "windowmanager/graphics/bitmap.h"
 #include "windowmanager/graphics/font.h"
+
+#if TARGET == TARGET_LCDEMULATION
+
+#include <GL/glew.h>
+#include <GL/glut.h>
+#include "lcdemulation/lcd_emulation.h"
 
 void WM_SCRIF_initEmulation(int argc, char ** argv, void (*mainFunc)()){
     LcdInitEmulation(argc, argv, mainFunc);

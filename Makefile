@@ -1,23 +1,34 @@
 TARGET := lcdemulation
 
 LOG_INCLUDE = $(abspath logging/include)
+
 WM_INCLUDE = $(abspath windowmanager/include)
 WM_LIBDIR = $(abspath windowmanager/build/$(TARGET)/lib)
 WM_LIBNAME = windowmanager
+
 LEMU_INCLUDE = $(abspath lcdemulation/include)
 LEMU_LIBDIR = $(abspath lcdemulation/build/lib)
 LEMU_LIBNAME = lcdemulation
 
-ifeq ($(TARGET), lcdemulation)
-CC = gcc
-endif
+STM32F4xx_INCLUDE = $(abspath discovery/STM32F4xx/Include)
+STM32F4xx_SPD_INCLUDE = $(abspath discovery/STM32F4xx_StdPeriph_Driver/inc)
+STM32F4Discovery_INCLUDE = $(abspath discovery/STM32F4-Discovery/inc)
+CMSIS_INCLUDE = $(abspath discovery/CMSIS/Include)
+DISCOVERY_INCLUDE = $(abspath discovery/include)
 
 export
+
+ifeq ($(TARGET), lcdemulation)
 all: lcdemulation windowmanager examples
 
-
 windowmanager: lcdemulation			## Build widow manager static library
-	$(MAKE) -C windowmanager CFLAGS="-I $(LEMU_INCLUDE)"  TARGET="$(TARGET)"
+	$(MAKE) -C windowmanager
+else
+all: windowmanager
+
+windowmanager:           			## Build widow manager static library
+	$(MAKE) -C windowmanager
+endif
 
 examples: dummy_example rectangles_example string_example button_example misc_example
 

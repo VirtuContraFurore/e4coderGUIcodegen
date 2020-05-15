@@ -4,8 +4,10 @@
 #define TARGET_LCDEMULATION 0
 #define TARGET_DISCOVERY 1
 
+#ifndef TARGET
 // Default target
 #define TARGET TARGET_LCDEMULATION
+#endif
 
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"

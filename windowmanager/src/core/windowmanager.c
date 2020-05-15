@@ -82,6 +82,9 @@ struct Window* WM_getWindow(unsigned int window_idx){
         return NULL;
     }
 }
+struct Window* WM_getCurrentWindow(){
+    return WM_getWindow(WINDOW_MANAGER.curr_window);
+}
 
 struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx){
     if (window_idx < WINDOW_MANAGER.n_windows){
