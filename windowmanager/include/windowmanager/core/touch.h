@@ -18,7 +18,7 @@ struct TouchEvent{
 
 struct SingleTouchData {
 	struct Point p;
-	enum TouchEventType type;
+	enum TouchType type;
 };
 
 struct MultiTouchData {
