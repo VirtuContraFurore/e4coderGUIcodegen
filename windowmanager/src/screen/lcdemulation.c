@@ -3,9 +3,6 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#include <GL/glew.h>
-#include <GL/glut.h>
-
 #include "logging.h"
 
 #include "lcdemulation/lcd_emulation.h"
@@ -77,12 +74,6 @@ void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct P
   unsigned char mask = 1;
   float cosA, sinA, x0, y0;
 
-  unsigned short pixels[LCD_WIDTH*LCD_HEIGHT];
-  for(int i = 0; i<LCD_WIDTH*LCD_HEIGHT; i++)
-	  pixels[i]=0;
-
-#define LcdPutPixel_(x,y,color)	pixels[(x)+(LCD_HEIGHT-1-(y))*LCD_WIDTH] = 1 | ((color)&0xFFC0) | (((color)&0x1F)<<1)
-
   cosA = cos(angle);
   sinA = sin(angle);
 
@@ -114,20 +105,15 @@ void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct P
       if(alpha){
         int l_x = left_x, f_x = x, d_x = down_x, l_y = left_y, f_y = y, d_y = down_y;
         if((l_x != f_x || l_y != f_y) && (d_x != f_x || d_y != f_y)){
-          LcdPutPixel_(f_x, f_y, color);
-          LcdPutPixel_(f_x + 1, f_y, color);
-          LcdPutPixel_(f_x, f_y + 1, color);
+          LcdPutPixel(f_x, f_y, color);
+          LcdPutPixel(f_x + 1, f_y, color);
+          LcdPutPixel(f_x, f_y + 1, color);
         }
       }
       left_x = x;
       left_y = y;
     }
   }
-
-  //sam inchinati al mio potere
-  glWindowPos2i(0,0);
-  glDrawPixels(LCD_WIDTH, LCD_HEIGHT, GL_RGBA, GL_UNSIGNED_SHORT_5_5_5_1, pixels);
-
 }
 
 void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c){
