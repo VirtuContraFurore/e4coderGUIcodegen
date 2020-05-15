@@ -164,7 +164,7 @@ void LcdDrawRect2(int x, int y, int w, int h, unsigned short color){
 
 void LcdPutPixel(int x, int y, unsigned short color){
 	setCursor(x,y);
-	framebuffer[x+y*LCD_WIDTH] = color;
+	framebuffer[cursor_x+cursor_y*LCD_WIDTH] = color;
 }
 
 #define ABS(x) ((x>0) ? (x) : -(x))
