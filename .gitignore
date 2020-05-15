@@ -58,3 +58,10 @@ dkms.conf
 
 # ??
 vgcore*
+
+# Erika Eclipse binaries and intermediates
+*.bin
+*.elf
+*.map
+*.a
+obj
