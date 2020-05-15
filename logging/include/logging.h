@@ -30,8 +30,6 @@
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
 #endif
 
 // === auxiliar functions
@@ -47,6 +45,7 @@ static inline char *timenow();
 #ifndef LOG_LEVEL
 #define LOG_LEVEL   DEBUG_LEVEL
 #endif
+#include <stdlib.h>
 
 #ifdef __OBJC__
 
