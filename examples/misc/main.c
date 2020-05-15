@@ -14,7 +14,7 @@ void loop(){
 
     struct Point p = {160, 120}, axis = {bitmap_needle.width / 2, bitmap_needle.height / 2};
     static float angle = 0;
-    angle += 0.01;
+    angle += 0.05;
     WM_SCRIF_clear();
     WM_SCRIF_drawRotateBitmap(p, &bitmap_needle, axis, angle);
     WM_SCRIF_flush();
@@ -25,7 +25,7 @@ int main(int argc, char ** argv){
   struct Window window = {
       .widgets = NULL,
       .n_widgets = 0,
-      .background = BLUE
+      .background = RED
   };
 
   WM_init(&window, 1, 320, 240);

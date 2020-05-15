@@ -29,7 +29,7 @@ void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
 
 	glutInit(&argc, argv);
 
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
 
 	glutInitWindowSize(LCD_WIDTH, LCD_HEIGHT);
 	glutInitWindowPosition(100, 100);
@@ -46,6 +46,10 @@ void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
 
 	//Set pixel alignent to match format RGB_565 which is 2 = sizeof(unsigned short)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, sizeof(GLushort));
+
+	//enable alpha test, accept fragment if its alpha is greater than zero
+	glAlphaFunc(GL_GREATER, 0);
+	glEnable(GL_ALPHA_TEST);
 
 	glutMainLoop();
 }
