@@ -18,4 +18,5 @@ void dummy_draw(struct Widget *self){
 bool dummy_onTouch(struct Widget *self, struct TouchEvent *event){
     LOG_INFO("Calling user callback");
     ((struct dummy_WidgetData*) (self->data))->onTouch(self, event);
+    return true;
 }

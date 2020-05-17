@@ -40,14 +40,12 @@ void WM_update(){
             WM_SCRIF_clearColor(window->background);
         }
         
-        bool domino_redraw = WINDOW_MANAGER.force_redraw;
-
         for (int i = 0; i < window->n_widgets; i++){
             struct Widget *widget = &(window->widgets[i]);
 
-            if (domino_redraw || widget->redraw){
+            if (WINDOW_MANAGER.force_redraw || widget->redraw){
                 widget->funcs->draw(widget);
-                domino_redraw = true;
+                widget->redraw = false;
             }
         }
 
@@ -83,6 +81,9 @@ struct Window* WM_getWindow(unsigned int window_idx){
         LOG_ERROR("Window index out of range", window_idx);
         return NULL;
     }
+}
+struct Window* WM_getCurrentWindow(){
+    return WM_getWindow(WINDOW_MANAGER.curr_window);
 }
 
 struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx){

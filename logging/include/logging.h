@@ -24,6 +24,13 @@
 #ifndef __MACROLOGGER_H__
 #define __MACROLOGGER_H__
 
+#if defined TARGET && TARGET == 1
+#define LOG_DEBUG(message, args...)
+#define LOG_INFO(message, args...)
+#define LOG_ERROR(message, args...)
+#define LOG_IF_ERROR(message, args...)
+#else
+
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #else
@@ -45,6 +52,7 @@ static inline char *timenow();
 #ifndef LOG_LEVEL
 #define LOG_LEVEL   DEBUG_LEVEL
 #endif
+#include <stdlib.h>
 
 #ifdef __OBJC__
 
@@ -101,12 +109,12 @@ static inline char *timenow() {
     static char buffer[64];
     time_t rawtime;
     struct tm *timeinfo;
-    
+
     time(&rawtime);
     timeinfo = localtime(&rawtime);
-    
+
     strftime(buffer, 64, "%Y-%m-%d %H:%M:%S", timeinfo);
-    
+
     return buffer;
 }
 
@@ -122,6 +130,8 @@ static inline void objc_print(NSString *format, ...) {
     va_end(args);
     AUTORELEASEPOOL_END
 }
+
+#endif
 
 #endif
 

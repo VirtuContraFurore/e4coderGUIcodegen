@@ -51,5 +51,7 @@ struct TouchEvent* WM_getTouchEvent(){
 			} else
 				return NULL;
 		}
+	} else{
+		return NULL;
 	}
 }

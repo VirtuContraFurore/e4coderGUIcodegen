@@ -7,22 +7,24 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
-struct roller_WidgetData{
+struct roller_widget_data{
     struct Point pos;
-    int radius;
+		int radius;
+		bool visible;
     bool vertical;
-    double min;
-    double max;
+    double minimum;
+    double maximum;
     double value;
-    void (*onValueChanged)(struct Widget *self, double new_value, double old_value);
+    void (*value_changed_callback)(struct Widget *self, double new_value, double old_value);
 };
 
 void roller_draw(struct Widget *self);
-bool roller_onTouch(struct Widget *self, struct TouchEvent *event);
+bool roller_on_touch(struct Widget *self, struct TouchEvent *type);
 
-struct WidgetFunctions roller_WidgetFunctions = {
+// TODO: make extern and move definition to .c
+struct WidgetFunctions roller_widget_func = {
     .draw = &roller_draw,
-    .onTouch = &roller_onTouch,
+    .onTouch = &roller_on_touch,
 };
 
 #endif

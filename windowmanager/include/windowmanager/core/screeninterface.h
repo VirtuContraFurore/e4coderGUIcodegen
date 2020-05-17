@@ -4,8 +4,10 @@
 #define TARGET_LCDEMULATION 0
 #define TARGET_DISCOVERY 1
 
+#ifndef TARGET
 // Default target
 #define TARGET TARGET_LCDEMULATION
+#endif
 
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
@@ -27,6 +29,7 @@ void WM_SCRIF_drawUniLineRelative(struct Point from, struct Point dist, struct C
 void WM_SCRIF_drawRect(struct Rect rect, struct Color c);
 void WM_SCRIF_fillRect(struct Rect rect, struct Color c);
 void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap);
+void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct Point axis, float alpha);
 void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c);
 
 #endif /* SCREENINTERFACE_H */

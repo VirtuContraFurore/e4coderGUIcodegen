@@ -1,4 +1,5 @@
 #include "logging.h"
+#include <stdlib.h>
 
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/widget/rectangle.h"

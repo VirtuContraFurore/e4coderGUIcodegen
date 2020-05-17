@@ -35,6 +35,7 @@ void WM_scheduleRedraw();
 void WM_scheduleForcedRedraw();
 void WM_setCurrentWindow(unsigned int window_idx);
 struct Window* WM_getWindow(unsigned int window_idx);
+struct Window* WM_getCurrentWindow();
 struct Widget* WM_getWidget(unsigned int window_idx, unsigned int widget_idx);
 
 #endif

@@ -24,4 +24,19 @@ struct WidgetFunctions{
      */
     bool (*onTouch)(struct Widget *self, struct TouchEvent *event);
 };
+
+/**
+ * Marks the widget for redraw and schedules a new redraw.
+ * 
+ * Only this widget will be redrawn.
+ */
+void WM_Widget_redraw(struct Widget* widget);
+
+/**
+ * Marks the widget for redraw and schedules a forced redraw.
+ * 
+ * All widgets in the current window will be redrawn.
+ */
+void WM_Widget_redrawAll(struct Widget* widget);
+
 #endif
