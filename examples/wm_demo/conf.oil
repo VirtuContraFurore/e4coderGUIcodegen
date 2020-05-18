@@ -54,6 +54,7 @@ CPU mySystem {
 			APP_SRC = "LCD_Touch_Calibration.c";
 			APP_SRC = "stm32f4_discovery_lcd.c";
 			APP_SRC = "STMPE811QTR.c";
+			APP_SRC = "widget_config.c";
 			//COMPILER_TYPE = KEIL;
 			COMPILER_TYPE = GNU; 
 			MULTI_STACK = FALSE;
@@ -97,6 +98,9 @@ CPU mySystem {
 
 		KERNEL_TYPE = FP;
 
+		LDFLAGS = "-L/home/up/uni/dinatale/e4coderGUIcodegen/windowmanager/build/discovery/lib";
+		LIBS = "-lwindowmanager";
+		CFLAGS = "-I/home/up/uni/dinatale/e4coderGUIcodegen/windowmanager/include";		
 	};
 	
 	COUNTER myCounter;

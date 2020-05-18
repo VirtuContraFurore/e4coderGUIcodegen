@@ -59,7 +59,7 @@ windowmanager:           				## Build widow manager static library
 examples: wm_demo_example				## Build all examples
 
 wm_demo_example: windowmanager				## misc for some example which uses windowmanager lib
-	$(MAKE) -C examples/wm_demo 
+	$(MAKE) -C examples/wm_demo/Debug
 
 else
 
@@ -69,10 +69,10 @@ endif
 
 
 wm_demo_example_clean:					## clean wm_demo
-		$(MAKE) -C examples/wm_demo clean
+		$(MAKE) -C examples/wm_demo/Debug clean
 
 wm_demo_example_flash:					## flash wm_demo
-		$(MAKE) -C examples/wm_demo flash
+		st-flash write examples/wm_demo/Debug/c_mX.bin 0x8000000
 
 clean: misc_example_clean string_example_clean windowmanager_clean dummy_example_clean button_example_clean lcdemulation_clean	# clean everything
 

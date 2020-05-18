@@ -126,15 +126,16 @@ STM32_MODEL           := STM32F4xx
 # Flags
 #
 ############################################################################
-CFLAGS  += 
+CFLAGS  += -I/home/up/uni/dinatale/e4coderGUIcodegen/windowmanager/include
 ASFLAGS += 
-LDFLAGS += 
+LDFLAGS += -L/home/up/uni/dinatale/e4coderGUIcodegen/windowmanager/build/discovery/lib
 LDDEPS  += 
-LIBS    += 
+LIBS    += -lwindowmanager
 
 LIB_OPT  += __LIB_ST_CMSIS__
 LIB_OPT  += __LIB_STM32F4XX_SPD__
 LIB_OPT  += __LIB_STM32F4_DISCOVERY__
+OPT_LIBS += /home/up/uni/dinatale/e4coderGUIcodegen/windowmanager/build/discovery/lib/libwindowmanager.a
 
 
 ############################################################################
@@ -142,7 +143,7 @@ LIB_OPT  += __LIB_STM32F4_DISCOVERY__
 # Sources
 #
 ############################################################################
-APP_SRCS += eecfg.c code.c LCD_Touch_Calibration.c stm32f4_discovery_lcd.c STMPE811QTR.c widget_config.c widget_config.c
+APP_SRCS += eecfg.c code.c LCD_Touch_Calibration.c stm32f4_discovery_lcd.c STMPE811QTR.c widget_config.c
 
 
 ############################################################################
