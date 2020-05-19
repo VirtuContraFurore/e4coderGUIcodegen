@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated schema -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="it.sssuprojects.e4codergui.presentation.E4coderguiModelWizardID"
+            name="%_UI_E4coderguiModelWizard_label"
+            class="it.sssuprojects.e4codergui.presentation.E4coderguiModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/E4coderguiModelFile.gif">
+         <description>%_UI_E4coderguiModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated schema -->
+      <editor
+            id="it.sssuprojects.e4codergui.presentation.E4coderguiEditorID"
+            name="%_UI_E4coderguiEditor_label"
+            icon="icons/full/obj16/E4coderguiModelFile.gif"
+            extensions="e4codergui"
+            class="it.sssuprojects.e4codergui.presentation.E4coderguiEditor"
+            contributorClass="it.sssuprojects.e4codergui.presentation.E4coderguiActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

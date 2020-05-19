@@ -1,0 +1,36 @@
+<gui xmlns="http://www.sssuprojects.it/e4codergui" version="1.4">
+  <inputs>
+    <port type="integer-input" name="input1" scicosDesc="3 1"/>
+    <port type="real-input" name="input2" scicosDesc="1 1"/>
+    <port size="16" type="string-input" name="input3" scicosDesc="8 16"/>
+  </inputs>
+  <outputs>
+    <port type="integer-output" name="output1" scicosDesc="3 1"/>
+    <port type="real-output" name="output2" scicosDesc="1 1"/>
+  </outputs>
+  <frame>
+    <name>MyFrame</name>
+    <size x="320" y="240"/>
+    <fullScreen>true</fullScreen>
+    <element type="buttonknob">
+      <name>rotella1</name>
+      <position x="233" y="28"/>
+      <size x="70" y="70"/>
+      <pressedImagePath defaultFolder="true">button-knob/KNOB_DN.png</pressedImagePath>
+      <releasedImagePath defaultFolder="true">button-knob/KNOB_UP.png</releasedImagePath>
+    </element>
+    <element type="button-widget">
+      <name>botton2</name>
+      <position x="46" y="181"/>
+      <size x="109" y="29"/>
+      <text>Non premere</text>
+    </element>
+    <element type="button-image">
+      <name>bottone1</name>
+      <position x="34" y="56"/>
+      <size x="109" y="29"/>
+      <pressedImagePath defaultFolder="true">button-image/button-ON.png</pressedImagePath>
+      <releasedImagePath defaultFolder="true">button-image/button-OFF.png</releasedImagePath>
+    </element>
+  </frame>
+</gui>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated schema -->
+      <package
+            uri="http://www.sssuprojects.it/e4codergui"
+            class="it.sssuprojects.e4codergui.E4coderguiPackage"
+            genModel="model/schema.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated schema -->
+      <parser
+            type="e4codergui"
+            class="it.sssuprojects.e4codergui.util.E4coderguiResourceFactoryImpl"/>
+   </extension>
+
+</plugin>

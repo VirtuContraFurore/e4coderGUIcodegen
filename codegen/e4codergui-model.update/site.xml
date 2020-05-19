@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/e4codergui_1.0.0.202005192136.jar" id="e4codergui" version="1.0.0.202005192136">
+      <category name="e4codergui"/>
+   </feature>
+   <category-def name="e4codergui" label="New e4codergui 1"/>
+</site>
