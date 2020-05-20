@@ -51,6 +51,7 @@
 #include "STMPE811QTR.h"
 #include "LCD_Touch_Calibration.h"
 #include "widget_config.h"
+#include "needle.h"
 
 
 
@@ -69,8 +70,23 @@ ISR2(systick_handler)
  */
 TASK(Task1)
 {
+    static float angle = 0;
+    static int i = 0;
+	i++;
+	
 	WM_handleEvents();
+
+	if (i%20 == 0)
+		WM_scheduleForcedRedraw();
+
 	WM_update();
+
+	
+	if (i%20 == 0){
+		struct Point p = {160, 120}, axis = {bitmap_needle.width / 2, bitmap_needle.height / 2};
+    	angle += 0.104719755;
+    	WM_SCRIF_drawRotateBitmap(p, &bitmap_needle, axis, angle);
+	}
 }
 /**
   * @brief  Inserts a delay time.
