@@ -59,7 +59,7 @@ windowmanager:           				## Build widow manager static library
 examples: wm_demo_example				## Build all examples
 
 wm_demo_example: windowmanager				## misc for some example which uses windowmanager lib
-	$(MAKE) -C examples/wm_demo/Debug
+	$(MAKE) -C examples/wm_demo/Debug TARGET=""
 
 else
 
