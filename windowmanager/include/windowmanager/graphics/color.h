@@ -16,4 +16,5 @@ struct Color{
 #define TRANSPARENT (struct Color){.r = 0, .g = 0, .b = 0, .a = 255}
 
 #define TO_565(color) ((unsigned short) (((0xF8 & (color).r)<<8) | ((0xFC & (color).g)<<3) | ((0xF8 & (color).b)>>3)))
+#define FROM_565(color) {.r=((color)&0xF800)>>8, .g=((color)&0x7E0)>>3, .b=((color)&0x1F)<<3, .a = 255}
 #endif
