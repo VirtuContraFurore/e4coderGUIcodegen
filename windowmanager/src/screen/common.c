@@ -18,7 +18,7 @@ void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
 
 	for(int y = pos.y; y < pos.y+bitmap->height; y++)
 		for(int x = pos.x; x < pos.x+bitmap->width; x++){
-				if(alpha==0 || (alpha[index] & mask))
+				if(alpha==0 || alpha[index] & mask)
 					WM_SCRIF_drawPixelRaw(x,y, arr[(x-pos.x) + (y-pos.y)*bitmap->width]);
 
 				mask>>=1;
