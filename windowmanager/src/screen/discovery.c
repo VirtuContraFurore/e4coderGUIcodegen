@@ -75,6 +75,12 @@ void WM_SCRIF_drawPixel(struct Point p, struct Color c){
   LCD_DrawLine(p.x, p.y, 1, LCD_DIR_HORIZONTAL);
 }
 
+void WM_SCRIF_drawPixelRaw(int x, int y, unsigned short color){
+  LCD_SetCursor(x, y);
+  LCD_WriteRAM_Prepare(); 
+  LCD_WriteRAM(color);
+}
+
 void WM_SCRIF_drawLine(struct Point from, int length, enum Direction direction, struct Color c){
   struct Point real_from;
   uint8_t real_dir;
@@ -131,86 +137,6 @@ void WM_SCRIF_drawRect(struct Rect rect, struct Color c){
 void WM_SCRIF_fillRect(struct Rect rect, struct Color c){
   _setColor(c);
   LCD_DrawFullRect(rect.pos.x, rect.pos.y, rect.h, rect.w);
-}
-
-void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
-  uint16_t startX = pos.x, startY = pos.y, width = bitmap->width, height = bitmap->height;
-
-  uint16_t lastY = startY + (height - 1);
-  uint16_t lastX = startX + (width - 1);
-  uint16_t x = startX;
-  uint16_t y = startY, oldY = y;
-
-  uint16_t *pointer = (uint16_t *)bitmap->bmp;
-  int i = 0;
-  //pointer += size;
-  //LCD_SetCursor(LCD_PIXEL_WIDTH - startX - 1, LCD_PIXEL_HEIGHT - startY - 1); 
-  LCD_SetCursor(startX, startY); 
-  LCD_WriteRAM_Prepare(); 
-  do
-  {
-		LCD_WriteRAM_Prepare(); 
-    
-    // if (bitmap->alpha[i/8] & (1 << (i%8))){
-		  LCD_WriteRAM(*pointer);
-    // }
-
-		if(x == lastX){
-			x = startX;
-			oldY = y;
-			y++;
-		}
-		else{
-			x++;
-		}
-		LCD_SetCursor(x , y);
-		pointer++;
-    i++;
-  }  
-  while(oldY != lastY);
-}
-
-void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct Point axis, float angle){
-  // TODO
-  WM_SCRIF_drawBitmap(pos, bitmap);
-  
-}
-
-void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, struct Color c){
-    uint16_t color = TO_565(c);
-    int i = 0;
-
-    while(string[i] != '\0'){
-      /* Manage space char */
-      if(string[i] == ' '){
-    	  pos.x +=font->symbols[(int)'a'-33].width; /* Use the same width of 'a' character. */
-    	  i++;
-    	  continue;
-      }
-
-      int index = (int)string[i] - 33;
-      int w = font->symbols[index].width;
-      int h = font->symbols[index].height;
-      const char* arr = font->symbols[index].data;
-
-      int mask = 128, preX = -1;
-
-      for(int y = 0; y < h; y++){
-        for(int x = 0; x < w; x++){
-          if ((arr[(y * w + x) / 8] & mask) != 0){
-            LCD_SetCursor(x+pos.x, y+pos.y);
-            LCD_WriteRAM_Prepare(); 
-            LCD_WriteRAM(color);
-          }
-          mask >>= 1;
-          mask = mask == 0 ? 128 : mask;
-        }
-      }
-
-      pos.x += w;
-      i++;
-    }
-    
 }
 
 #endif /* TARGET == TARGET_DISCOVERY */

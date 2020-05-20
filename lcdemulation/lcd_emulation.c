@@ -9,9 +9,13 @@
 static int last_x, last_y, pressed;
 static void (*_mainFunc)();
 
+static int cursor_x, cursor_y;
+static unsigned short framebuffer[LCD_WIDTH*LCD_HEIGHT];
+
 //adjust x,y mapping to OpenGL window's coordinates (y start from top)
 static inline void setCursor(int x, int y){
-	glWindowPos2i(x,LCD_HEIGHT-1-y);
+	cursor_x = x;
+	cursor_y = LCD_HEIGHT-1-y;
 }
 
 static void mainLoop(int value);
@@ -48,8 +52,8 @@ void LcdInitEmulation(int argc, char ** argv, void (*mainFunc)()){
 	glPixelStorei(GL_UNPACK_ALIGNMENT, sizeof(GLushort));
 
 	//enable alpha test, accept fragment if its alpha is greater than zero
-	glAlphaFunc(GL_GREATER, 0);
-	glEnable(GL_ALPHA_TEST);
+	//glAlphaFunc(GL_GREATER, 0);
+	//glEnable(GL_ALPHA_TEST);
 
 	glutMainLoop();
 }
@@ -99,21 +103,18 @@ void mouseMovement(int x, int y){
 }
 
 void LcdFlush(){
+	glWindowPos2i(0,0);
+	glDrawPixels(LCD_WIDTH, LCD_HEIGHT, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, framebuffer);
 	glFlush();
 }
 
 void LcdClear(){
-	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	LcdClearColor(0xFFFF);
 }
 
 void LcdClearColor(unsigned short color){
-	float red = (float) (color>>11)/32;
-	float green = (float) ((color>>5) & 0x3F)/64;
-	float blue = (float) (color & 0x1F)/32;
-
-	glClearColor(red, green, blue, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	for(int i = 0; i<LCD_WIDTH*LCD_HEIGHT; i++)
+		framebuffer[i]=color;
 }
 
 void LcdDrawLine(int x, int y, int lenght, enum LEMU_Direction direction, unsigned short color){
@@ -123,20 +124,20 @@ void LcdDrawLine(int x, int y, int lenght, enum LEMU_Direction direction, unsign
 
 	switch(direction){
 	case DIR_UP:
-		setCursor(x,y);
-		glDrawPixels(1,lenght,GL_RGB, GL_UNSIGNED_SHORT_5_6_5,pixels);
+		for(int my_y = y; my_y < y+lenght; my_y++)
+			LcdPutPixel(x, my_y, color);
 		break;
 	case DIR_DOWN:
-		setCursor(x,y+lenght-1);
-		glDrawPixels(1,lenght,GL_RGB, GL_UNSIGNED_SHORT_5_6_5,pixels);
+		for(int my_y = y; my_y > y-lenght; my_y--)
+			LcdPutPixel(x, my_y, color);
 		break;
 	case DIR_RIGHT:
-		setCursor(x,y);
-		glDrawPixels(lenght,1,GL_RGB, GL_UNSIGNED_SHORT_5_6_5,pixels);
+		for(int my_x = x; my_x < x+lenght; my_x++)
+			LcdPutPixel(my_x, y, color);
 		break;
 	case DIR_LEFT:
-		setCursor(x-lenght+1,y);
-		glDrawPixels(lenght,1,GL_RGB, GL_UNSIGNED_SHORT_5_6_5,pixels);
+		for(int my_x = x; my_x > x-lenght; my_x--)
+			LcdPutPixel(my_x, y, color);
 		break;
 	}
 
@@ -144,12 +145,9 @@ void LcdDrawLine(int x, int y, int lenght, enum LEMU_Direction direction, unsign
 }
 
 void LcdFillRect(int x, int y, int w, int h, unsigned short color){
-	GLushort * pixels = malloc(w*h*sizeof(GLushort));
-	for(int i = 0; i<w*h; i++)
-		pixels[i] = color;
-	setCursor(x, y+h-1);
-	glDrawPixels(w, h,GL_RGB, GL_UNSIGNED_SHORT_5_6_5,pixels);
-	free(pixels);
+	for(int my_y = y; my_y<y+h; my_y++)
+		for(int my_x = x; my_x<x+h; my_x++)
+			LcdPutPixel(my_x, my_y, color);
 }
 
 void LcdDrawRect(int x, int y, int w, int h, unsigned short color){
@@ -165,8 +163,8 @@ void LcdDrawRect2(int x, int y, int w, int h, unsigned short color){
 }
 
 void LcdPutPixel(int x, int y, unsigned short color){
-	setCursor(x, y);
-	glDrawPixels(1, 1, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, &color);
+	setCursor(x,y);
+	framebuffer[cursor_x+cursor_y*LCD_WIDTH] = color;
 }
 
 #define ABS(x) ((x>0) ? (x) : -(x))
@@ -244,25 +242,15 @@ void LcdDrawUniLineRelative(int x, int y, int x_rel, int y_rel, unsigned short c
 
 void LcdDrawBitmap(int x, int y, int w, int h, void * bitmap){
   short* arr = (short*) bitmap;
-  GLushort * pixels = malloc((w * h) * sizeof(GLushort));
 
 	for(int img_y = 0; img_y < h; img_y++)
 		for(int img_x = 0; img_x < w; img_x++)
-			  pixels[img_x + (h - 1 - img_y) * w] = arr[img_x + img_y * w];
-
-    setCursor(x, y + h - 1);
-    glDrawPixels(w, h, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
-
-    free(pixels);
+			LcdPutPixel(x+img_x, y+img_y, arr[img_x + img_y * w]);
 }
 
 void LcdDrawChar(int x0, int y0, int w, int h, void* bitmap, unsigned short c){
   char* arr = (char*) bitmap;
-  GLushort * pixels = malloc((8 * w) * sizeof(GLushort));
   int mask = 128, preX = -1;
-
-  for(int i = 0; i < 8 * w; i++)
-    pixels[i] = c;
 
   for(int y = 0; y < h; y++){
     for(int x = 0; x < w; x++){
@@ -271,8 +259,10 @@ void LcdDrawChar(int x0, int y0, int w, int h, void* bitmap, unsigned short c){
       if(a && preX == -1){
         preX = x;
       }else if(preX != -1 && !a){
-        setCursor(preX + x0, y + y0);
-        glDrawPixels(x - preX, 1, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
+    	for(int my_x = preX+x0; my_x < x+x0; my_x++)
+    		LcdPutPixel(my_x, y+y0, c);
+        //setCursor(preX + x0, y + y0);
+        //glDrawPixels(x - preX, 1, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
         preX = -1;
       }
 
@@ -281,14 +271,14 @@ void LcdDrawChar(int x0, int y0, int w, int h, void* bitmap, unsigned short c){
     }
 
     if(preX != -1){
-      setCursor(preX + x0, y + y0);
-      glDrawPixels(w - 1 - preX, 1, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
+      for(int my_x = preX+x0; my_x < x0+w-1; my_x++)
+    	  LcdPutPixel(my_x, y+y0, c);
+      //setCursor(preX + x0, y + y0);
+      //glDrawPixels(w - 1 - preX, 1, GL_RGB, GL_UNSIGNED_SHORT_5_6_5, pixels);
       preX = -1;
     }
 
   }
-
-  free(pixels);
 }
 
 //void LcdDrawString(int x, int y, void * font, int charset, unsigned short color){}
