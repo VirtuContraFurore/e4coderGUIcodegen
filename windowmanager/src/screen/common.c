@@ -12,20 +12,20 @@
 
 void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
 	const unsigned short* arr = bitmap->bmp;
-//	const unsigned char* alpha = bitmap->alpha;
-//	int index = 0;
-//	int mask = 1<<7;
+	const unsigned char* alpha = bitmap->alpha;
+	int index = 0;
+	int mask = 1<<7;
 
 	for(int y = pos.y; y < pos.y+bitmap->height; y++)
 		for(int x = pos.x; x < pos.x+bitmap->width; x++){
-//				if(alpha[index] & mask)
+				if(alpha==0 || (alpha[index] & mask))
 					WM_SCRIF_drawPixelRaw(x,y, arr[(x-pos.x) + (y-pos.y)*bitmap->width]);
 
-//				mask>>=1;
-//				if(mask == 0){
-//					mask = 1<<7;
-//					index++;
-//				}
+				mask>>=1;
+				if(mask == 0){
+					mask = 1<<7;
+					index++;
+				}
 		}
 }
 
