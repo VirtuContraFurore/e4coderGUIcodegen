@@ -1,7 +1,7 @@
-TARGET := lcdemulation
+DEVICE := lcdemulation
 
 SRCS := $(shell find . -name "*.c")
-OBJDIR := build/$(TARGET)
+OBJDIR := build/$(DEVICE)
 OUTDIR := $(OBJDIR)/lib
 
 FOLDERS := $(strip $(shell find . -type d -not -path "*build*" -not -path "*include*" -printf '%P\n'))
@@ -14,13 +14,13 @@ DEPDIR := $(OBJDIR)/.deps
 DEPFLAGS = -MT $@ -MMD -MP -MF $(DEPDIR)/$*.d
 DEPFOLDERS := $(FOLDERS:%=$(DEPDIR)/%)
 
-ifeq ($(TARGET), lcdemulation)
+ifeq ($(DEVICE), lcdemulation)
 	CC = gcc
 	AR = ar
 	override CFLAGS += -I $(LEMU_INCLUDE)
 	override CFLAGS += -fPIC 
 	override CFLAGS += -DTARGET=TARGET_LCDEMULATOR
-else ifeq ($(TARGET), discovery)
+else ifeq ($(DEVICE), discovery)
 	CC = arm-none-eabi-gcc 
 	AR = arm-none-eabi-ar
 	override CFLAGS += -mcpu=cortex-m4 -mthumb -mthumb-interwork -ggdb -O0 -Wno-attributes

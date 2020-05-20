@@ -1,9 +1,9 @@
-TARGET := lcdemulation
+DEVICE := lcdemulation
 
 LOG_INCLUDE = $(abspath logging/include)
 
 WM_INCLUDE = $(abspath windowmanager/include)
-WM_LIBDIR = $(abspath windowmanager/build/$(TARGET)/lib)
+WM_LIBDIR = $(abspath windowmanager/build/$(DEVICE)/lib)
 WM_LIBNAME = windowmanager
 
 LEMU_INCLUDE = $(abspath lcdemulation/include)
@@ -18,7 +18,7 @@ DISCOVERY_INCLUDE = $(abspath discovery/include)
 
 export
 
-ifeq ($(TARGET), lcdemulation)
+ifeq ($(DEVICE), lcdemulation)
 all: lcdemulation windowmanager examples
 
 windowmanager: lcdemulation				## Build widow manager static library
@@ -49,7 +49,7 @@ lcdemulation_demo: 					## Build and run a demo which test the Lcd emulation lib
 	$(MAKE) -C lcdemulation demo run
 
 
-else ifeq ($(TARGET), discovery)
+else ifeq ($(DEVICE), discovery)
 
 all: windowmanager examples
 
@@ -59,11 +59,11 @@ windowmanager:           				## Build widow manager static library
 examples: wm_demo_example				## Build all examples
 
 wm_demo_example: windowmanager				## misc for some example which uses windowmanager lib
-	$(MAKE) -C examples/wm_demo/Debug TARGET=""
+	$(MAKE) -C examples/wm_demo/Debug
 
 else
 
-$(error "Unrecognized TARGET $(TARGET)")
+$(error "Unrecognized DEVICE $(DEVICE)")
 
 endif
 
@@ -99,7 +99,7 @@ lcdemulation_clean:
 
 help:          						## Show this help.
 	@echo "Available targets: lcdemulation, discovery"
-	@echo "Available options for $(TARGET)"
+	@echo "Available options for $(DEVICE)"
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 .PHONY: all misc_example wm_demo_example dummy_example string_example_clean windowmanager examples clean windowmanager_clean dummy_example_clean button_example_clean lcdemulation lcdemulation_clean rectangles_example_clean wm_demo_example_clean wm_demo_example_flash
