@@ -81,6 +81,10 @@ void WM_SCRIF_drawPixelRaw(int x, int y, unsigned short color){
   LCD_WriteRAM(color);
 }
 
+void WM_SCRIF_drawNextPixelRaw(unsigned short color){
+  LCD_WriteRAM(color);
+}
+
 void WM_SCRIF_drawLine(struct Point from, int length, enum Direction direction, struct Color c){
   struct Point real_from;
   uint8_t real_dir;

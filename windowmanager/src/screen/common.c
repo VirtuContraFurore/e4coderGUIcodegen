@@ -15,18 +15,29 @@ void WM_SCRIF_drawBitmap(struct Point pos, struct Bitmap* bitmap){
 	const unsigned char* alpha = bitmap->alpha;
 	int index = 0;
 	int mask = 1<<7;
+  bool previous = false;
 
-	for(int y = pos.y; y < pos.y+bitmap->height; y++)
+	for(int y = pos.y; y < pos.y+bitmap->height; y++){
 		for(int x = pos.x; x < pos.x+bitmap->width; x++){
-				if(alpha==0 || alpha[index] & mask)
-					WM_SCRIF_drawPixelRaw(x,y, arr[(x-pos.x) + (y-pos.y)*bitmap->width]);
+      if(alpha==0 || alpha[index] & mask){
+        if (previous)
+          WM_SCRIF_drawNextPixelRaw(arr[(x-pos.x) + (y-pos.y)*bitmap->width]);
+        else
+          WM_SCRIF_drawPixelRaw(x, y, arr[(x-pos.x) + (y-pos.y)*bitmap->width]);
+        previous = true;
+      } else{
+        previous = false;
+      }
 
-				mask>>=1;
-				if(mask == 0){
-					mask = 1<<7;
-					index++;
-				}
+      mask>>=1;
+      if(mask == 0){
+        mask = 1<<7;
+        index++;
+      }
 		}
+    // end of row
+    previous = false;
+  }
 }
 
 void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct Point axis, float angle){
@@ -80,14 +91,23 @@ void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct P
 void WM_SCRIF_drawChar(struct Rect rect, const unsigned char * font, struct Color c){
 	int mask = 128, preX = -1;
 	unsigned short color = TO_565(c);
+  bool previous = false;
 
 	for(int y = 0; y < rect.h; y++){
 		for(int x = 0; x < rect.w; x++){
-			if(font[(y * rect.w + x) / 8] & mask)
-				WM_SCRIF_drawPixelRaw(x+rect.pos.x, y+rect.pos.y, color);
+			if(font[(y * rect.w + x) / 8] & mask){
+        if (previous)
+				  WM_SCRIF_drawNextPixelRaw(color);
+        else
+				  WM_SCRIF_drawPixelRaw(x+rect.pos.x, y+rect.pos.y, color);
+        previous = true;
+      } else{
+        previous = false;
+      }
 			mask >>= 1;
 			mask = (mask == 0) ? 128 : mask;
 		}
+    previous = false;
 	}
 }
 

@@ -16,6 +16,8 @@
 #include <GL/glut.h>
 #include "lcdemulation/lcd_emulation.h"
 
+static int last_x, last_y;
+
 void WM_SCRIF_initEmulation(int argc, char ** argv, void (*mainFunc)()){
     LcdInitEmulation(argc, argv, mainFunc);
 }
@@ -47,7 +49,14 @@ void WM_SCRIF_drawPixel(struct Point p, struct Color c){
 }
 
 void WM_SCRIF_drawPixelRaw(int x, int y, unsigned short color){
+    last_x = x;
+    last_y = y;
 	LcdPutPixel(x,y,color);
+}
+
+void WM_SCRIF_drawNextPixelRaw(unsigned short color){
+    last_x++;
+	LcdPutPixel(last_x,last_y,color);
 }
 
 void WM_SCRIF_drawLine(struct Point from, int length, enum Direction direction, struct Color c){
