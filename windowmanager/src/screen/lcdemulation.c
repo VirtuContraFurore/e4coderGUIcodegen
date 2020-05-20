@@ -44,6 +44,10 @@ void WM_SCRIF_drawPixel(struct Point p, struct Color c){
     LcdPutPixel(p.x, p.y, TO_565(c));
 }
 
+void WM_SCRIF_drawPixelRaw(int x, int y, unsigned short color){
+	LcdPutPixel(x,y,color);
+}
+
 void WM_SCRIF_drawLine(struct Point from, int length, enum Direction direction, struct Color c){
     LcdDrawLine(from.x, from.y, length, (enum LEMU_Direction) direction, TO_565(c));
 }

@@ -21,6 +21,7 @@ void WM_SCRIF_flush();
 void WM_SCRIF_clear();
 void WM_SCRIF_clearColor(struct Color c);
 void WM_SCRIF_drawPixel(struct Point p, struct Color c);
+void WM_SCRIF_drawPixelRaw(int x, int y, unsigned short color);
 void WM_SCRIF_drawLine(struct Point from, int length, enum Direction direction, struct Color c);
 void WM_SCRIF_drawUniLine(struct Point from, struct Point to, struct Color c);
 void WM_SCRIF_drawUniLineRelative(struct Point from, struct Point dist, struct Color c);
