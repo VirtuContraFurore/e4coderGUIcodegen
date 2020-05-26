@@ -38,7 +38,7 @@ bool knob_onTouch(struct Widget *self, struct TouchEvent *event){
         return false;
     }
     #define max(x, y) (x) > (y) ? (x) : (y)
-    int r = max(data->image.width - cx, data->image.height - cy);
+    int r = max(max(data->image.width - cx, data->image.height - cy), max(cx, cy));
     if((x - cx) * (x - cx) + (y - cy) * (y - cy) > r * r)
       return false;
 
@@ -47,6 +47,6 @@ bool knob_onTouch(struct Widget *self, struct TouchEvent *event){
 
     if(data->onChange != NULL)
       data->onChange(self, pre_val, new_val);
-      
+
     return true;
 }
