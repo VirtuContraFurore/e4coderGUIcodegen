@@ -29,7 +29,7 @@ struct TouchEvent* WM_getTouchEvent(){
 		} else {
 			was_touched = false;
 			std = (struct SingleTouchData) {
-                .type=TOUCH_UP, 
+                .type=TOUCH_UP,
                 .p = last
             };
 			te = (struct TouchEvent) {.type=SINGLE_TOUCH, &std};
@@ -46,7 +46,7 @@ struct TouchEvent* WM_getTouchEvent(){
 		} else {
 			if(ABS(first.x-last.x) > DELTA_DRAG_PX || ABS(first.y-last.y) > DELTA_DRAG_PX){
 				dtd = (struct DragTouchData) {.start = first, .end = last};
-				te = (struct TouchEvent) {.type=DRAG_TOUCH, &std};
+				te = (struct TouchEvent) {.type=DRAG_TOUCH, &dtd};
 				return &te;
 			} else
 				return NULL;

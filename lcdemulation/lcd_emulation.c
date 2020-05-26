@@ -163,6 +163,8 @@ void LcdDrawRect2(int x, int y, int w, int h, unsigned short color){
 }
 
 void LcdPutPixel(int x, int y, unsigned short color){
+  if(x < 0 || y < 0 || x >= LCD_WIDTH || y >= LCD_HEIGHT)
+    return;
 	setCursor(x,y);
 	framebuffer[cursor_x+cursor_y*LCD_WIDTH] = color;
 }

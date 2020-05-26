@@ -35,13 +35,13 @@ int WM_SCRIF_getTouch(struct Point *p){
 
   p->x = pstate->X;
   p->y = pstate->Y;
-  
+
   /* If AD result is abnormal, then LCD show nothing */
-  if ((p->x > TOUCH_AD_VALUE_MAX) 
+  if ((p->x > TOUCH_AD_VALUE_MAX)
       || (p->x < TOUCH_AD_VALUE_MIN)
       || (p->y > TOUCH_AD_VALUE_MAX)
       || (p->y < TOUCH_AD_VALUE_MIN)) {
-    return 0;					
+    return 0;
   }
 
   p->x = ((int)(p->x * adjust_Para.xScale - adjust_Para.xOffset));
@@ -68,16 +68,18 @@ void WM_SCRIF_clearColor(struct Color c){
 
 void WM_SCRIF_drawPixel(struct Point p, struct Color c){
   _setColor(c);
-    if(p.x < 0 || p.x > LCD_PIXEL_WIDTH-1 || p.y < 0 || p.y > LCD_PIXEL_HEIGHT-1)
+  if(p.x < 0 || p.x > LCD_PIXEL_WIDTH-1 || p.y < 0 || p.y > LCD_PIXEL_HEIGHT-1)
   {
-    return;  
+    return;
   }
   LCD_DrawLine(p.x, p.y, 1, LCD_DIR_HORIZONTAL);
 }
 
 void WM_SCRIF_drawPixelRaw(int x, int y, unsigned short color){
+  if(x < 0 || x > LCD_PIXEL_WIDTH - 1 || y < 0 || y > LCD_PIXEL_HEIGHT - 1)
+    return;
   LCD_SetCursor(x, y);
-  LCD_WriteRAM_Prepare(); 
+  LCD_WriteRAM_Prepare();
   LCD_WriteRAM(color);
 }
 

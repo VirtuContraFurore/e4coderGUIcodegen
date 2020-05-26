@@ -67,8 +67,8 @@ void WM_SCRIF_drawRotateBitmap(struct Point pos, struct Bitmap* bitmap, struct P
         int l_x = left_x, f_x = x, d_x = down_x, l_y = left_y, f_y = y, d_y = down_y;
         if((l_x != f_x || l_y != f_y) && (d_x != f_x || d_y != f_y)){
         	WM_SCRIF_drawPixelRaw(f_x, f_y, color);
-        	WM_SCRIF_drawPixelRaw(f_x+1, f_y, color);
-        	WM_SCRIF_drawPixelRaw(f_x, f_y+1, color);
+        	WM_SCRIF_drawPixelRaw(f_x + 1, f_y, color);
+        	WM_SCRIF_drawPixelRaw(f_x, f_y + 1, color);
         }
       }
       left_x = x;
@@ -112,6 +112,3 @@ void WM_SCRIF_drawString(struct Point pos, char* string, struct Font* font, stru
       i++;
     }
 }
-
-
-
