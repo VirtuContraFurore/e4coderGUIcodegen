@@ -2,8 +2,6 @@
 #include "windowmanager/widget/knob.h"
 #include <math.h>
 
-#include <stdio.h>
-
 struct WidgetFunctions knob_WidgetFunctions = {
     .draw = &knob_draw,
     .onTouch = &knob_onTouch,
@@ -37,8 +35,8 @@ bool knob_onTouch(struct Widget *self, struct TouchEvent *event){
       default:
         return false;
     }
-    #define max(x, y) (x) > (y) ? (x) : (y)
-    int r = max(max(data->image.width - cx, data->image.height - cy), max(cx, cy));
+    #define max(x, y) ((x) > (y)) ? (x) : (y)
+    int r = 5 + max(max(data->image.width - data->pivotPosition.x, data->image.height - data->pivotPosition.y), max(data->pivotPosition.x, data->pivotPosition.y));
     if((x - cx) * (x - cx) + (y - cy) * (y - cy) > r * r)
       return false;
 
