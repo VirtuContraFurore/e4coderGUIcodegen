@@ -12,7 +12,7 @@ while path != "exit":
 
     # apro l'immagine
     img = Image.open(path)
-
+    img = img.convert('RGBA')
     # la ridimensiono
     img = img.resize(size = (width, height), resample = PIL.Image.BICUBIC)
 
