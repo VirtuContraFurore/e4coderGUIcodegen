@@ -9,6 +9,7 @@
 #include "windowmanager/graphics/color.h"
 
 #include "my_gui.h"
+#include "my_images.h"
 
 /* Code for frame "MyFrame" */
 

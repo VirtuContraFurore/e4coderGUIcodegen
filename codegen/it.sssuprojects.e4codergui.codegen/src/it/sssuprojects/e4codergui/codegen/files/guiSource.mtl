@@ -36,6 +36,7 @@
 #include "windowmanager/graphics/color.h"
 
 #include "my_gui.h"
+#include "my_images.h"
 [/template]
 
 [template private frameInit(frame : FrameType)]

@@ -16,7 +16,7 @@
  */
 
 [for (widget : Widget | root.gui.frame.element)]
-	[widget.imageDecl()/]
+[widget.imageDecl()/]
 [/for]
 [/file]
 [/template]
@@ -30,16 +30,43 @@
  */
 
 [for (widget : Widget | root.gui.frame.element)]
-	 [widget.imageDef()/]
+[widget.imageDef()/]
 [/for]
 [/file]
 [/template]
 
 [template private imageDecl(widget : Widget) post(trim()) ]
-	template_expression
+[if (widget.type = 'button-image')]
+#define [widget.image_width('OFF')/] 5
+#define [widget.image_height('OFF')/] 5
+extern const unsigned short [widget.image_bitmap('OFF')/]['[]'/];
+[elseif (widget.type = 'xxx')]
+	xx
+[elseif (widget.type = 'xx1')]
+	xx	
+[elseif (widget.type = 'xx2')]
+	xx	
+[elseif (widget.type = 'xx3')]
+	xx	
+[else] [comment Default handling/]
+[comment: No img for this widget type/]
+[/if]
 [/template]
 
 [template private imageDef(widget : Widget) post(trim()) ]
-	template_expression
+[if (widget.type = 'button-image')]
+//TODO not fully implemented
+const unsigned short [widget.image_bitmap('OFF')/]['[3]'/] = {0x01, 0x02, 0x03};
+[elseif (widget.type = 'xxx')]
+	xx
+[elseif (widget.type = 'xx1')]
+	xx	
+[elseif (widget.type = 'xx2')]
+	xx	
+[elseif (widget.type = 'xx3')]
+	xx	
+[else] [comment Default handling/]
+[comment: No img for this widget type/]
+[/if]
 [/template]
 

@@ -21,7 +21,7 @@ bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event
 
 [template public generateButtonImage_callbacks_def(widget : Widget) post(trim()) ]
 bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event){
-	//todo: return true if the touch event was processed by this button
+	//TODO: return true if the touch event was processed by this button
 	return true;
 }
 [/template]
