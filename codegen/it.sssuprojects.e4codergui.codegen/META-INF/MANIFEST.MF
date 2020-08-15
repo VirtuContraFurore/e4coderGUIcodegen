@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Eclipse-LazyStart: true
-Export-Package: it.sssuprojects.e4codergui.codegen.main
+Export-Package: it.sssuprojects.e4codergui.codegen.main,
+ it.sssuprojects.e4codergui.codegen.services
 Import-Package: it.sssuprojects.e4codergui,
  it.sssuprojects.e4codergui.util
 Automatic-Module-Name: it.sssuprojects.e4codergui.codegen

@@ -39,7 +39,7 @@
 [if (widget.type = 'button-image')]
 #define [widget.image_width('OFF')/] 5
 #define [widget.image_height('OFF')/] 5
-extern const unsigned short [widget.image_bitmap('OFF')/]['[]'/];
+extern const unsigned short [widget.image_bitmap('pressed')/]['[]'/];
 [elseif (widget.type = 'xxx')]
 	xx
 [elseif (widget.type = 'xx1')]
@@ -56,7 +56,7 @@ extern const unsigned short [widget.image_bitmap('OFF')/]['[]'/];
 [template private imageDef(widget : Widget) post(trim()) ]
 [if (widget.type = 'button-image')]
 //TODO not fully implemented
-const unsigned short [widget.image_bitmap('OFF')/]['[3]'/] = {0x01, 0x02, 0x03};
+const unsigned short [widget.image_bitmap('OFF')/]['[3]'/] = {0x01, 0x02, 0x03}; [test(widget.pressedImagePath)/]
 [elseif (widget.type = 'xxx')]
 	xx
 [elseif (widget.type = 'xx1')]
@@ -69,4 +69,7 @@ const unsigned short [widget.image_bitmap('OFF')/]['[3]'/] = {0x01, 0x02, 0x03};
 [comment: No img for this widget type/]
 [/if]
 [/template]
+
+[query public test(path : Path) : OclAny = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'Prova(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
+	
 

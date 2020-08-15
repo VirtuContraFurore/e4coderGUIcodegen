@@ -41,10 +41,10 @@ void struct Window * createWindow_MyFrame(){
 	MyFrame_bottone1_pdata.dim.w = 109;
 	MyFrame_bottone1_pdata.dim.h = 29;
 	MyFrame_bottone1_pdata.onTouch = &MyFrame_bottone1_onTouch;
-	MyFrame_bottone1_pdata.Image.bmp = Image_MyFrame_bottone1_OFF_bitmap; //TODO: img must be declared outside...
+	MyFrame_bottone1_pdata.Image.bmp = Image_MyFrame_bottone1_pressed_bitmap; //TODO: img must be declared outside...
 	MyFrame_bottone1_pdata.Image.alpha = 0; //no alpha here
-	MyFrame_bottone1_pdata.Image.width = IMAGE_MYFRAME_BOTTONE1_OFF_WIDTH; //TODO
-	MyFrame_bottone1_pdata.Image.hight = IMAGE_MYFRAME_BOTTONE1_OFF_HEIGHT; //TODO
+	MyFrame_bottone1_pdata.Image.width = IMAGE_MYFRAME_BOTTONE1_PRESSED_WIDTH; //TODO
+	MyFrame_bottone1_pdata.Image.hight = IMAGE_MYFRAME_BOTTONE1_PRESSED_HEIGHT; //TODO
 	widgets[2].visible = true;
 	widgets[2].funcs = &button_WidgetFunctions;
 	widgets[2].data = (void*) &MyFrame_bottone1_pdata;
