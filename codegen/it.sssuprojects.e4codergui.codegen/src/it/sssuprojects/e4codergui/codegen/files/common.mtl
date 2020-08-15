@@ -1,0 +1,10 @@
+[comment encoding = UTF-8 /]
+[module common('http://www.sssuprojects.it/e4codergui')]
+
+[**
+ * This converts names in c standard, hoping no name starts with a number (!!)
+*/]
+[query public cname(name : String) : String = name.replaceAll('\\W', '_') /]
+
+[query public pdata_name(widget : Widget) : String = widget.eContainer(FrameType).name.cname()+'_'+ widget.name.cname()+'_pdata' /]
+

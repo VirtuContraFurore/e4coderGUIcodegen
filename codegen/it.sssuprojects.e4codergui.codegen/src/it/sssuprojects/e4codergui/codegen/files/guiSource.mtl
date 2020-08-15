@@ -1,0 +1,96 @@
+[comment encoding = UTF-8 /]
+[module guiSource('http://www.sssuprojects.it/e4codergui')]
+
+[import it::sssuprojects::e4codergui::codegen::files::common /]
+
+[**
+ * Sorce File
+ */]
+[template public generateSourceCode(root : DocumentRoot)]
+[file ('my_gui.c', false, 'UTF-8')]
+/*
+ * my_gui.c
+ * This code is auto generated from an xml file.
+ */
+
+[root.generateIncludes()/]
+
+[for (frame : FrameType | root.gui.frame)]
+/* Code for frame "[frame.name/]" */
+
+[frame.frameInit()/]
+
+/* end code for frame "[frame.name/]" */
+[/for]
+[/file]
+[/template]
+
+[**
+ * Source file includes
+*/]
+[template private generateIncludes(root : DocumentRoot)]
+#include <stdlib.h>
+
+#include "windowmanager/core/windowmanager.h"
+#include "windowmanager/graphics/color.h"
+[/template]
+
+[template private frameInit(frame : FrameType)]
+struct Window [frame.name.cname()/];
+struct Widget [frame.name.cname()/]_widgets['['+frame.element->size()+']'/];
+[for (widget : Widget | frame.element) separator('\n') after('\n') ]
+struct [widget.widget_struct()/] [widget.pdata_name()/];[/for]
+
+void struct Window * createWindow_[frame.name.cname()/](){
+	struct Window * window = &[frame.name.cname()/];   //window's struct alias 
+	Widget * widgets = [frame.name.cname()/]_widgets;   //widgets' array alias
+[for (widget : Widget | frame.element) before('\n') separator('\n') after('\n') ]
+	[widget.createWidget(frame.element->lastIndexOf(widget)-1)/]
+[/for]
+    //setting window frame properties
+	window->widgets = widgets;
+	window->n_widgets = [frame.element->size()/];
+	window->background = WHITE;
+	return window;
+}
+[/template]
+
+[template private createWidget(widget : Widget, index : Integer) post(trim()) ]
+// Initialization of widget "[widget.name/]"
+[widget.widget_init_pdata(widget.pdata_name())/]
+widgets['['+index+']'/].visible = true;
+widgets['['+index+']'/].funcs = &[widget.widget_funcs()/];
+widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
+[/template]
+
+[template private widget_funcs(widget : Widget) post(trim()) ]
+[widget.widget_libname()/]_WidgetFunctions
+[/template]
+
+[template private widget_struct(widget : Widget) post(trim()) ]
+[widget.widget_libname()/]_WidgetData
+[/template]
+
+[**
+ * Use to retrieve the widget name used in the C library source code from the widget object from the xml model
+*/]
+[template private widget_libname(widget : Widget)post (trim()) ]
+[if (widget.type = 'button-image')]
+	button
+[elseif (widget.type = 'xxx')]
+	xx
+[elseif (widget.type = 'xx1')]
+	xx	
+[elseif (widget.type = 'xx2')]
+	xx	
+[elseif (widget.type = 'xx3')]
+	xx	
+[else] [comment Default handling/]
+	dummy
+[/if]
+[/template]
+
+[template private widget_init_pdata(widget : Widget, pdata : String)]
+[pdata/].fieldXXX = 1;
+[pdata/].fieldXXX = 2;
+[/template]

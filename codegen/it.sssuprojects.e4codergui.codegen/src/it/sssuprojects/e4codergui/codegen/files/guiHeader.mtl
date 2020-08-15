@@ -1,0 +1,32 @@
+[comment encoding = UTF-8 /]
+[module guiHeader('http://www.sssuprojects.it/e4codergui')]
+
+[import it::sssuprojects::e4codergui::codegen::files::common /]
+
+[template public generateHeaderCode(root : DocumentRoot)]
+[file ('my_gui.h', false, 'UTF-8')]
+/*
+ * my_gui.h
+ * This code is auto generated from an xml file.
+ */
+
+//TODO: mettere a posto questi includes:
+[root.generateIncludes()/]
+
+[for (frame : FrameType | root.gui.frame) separator('\n') ]
+/* Initializes and returns Window struct for frame "[frame.name/]" */
+void struct Window * createWindow_[frame.name.cname()/]();
+[/for]
+
+[/file]
+[/template]
+
+[**
+ * includes for header file
+*/]
+[template private generateIncludes(root : DocumentRoot)]
+#include <stdlib.h>
+
+#include "windowmanager/core/windowmanager.h"
+#include "windowmanager/graphics/color.h"
+[/template]

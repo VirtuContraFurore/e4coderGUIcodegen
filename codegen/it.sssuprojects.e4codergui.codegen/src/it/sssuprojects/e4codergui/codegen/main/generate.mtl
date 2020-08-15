@@ -1,0 +1,12 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.sssuprojects.it/e4codergui')]
+
+[import it::sssuprojects::e4codergui::codegen::files::guiHeader /]
+[import it::sssuprojects::e4codergui::codegen::files::guiSource /]
+
+[template public generateGUI(root : DocumentRoot)]
+[comment @main/]
+
+[root.generateSourceCode()/]
+[root.generateHeaderCode()/]
+[/template]
