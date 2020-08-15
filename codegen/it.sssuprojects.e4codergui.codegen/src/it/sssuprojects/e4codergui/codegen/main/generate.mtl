@@ -3,10 +3,12 @@
 
 [import it::sssuprojects::e4codergui::codegen::files::guiHeader /]
 [import it::sssuprojects::e4codergui::codegen::files::guiSource /]
+[import it::sssuprojects::e4codergui::codegen::files::images /]
 
 [template public generateGUI(root : DocumentRoot)]
 [comment @main/]
 
 [root.generateSourceCode()/]
 [root.generateHeaderCode()/]
+[root.generateImageCode()/]
 [/template]

@@ -2,6 +2,7 @@
 [module guiHeader('http://www.sssuprojects.it/e4codergui')]
 
 [import it::sssuprojects::e4codergui::codegen::files::common /]
+[import it::sssuprojects::e4codergui::codegen::files::widgets /]
 
 [template public generateHeaderCode(root : DocumentRoot)]
 [file ('my_gui.h', false, 'UTF-8')]
@@ -16,6 +17,9 @@
 [for (frame : FrameType | root.gui.frame) separator('\n') ]
 /* Initializes and returns Window struct for frame "[frame.name/]" */
 void struct Window * createWindow_[frame.name.cname()/]();
+[for (widget : Widget | frame.element) before('\n')]
+[widget.widget_callbacks_decl()/]
+[/for]
 [/for]
 
 [/file]
@@ -30,3 +34,24 @@ void struct Window * createWindow_[frame.name.cname()/]();
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/graphics/color.h"
 [/template]
+
+
+[**
+ * Use to generate the callbacks declarations
+*/]
+[template private widget_callbacks_decl(widget : Widget) post (trim()) ]
+[if (widget.type = 'button-image')]
+	[widget.generateButtonImage_callbacks_decl()/]
+[elseif (widget.type = 'xxx')]
+	xx
+[elseif (widget.type = 'xx1')]
+	xx	
+[elseif (widget.type = 'xx2')]
+	xx	
+[elseif (widget.type = 'xx3')]
+	xx	
+[else] [comment Default handling/]
+	void [widget.callback('dummy')/]();
+[/if]
+[/template]
+

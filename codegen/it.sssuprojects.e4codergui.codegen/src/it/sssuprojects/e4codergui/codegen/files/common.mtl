@@ -6,5 +6,33 @@
 */]
 [query public cname(name : String) : String = name.replaceAll('\\W', '_') /]
 
+[**
+ * This creates the private data structure's name
+*/]
 [query public pdata_name(widget : Widget) : String = widget.eContainer(FrameType).name.cname()+'_'+ widget.name.cname()+'_pdata' /]
+
+[**
+ * This creates the name of the callback function
+*/]
+[query public callback(widget : Widget, name : String) : String =  widget.eContainer(FrameType).name.cname()+'_'+ widget.name.cname()+'_'+name/]
+
+[**
+ * Name of image bitmap array
+*/]
+[query public image_bitmap(widget : Widget, name : String) : String = 'Image_'+widget.eContainer(FrameType).name.cname()+'_'+ widget.name.cname()+'_'+name+'_bitmap' /]
+
+[**
+ * Name of image alpha (transparency) data
+*/]
+[query public image_alpha(widget : Widget, name : String) : String = 'Image_'+widget.eContainer(FrameType).name.cname()+'_'+ widget.name.cname()+'_'+name+'_alpha' /]
+
+[**
+ * Macro name for image HEIGHT
+*/]
+[query public image_height(widget : Widget, name : String) : String = ('Image_'+widget.eContainer(FrameType).name.cname()+'_'+ widget.name.cname()+'_'+name+'_height').toUpperCase() /]
+
+[**
+ * Macro name for image WIDTH
+*/]
+[query public image_width(widget : Widget, name : String) : String = ('Image_'+widget.eContainer(FrameType).name.cname()+'_'+ widget.name.cname()+'_'+name+'_width').toUpperCase() /]
 

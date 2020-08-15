@@ -1,0 +1,45 @@
+[comment encoding = UTF-8 /]
+[module images('http://www.sssuprojects.it/e4codergui')]
+
+[import it::sssuprojects::e4codergui::codegen::files::common /]
+
+[template public generateImageCode(root : DocumentRoot)]
+[root.imageHeader()/]
+[root.imageSource()/]
+[/template]
+
+[template private imageHeader(root : DocumentRoot)]
+[file ('my_images.h', false, 'UTF-8')]
+/*
+ * my_images.h
+ * Auto generated header file for bitmap data
+ */
+
+[for (widget : Widget | root.gui.frame.element)]
+	[widget.imageDecl()/]
+[/for]
+[/file]
+[/template]
+
+
+[template private imageSource(root : DocumentRoot)]
+[file ('my_images.c', false, 'UTF-8')]
+/*
+ * my_images.c
+ * Auto generated source file for bitmap data
+ */
+
+[for (widget : Widget | root.gui.frame.element)]
+	 [widget.imageDef()/]
+[/for]
+[/file]
+[/template]
+
+[template private imageDecl(widget : Widget) post(trim()) ]
+	template_expression
+[/template]
+
+[template private imageDef(widget : Widget) post(trim()) ]
+	template_expression
+[/template]
+

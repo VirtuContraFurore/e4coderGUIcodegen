@@ -2,6 +2,7 @@
 [module guiSource('http://www.sssuprojects.it/e4codergui')]
 
 [import it::sssuprojects::e4codergui::codegen::files::common /]
+[import it::sssuprojects::e4codergui::codegen::files::widgets /]
 
 [**
  * Sorce File
@@ -33,6 +34,8 @@
 
 #include "windowmanager/core/windowmanager.h"
 #include "windowmanager/graphics/color.h"
+
+#include "my_gui.h"
 [/template]
 
 [template private frameInit(frame : FrameType)]
@@ -57,7 +60,7 @@ void struct Window * createWindow_[frame.name.cname()/](){
 
 [template private createWidget(widget : Widget, index : Integer) post(trim()) ]
 // Initialization of widget "[widget.name/]"
-[widget.widget_init_pdata(widget.pdata_name())/]
+[widget.widget_init_pdata()/]
 widgets['['+index+']'/].visible = true;
 widgets['['+index+']'/].funcs = &[widget.widget_funcs()/];
 widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
@@ -74,7 +77,7 @@ widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
 [**
  * Use to retrieve the widget name used in the C library source code from the widget object from the xml model
 */]
-[template private widget_libname(widget : Widget)post (trim()) ]
+[template private widget_libname(widget : Widget) post (trim()) ]
 [if (widget.type = 'button-image')]
 	button
 [elseif (widget.type = 'xxx')]
@@ -90,7 +93,22 @@ widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
 [/if]
 [/template]
 
-[template private widget_init_pdata(widget : Widget, pdata : String)]
-[pdata/].fieldXXX = 1;
-[pdata/].fieldXXX = 2;
+[**
+ * Use to generate the private data of each widget
+*/]
+[template private widget_init_pdata(widget : Widget) post (trim()) ]
+[if (widget.type = 'button-image')]
+[widget.generateButtonImage_pdata()/]
+[elseif (widget.type = 'xxx')]
+	xx
+[elseif (widget.type = 'xx1')]
+	xx	
+[elseif (widget.type = 'xx2')]
+	xx	
+[elseif (widget.type = 'xx3')]
+	xx	
+[else] [comment Default handling/]
+	dummy
+[/if]
 [/template]
+

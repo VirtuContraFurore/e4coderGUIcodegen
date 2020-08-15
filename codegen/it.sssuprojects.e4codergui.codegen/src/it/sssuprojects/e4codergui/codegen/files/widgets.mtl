@@ -1,0 +1,27 @@
+[comment encoding = UTF-8 /]
+[module widgets('http://www.sssuprojects.it/e4codergui')]
+
+[import it::sssuprojects::e4codergui::codegen::files::common /]
+
+[template public generateButtonImage_pdata(widget : Widget) post(trim()) ]
+[widget.pdata_name()/].dim.pos.x = [widget.position.x/];
+[widget.pdata_name()/].dim.pos.y = [widget.position.y/];
+[widget.pdata_name()/].dim.w = [widget.size.x/];
+[widget.pdata_name()/].dim.h = [widget.size.y/];
+[widget.pdata_name()/].onTouch = &[widget.callback('onTouch')/];
+[widget.pdata_name()/].Image.bmp = [widget.image_bitmap('OFF')/]; //TODO: img must be declared outside...
+[widget.pdata_name()/].Image.alpha = 0; //no alpha here
+[widget.pdata_name()/].Image.width = [widget.image_width('OFF')/]; //TODO
+[widget.pdata_name()/].Image.hight = [widget.image_height('OFF')/]; //TODO
+[/template]
+
+[template public generateButtonImage_callbacks_decl(widget : Widget) post(trim()) ]
+bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event);
+[/template]
+
+[template public generateButtonImage_callbacks_def(widget : Widget) post(trim()) ]
+bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event){
+	//todo: return true if the touch event was processed by this button
+	return true;
+}
+[/template]
