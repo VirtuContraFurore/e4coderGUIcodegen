@@ -15,7 +15,7 @@
  * Auto generated header file for bitmap data
  */
 
-[for (widget : Widget | root.gui.frame.element)]
+[for (widget : Widget | root.gui.frame.element->select(w:Widget|w.imageDecl().size() > 0))]
 [widget.imageDecl()/]
 [/for]
 [/file]
@@ -29,7 +29,7 @@
  * Auto generated source file for bitmap data
  */
 
-[for (widget : Widget | root.gui.frame.element)]
+[for (widget : Widget | root.gui.frame.element->select(w:Widget|w.imageDef().size() > 0))]
 [widget.imageDef()/]
 [/for]
 [/file]
