@@ -859,13 +859,49 @@ public interface E4coderguiPackage extends EPackage {
 	int WIDGET__TEXT = 36;
 
 	/**
+	 * The feature id for the '<em><b>Active Pressed Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__ACTIVE_PRESSED_IMAGE_PATH = 37;
+
+	/**
+	 * The feature id for the '<em><b>Inactive Pressed Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__INACTIVE_PRESSED_IMAGE_PATH = 38;
+
+	/**
+	 * The feature id for the '<em><b>Active Released Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__ACTIVE_RELEASED_IMAGE_PATH = 39;
+
+	/**
+	 * The feature id for the '<em><b>Inactive Released Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WIDGET__INACTIVE_RELEASED_IMAGE_PATH = 40;
+
+	/**
 	 * The number of structural features of the '<em>Widget</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int WIDGET_FEATURE_COUNT = 37;
+	int WIDGET_FEATURE_COUNT = 41;
 
 	/**
 	 * The number of operations of the '<em>Widget</em>' class.
@@ -1660,6 +1696,50 @@ public interface E4coderguiPackage extends EPackage {
 	EAttribute getWidget_Text();
 
 	/**
+	 * Returns the meta object for the reference '{@link it.sssuprojects.e4codergui.Widget#getActivePressedImagePath <em>Active Pressed Image Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Active Pressed Image Path</em>'.
+	 * @see it.sssuprojects.e4codergui.Widget#getActivePressedImagePath()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EReference getWidget_ActivePressedImagePath();
+
+	/**
+	 * Returns the meta object for the reference '{@link it.sssuprojects.e4codergui.Widget#getInactivePressedImagePath <em>Inactive Pressed Image Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Inactive Pressed Image Path</em>'.
+	 * @see it.sssuprojects.e4codergui.Widget#getInactivePressedImagePath()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EReference getWidget_InactivePressedImagePath();
+
+	/**
+	 * Returns the meta object for the reference '{@link it.sssuprojects.e4codergui.Widget#getActiveReleasedImagePath <em>Active Released Image Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Active Released Image Path</em>'.
+	 * @see it.sssuprojects.e4codergui.Widget#getActiveReleasedImagePath()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EReference getWidget_ActiveReleasedImagePath();
+
+	/**
+	 * Returns the meta object for the reference '{@link it.sssuprojects.e4codergui.Widget#getInactiveReleasedImagePath <em>Inactive Released Image Path</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Inactive Released Image Path</em>'.
+	 * @see it.sssuprojects.e4codergui.Widget#getInactiveReleasedImagePath()
+	 * @see #getWidget()
+	 * @generated
+	 */
+	EReference getWidget_InactiveReleasedImagePath();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2275,6 +2355,38 @@ public interface E4coderguiPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute WIDGET__TEXT = eINSTANCE.getWidget_Text();
+
+		/**
+		 * The meta object literal for the '<em><b>Active Pressed Image Path</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIDGET__ACTIVE_PRESSED_IMAGE_PATH = eINSTANCE.getWidget_ActivePressedImagePath();
+
+		/**
+		 * The meta object literal for the '<em><b>Inactive Pressed Image Path</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIDGET__INACTIVE_PRESSED_IMAGE_PATH = eINSTANCE.getWidget_InactivePressedImagePath();
+
+		/**
+		 * The meta object literal for the '<em><b>Active Released Image Path</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIDGET__ACTIVE_RELEASED_IMAGE_PATH = eINSTANCE.getWidget_ActiveReleasedImagePath();
+
+		/**
+		 * The meta object literal for the '<em><b>Inactive Released Image Path</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference WIDGET__INACTIVE_RELEASED_IMAGE_PATH = eINSTANCE.getWidget_InactiveReleasedImagePath();
 
 	}
 

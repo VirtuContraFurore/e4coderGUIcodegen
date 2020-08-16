@@ -2,6 +2,7 @@
 [module mainSource('http://www.sssuprojects.it/e4codergui')]
 
 [import it::sssuprojects::e4codergui::codegen::files::widgets /]
+[import it::sssuprojects::e4codergui::codegen::files::common /]
 
 [**
  * Generate the main.c file which also contains the callbacks
@@ -15,11 +16,24 @@
 
 [root.generateIncludes()/]
 
-void main(){
-	//TODO: init gui...
+//forward decl of loop function
+void loop();
+
+int main(int argc, char ** argv){	
+	WM_init(createWindow_[root.gui.frame->at(1).name.cname()/](), 1, 320, 240);
+	WM_SCRIF_initEmulation(argc, argv, loop);
 }
 
+void loop(){
+	WM_handleEvents();
+    WM_update();
+}
+
+//[protected ('callbacks implementations')]
+
 [root.generateCallbacks_def()/]
+
+//[/protected]
 
 [/file]
 [/template]
@@ -37,20 +51,20 @@ void main(){
 #include "my_gui.h"
 [/template]
 
-[template private generateCallbacks_def(root : DocumentRoot)]
-[for (widget : Widget | root.gui.frame.element)]
+[template private generateCallbacks_def(root : DocumentRoot) post(trim()) ]
+[for (widget : Widget | root.gui.frame.element) separator('\n')]
 [if (widget.type = 'button-image')]
 [widget.generateButtonImage_callbacks_def()/]
-[elseif (widget.type = 'xxx')]
-	xx
+[elseif (widget.type = 'buttonled')]
+[widget.generateButtonLed_callbacks_def()/]
 [elseif (widget.type = 'xx1')]
-	xx	
+xx	
 [elseif (widget.type = 'xx2')]
-	xx	
+xx	
 [elseif (widget.type = 'xx3')]
-	xx	
+xx	
 [else] [comment Default handling/]
-[comment: No img for this widget type/]
+[comment: No callback for this widget type/]
 [/if]
 [/for]
 [/template]

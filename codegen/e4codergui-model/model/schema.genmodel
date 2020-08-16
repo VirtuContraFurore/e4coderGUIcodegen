@@ -87,6 +87,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EReference e4codergui.ecore#//Widget/pressedImagePath"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference e4codergui.ecore#//Widget/releasedImagePath"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute e4codergui.ecore#//Widget/text"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference e4codergui.ecore#//Widget/activePressedImagePath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference e4codergui.ecore#//Widget/inactivePressedImagePath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference e4codergui.ecore#//Widget/activeReleasedImagePath"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference e4codergui.ecore#//Widget/inactiveReleasedImagePath"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

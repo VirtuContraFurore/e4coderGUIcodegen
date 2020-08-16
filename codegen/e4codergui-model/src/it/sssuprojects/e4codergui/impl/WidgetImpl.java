@@ -62,6 +62,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link it.sssuprojects.e4codergui.impl.WidgetImpl#getPressedImagePath <em>Pressed Image Path</em>}</li>
  *   <li>{@link it.sssuprojects.e4codergui.impl.WidgetImpl#getReleasedImagePath <em>Released Image Path</em>}</li>
  *   <li>{@link it.sssuprojects.e4codergui.impl.WidgetImpl#getText <em>Text</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.impl.WidgetImpl#getActivePressedImagePath <em>Active Pressed Image Path</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.impl.WidgetImpl#getInactivePressedImagePath <em>Inactive Pressed Image Path</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.impl.WidgetImpl#getActiveReleasedImagePath <em>Active Released Image Path</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.impl.WidgetImpl#getInactiveReleasedImagePath <em>Inactive Released Image Path</em>}</li>
  * </ul>
  *
  * @generated
@@ -774,6 +778,46 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 * @ordered
 	 */
 	protected String text = TEXT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getActivePressedImagePath() <em>Active Pressed Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivePressedImagePath()
+	 * @generated
+	 * @ordered
+	 */
+	protected Path activePressedImagePath;
+
+	/**
+	 * The cached value of the '{@link #getInactivePressedImagePath() <em>Inactive Pressed Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInactivePressedImagePath()
+	 * @generated
+	 * @ordered
+	 */
+	protected Path inactivePressedImagePath;
+
+	/**
+	 * The cached value of the '{@link #getActiveReleasedImagePath() <em>Active Released Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActiveReleasedImagePath()
+	 * @generated
+	 * @ordered
+	 */
+	protected Path activeReleasedImagePath;
+
+	/**
+	 * The cached value of the '{@link #getInactiveReleasedImagePath() <em>Inactive Released Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getInactiveReleasedImagePath()
+	 * @generated
+	 * @ordered
+	 */
+	protected Path inactiveReleasedImagePath;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -2273,6 +2317,166 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 * @generated
 	 */
 	@Override
+	public Path getActivePressedImagePath() {
+		if (activePressedImagePath != null && activePressedImagePath.eIsProxy()) {
+			InternalEObject oldActivePressedImagePath = (InternalEObject)activePressedImagePath;
+			activePressedImagePath = (Path)eResolveProxy(oldActivePressedImagePath);
+			if (activePressedImagePath != oldActivePressedImagePath) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, E4coderguiPackage.WIDGET__ACTIVE_PRESSED_IMAGE_PATH, oldActivePressedImagePath, activePressedImagePath));
+			}
+		}
+		return activePressedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Path basicGetActivePressedImagePath() {
+		return activePressedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setActivePressedImagePath(Path newActivePressedImagePath) {
+		Path oldActivePressedImagePath = activePressedImagePath;
+		activePressedImagePath = newActivePressedImagePath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__ACTIVE_PRESSED_IMAGE_PATH, oldActivePressedImagePath, activePressedImagePath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Path getInactivePressedImagePath() {
+		if (inactivePressedImagePath != null && inactivePressedImagePath.eIsProxy()) {
+			InternalEObject oldInactivePressedImagePath = (InternalEObject)inactivePressedImagePath;
+			inactivePressedImagePath = (Path)eResolveProxy(oldInactivePressedImagePath);
+			if (inactivePressedImagePath != oldInactivePressedImagePath) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, E4coderguiPackage.WIDGET__INACTIVE_PRESSED_IMAGE_PATH, oldInactivePressedImagePath, inactivePressedImagePath));
+			}
+		}
+		return inactivePressedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Path basicGetInactivePressedImagePath() {
+		return inactivePressedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInactivePressedImagePath(Path newInactivePressedImagePath) {
+		Path oldInactivePressedImagePath = inactivePressedImagePath;
+		inactivePressedImagePath = newInactivePressedImagePath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__INACTIVE_PRESSED_IMAGE_PATH, oldInactivePressedImagePath, inactivePressedImagePath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Path getActiveReleasedImagePath() {
+		if (activeReleasedImagePath != null && activeReleasedImagePath.eIsProxy()) {
+			InternalEObject oldActiveReleasedImagePath = (InternalEObject)activeReleasedImagePath;
+			activeReleasedImagePath = (Path)eResolveProxy(oldActiveReleasedImagePath);
+			if (activeReleasedImagePath != oldActiveReleasedImagePath) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, E4coderguiPackage.WIDGET__ACTIVE_RELEASED_IMAGE_PATH, oldActiveReleasedImagePath, activeReleasedImagePath));
+			}
+		}
+		return activeReleasedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Path basicGetActiveReleasedImagePath() {
+		return activeReleasedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setActiveReleasedImagePath(Path newActiveReleasedImagePath) {
+		Path oldActiveReleasedImagePath = activeReleasedImagePath;
+		activeReleasedImagePath = newActiveReleasedImagePath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__ACTIVE_RELEASED_IMAGE_PATH, oldActiveReleasedImagePath, activeReleasedImagePath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Path getInactiveReleasedImagePath() {
+		if (inactiveReleasedImagePath != null && inactiveReleasedImagePath.eIsProxy()) {
+			InternalEObject oldInactiveReleasedImagePath = (InternalEObject)inactiveReleasedImagePath;
+			inactiveReleasedImagePath = (Path)eResolveProxy(oldInactiveReleasedImagePath);
+			if (inactiveReleasedImagePath != oldInactiveReleasedImagePath) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, E4coderguiPackage.WIDGET__INACTIVE_RELEASED_IMAGE_PATH, oldInactiveReleasedImagePath, inactiveReleasedImagePath));
+			}
+		}
+		return inactiveReleasedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Path basicGetInactiveReleasedImagePath() {
+		return inactiveReleasedImagePath;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setInactiveReleasedImagePath(Path newInactiveReleasedImagePath) {
+		Path oldInactiveReleasedImagePath = inactiveReleasedImagePath;
+		inactiveReleasedImagePath = newInactiveReleasedImagePath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__INACTIVE_RELEASED_IMAGE_PATH, oldInactiveReleasedImagePath, inactiveReleasedImagePath));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case E4coderguiPackage.WIDGET__POSITION:
@@ -2387,6 +2591,18 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 				return basicGetReleasedImagePath();
 			case E4coderguiPackage.WIDGET__TEXT:
 				return getText();
+			case E4coderguiPackage.WIDGET__ACTIVE_PRESSED_IMAGE_PATH:
+				if (resolve) return getActivePressedImagePath();
+				return basicGetActivePressedImagePath();
+			case E4coderguiPackage.WIDGET__INACTIVE_PRESSED_IMAGE_PATH:
+				if (resolve) return getInactivePressedImagePath();
+				return basicGetInactivePressedImagePath();
+			case E4coderguiPackage.WIDGET__ACTIVE_RELEASED_IMAGE_PATH:
+				if (resolve) return getActiveReleasedImagePath();
+				return basicGetActiveReleasedImagePath();
+			case E4coderguiPackage.WIDGET__INACTIVE_RELEASED_IMAGE_PATH:
+				if (resolve) return getInactiveReleasedImagePath();
+				return basicGetInactiveReleasedImagePath();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -2509,6 +2725,18 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 				return;
 			case E4coderguiPackage.WIDGET__TEXT:
 				setText((String)newValue);
+				return;
+			case E4coderguiPackage.WIDGET__ACTIVE_PRESSED_IMAGE_PATH:
+				setActivePressedImagePath((Path)newValue);
+				return;
+			case E4coderguiPackage.WIDGET__INACTIVE_PRESSED_IMAGE_PATH:
+				setInactivePressedImagePath((Path)newValue);
+				return;
+			case E4coderguiPackage.WIDGET__ACTIVE_RELEASED_IMAGE_PATH:
+				setActiveReleasedImagePath((Path)newValue);
+				return;
+			case E4coderguiPackage.WIDGET__INACTIVE_RELEASED_IMAGE_PATH:
+				setInactiveReleasedImagePath((Path)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -2633,6 +2861,18 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 			case E4coderguiPackage.WIDGET__TEXT:
 				setText(TEXT_EDEFAULT);
 				return;
+			case E4coderguiPackage.WIDGET__ACTIVE_PRESSED_IMAGE_PATH:
+				setActivePressedImagePath((Path)null);
+				return;
+			case E4coderguiPackage.WIDGET__INACTIVE_PRESSED_IMAGE_PATH:
+				setInactivePressedImagePath((Path)null);
+				return;
+			case E4coderguiPackage.WIDGET__ACTIVE_RELEASED_IMAGE_PATH:
+				setActiveReleasedImagePath((Path)null);
+				return;
+			case E4coderguiPackage.WIDGET__INACTIVE_RELEASED_IMAGE_PATH:
+				setInactiveReleasedImagePath((Path)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -2719,6 +2959,14 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 				return releasedImagePath != null;
 			case E4coderguiPackage.WIDGET__TEXT:
 				return TEXT_EDEFAULT == null ? text != null : !TEXT_EDEFAULT.equals(text);
+			case E4coderguiPackage.WIDGET__ACTIVE_PRESSED_IMAGE_PATH:
+				return activePressedImagePath != null;
+			case E4coderguiPackage.WIDGET__INACTIVE_PRESSED_IMAGE_PATH:
+				return inactivePressedImagePath != null;
+			case E4coderguiPackage.WIDGET__ACTIVE_RELEASED_IMAGE_PATH:
+				return activeReleasedImagePath != null;
+			case E4coderguiPackage.WIDGET__INACTIVE_RELEASED_IMAGE_PATH:
+				return inactiveReleasedImagePath != null;
 		}
 		return super.eIsSet(featureID);
 	}

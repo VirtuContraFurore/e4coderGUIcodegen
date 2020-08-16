@@ -16,6 +16,7 @@
  */
 
 [for (widget : Widget | root.gui.frame.element->select(w:Widget|w.imageDecl().size() > 0))]
+/* Image data declaration for widget "[widget.name/]" in frame "[widget.eContainer(FrameType).name/]" */
 [widget.imageDecl()/]
 [/for]
 [/file]
@@ -30,6 +31,7 @@
  */
 
 [for (widget : Widget | root.gui.frame.element->select(w:Widget|w.imageDef().size() > 0))]
+/* Image data definition for widget "[widget.name/]" in frame "[widget.eContainer(FrameType).name/]" */
 [widget.imageDef()/]
 [/for]
 [/file]
@@ -37,11 +39,25 @@
 
 [template private imageDecl(widget : Widget) post(trim()) ]
 [if (widget.type = 'button-image')]
-#define [widget.image_width('OFF')/] 5
-#define [widget.image_height('OFF')/] 5
+#define [widget.image_width('pressed')/] [widget.pressedImagePath.img_width()/]
+#define [widget.image_height('pressed')/] [widget.pressedImagePath.img_height()/]
 extern const unsigned short [widget.image_bitmap('pressed')/]['[]'/];
-[elseif (widget.type = 'xxx')]
-	xx
+#define [widget.image_width('released')/] [widget.pressedImagePath.img_width()/]
+#define [widget.image_height('released')/] [widget.pressedImagePath.img_height()/]
+extern const unsigned short [widget.image_bitmap('released')/]['[]'/];
+[elseif (widget.type = 'buttonled')]
+#define [widget.image_width('pressed_on')/] [widget.activePressedImagePath.img_width()/]
+#define [widget.image_height('pressed_on')/] [widget.activePressedImagePath.img_height()/]
+extern const unsigned short [widget.image_bitmap('pressed_on')/]['[]'/];
+#define [widget.image_width('released_on')/] [widget.activeReleasedImagePath.img_width()/]
+#define [widget.image_height('released_on')/] [widget.activeReleasedImagePath.img_height()/]
+extern const unsigned short [widget.image_bitmap('released_on')/]['[]'/];
+#define [widget.image_width('pressed_off')/] [widget.inactivePressedImagePath.img_width()/]
+#define [widget.image_height('pressed_off')/] [widget.inactivePressedImagePath.img_height()/]
+extern const unsigned short [widget.image_bitmap('pressed_off')/]['[]'/];
+#define [widget.image_width('released_off')/] [widget.inactiveReleasedImagePath.img_width()/]
+#define [widget.image_height('released_off')/] [widget.inactiveReleasedImagePath.img_height()/]
+extern const unsigned short [widget.image_bitmap('released_off')/]['[]'/];
 [elseif (widget.type = 'xx1')]
 	xx	
 [elseif (widget.type = 'xx2')]
@@ -55,21 +71,31 @@ extern const unsigned short [widget.image_bitmap('pressed')/]['[]'/];
 
 [template private imageDef(widget : Widget) post(trim()) ]
 [if (widget.type = 'button-image')]
-//TODO not fully implemented
-const unsigned short [widget.image_bitmap('OFF')/]['[3]'/] = {0x01, 0x02, 0x03}; [test(widget.pressedImagePath)/]
-[elseif (widget.type = 'xxx')]
-	xx
+const unsigned short [widget.image_bitmap('pressed')/][widget.pressedImagePath.img_bitmap()/];
+const unsigned short [widget.image_bitmap('released')/][widget.releasedImagePath.img_bitmap()/];
+[elseif (widget.type = 'buttonled')]
+const unsigned short [widget.image_bitmap('pressed_on')/][widget.activePressedImagePath.img_bitmap()/];
+const unsigned short [widget.image_bitmap('released_on')/][widget.activeReleasedImagePath.img_bitmap()/];
+const unsigned short [widget.image_bitmap('pressed_off')/][widget.inactivePressedImagePath.img_bitmap()/];
+const unsigned short [widget.image_bitmap('released_off')/][widget.inactiveReleasedImagePath.img_bitmap()/];
 [elseif (widget.type = 'xx1')]
-	xx	
+xx	
 [elseif (widget.type = 'xx2')]
-	xx	
+xx	
 [elseif (widget.type = 'xx3')]
-	xx	
+xx	
 [else] [comment Default handling/]
 [comment: No img for this widget type/]
 [/if]
 [/template]
 
-[query public test(path : Path) : OclAny = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'Prova(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
-	
+
+[**
+ * Queris used to retrieve data from images..
+*/]
+[query private img_bitmap(path : Path) : String = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'getBitmap(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
+[query private img_alpha(path : Path) : String = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'getAlpha(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
+[query private img_width(path : Path) : Integer = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'getWidth(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
+[query private img_height(path : Path) : Integer = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'getHeight(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
+
 

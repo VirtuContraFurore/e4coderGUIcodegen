@@ -884,6 +884,46 @@ public class E4coderguiPackageImpl extends EPackageImpl implements E4coderguiPac
 	 * @generated
 	 */
 	@Override
+	public EReference getWidget_ActivePressedImagePath() {
+		return (EReference)widgetEClass.getEStructuralFeatures().get(37);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWidget_InactivePressedImagePath() {
+		return (EReference)widgetEClass.getEStructuralFeatures().get(38);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWidget_ActiveReleasedImagePath() {
+		return (EReference)widgetEClass.getEStructuralFeatures().get(39);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getWidget_InactiveReleasedImagePath() {
+		return (EReference)widgetEClass.getEStructuralFeatures().get(40);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public E4coderguiFactory getE4coderguiFactory() {
 		return (E4coderguiFactory)getEFactoryInstance();
 	}
@@ -987,6 +1027,10 @@ public class E4coderguiPackageImpl extends EPackageImpl implements E4coderguiPac
 		createEReference(widgetEClass, WIDGET__PRESSED_IMAGE_PATH);
 		createEReference(widgetEClass, WIDGET__RELEASED_IMAGE_PATH);
 		createEAttribute(widgetEClass, WIDGET__TEXT);
+		createEReference(widgetEClass, WIDGET__ACTIVE_PRESSED_IMAGE_PATH);
+		createEReference(widgetEClass, WIDGET__INACTIVE_PRESSED_IMAGE_PATH);
+		createEReference(widgetEClass, WIDGET__ACTIVE_RELEASED_IMAGE_PATH);
+		createEReference(widgetEClass, WIDGET__INACTIVE_RELEASED_IMAGE_PATH);
 	}
 
 	/**
@@ -1103,6 +1147,10 @@ public class E4coderguiPackageImpl extends EPackageImpl implements E4coderguiPac
 		initEReference(getWidget_PressedImagePath(), this.getPath(), null, "pressedImagePath", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWidget_ReleasedImagePath(), this.getPath(), null, "releasedImagePath", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWidget_Text(), theXMLTypePackage.getString(), "text", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_ActivePressedImagePath(), this.getPath(), null, "activePressedImagePath", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_InactivePressedImagePath(), this.getPath(), null, "inactivePressedImagePath", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_ActiveReleasedImagePath(), this.getPath(), null, "activeReleasedImagePath", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWidget_InactiveReleasedImagePath(), this.getPath(), null, "inactiveReleasedImagePath", null, 0, 1, Widget.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1657,6 +1705,38 @@ public class E4coderguiPackageImpl extends EPackageImpl implements E4coderguiPac
 		   source,
 		   new String[] {
 			   "kind", "element",
+			   "namespace", "##targetNamespace"
+		   });
+		addAnnotation
+		  (getWidget_ActivePressedImagePath(),
+		   source,
+		   new String[] {
+			   "kind", "element",
+			   "name", "activePressedImagePath",
+			   "namespace", "##targetNamespace"
+		   });
+		addAnnotation
+		  (getWidget_InactivePressedImagePath(),
+		   source,
+		   new String[] {
+			   "kind", "element",
+			   "name", "inactivePressedImagePath",
+			   "namespace", "##targetNamespace"
+		   });
+		addAnnotation
+		  (getWidget_ActiveReleasedImagePath(),
+		   source,
+		   new String[] {
+			   "kind", "element",
+			   "name", "activeReleasedImagePath",
+			   "namespace", "##targetNamespace"
+		   });
+		addAnnotation
+		  (getWidget_InactiveReleasedImagePath(),
+		   source,
+		   new String[] {
+			   "kind", "element",
+			   "name", "inactiveReleasedImagePath",
 			   "namespace", "##targetNamespace"
 		   });
 	}

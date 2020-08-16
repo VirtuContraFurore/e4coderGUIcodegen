@@ -1,0 +1,47 @@
+[comment encoding = UTF-8 /]
+[module makefile('http://www.sssuprojects.it/e4codergui')]
+
+
+[template public generateMakefile(root : DocumentRoot)]
+[file ('Makefile', false, 'UTF-8')]
+BASEDIR= ../../../
+
+DEVICE= lcdemulation
+
+LOG_INCLUDE = $(abspath $(BASEDIR)logging/include)
+
+WM_INCLUDE = $(abspath $(BASEDIR)windowmanager/include)
+WM_LIBDIR = $(abspath $(BASEDIR)windowmanager/build/$(DEVICE)/lib)
+WM_LIBNAME = windowmanager
+
+LEMU_INCLUDE = $(abspath $(BASEDIR)lcdemulation/include)
+LEMU_LIBDIR = $(abspath $(BASEDIR)lcdemulation/build/lib)
+LEMU_LIBNAME = lcdemulation
+
+CFILES   = $(wildcard *.c)
+OBJFILES = $(CFILES:.c=.o)
+OUT      = my_gui
+
+WM_LIB = $(WM_LIBDIR)/lib${WM_LIBNAME}.a
+LEMU_LIB = $(LEMU_LIBDIR)/lib${LEMU_LIBNAME}.a
+
+override CFLAGS = -I $(WM_INCLUDE) -I $(LOG_INCLUDE) -I $(LEMU_INCLUDE)
+override LDFLAGS = -L $(WM_LIBDIR) -L $(LEMU_LIBDIR)
+override LDLIBS = -l$(WM_LIBNAME) -l$(LEMU_LIBNAME) -lm -lGL -lglut -lGLEW
+
+$(WM_LIB) :
+	cd $(BASEDIR) && make windowmanager lcdemulation
+
+$(OUT): $(OBJFILES) $(WM_LIB) $(LEMU_LIB)
+	$(CC) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	chmod +x $(OUT)
+
+all: $(OUT)
+
+.PHONY: clean all
+clean:
+	rm -f $(OBJFILES) $(OUT)
+	cd $(BASEDIR) && make clean
+	
+[/file]
+[/template]

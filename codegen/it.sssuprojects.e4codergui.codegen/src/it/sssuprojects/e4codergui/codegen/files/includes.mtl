@@ -1,0 +1,30 @@
+[comment encoding = UTF-8 /]
+[module includes('http://www.sssuprojects.it/e4codergui')]
+
+[**
+ * includes for header file
+*/]
+[template public generateHeaderIncludes(root : DocumentRoot)]
+#include <stdlib.h>
+
+#include "windowmanager/core/windowmanager.h"
+#include "windowmanager/graphics/color.h"
+
+#include "windowmanager/widget/buttonImage.h"
+#include "windowmanager/widget/buttonLed.h"
+[/template]
+
+[**
+ * Source file includes
+*/]
+[template public generateSourceIncludes(root : DocumentRoot)]
+#include <stdlib.h>
+
+#include "windowmanager/core/windowmanager.h"
+#include "windowmanager/graphics/color.h"
+#include "windowmanager/widget/buttonImage.h"
+#include "windowmanager/widget/buttonLed.h"
+
+#include "my_gui.h"
+#include "my_images.h"
+[/template]

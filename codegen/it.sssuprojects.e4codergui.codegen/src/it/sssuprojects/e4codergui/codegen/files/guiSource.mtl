@@ -1,6 +1,7 @@
 [comment encoding = UTF-8 /]
 [module guiSource('http://www.sssuprojects.it/e4codergui')]
 
+[import it::sssuprojects::e4codergui::codegen::files::includes /]
 [import it::sssuprojects::e4codergui::codegen::files::common /]
 [import it::sssuprojects::e4codergui::codegen::files::widgets /]
 
@@ -14,7 +15,7 @@
  * This code is auto generated from an xml file.
  */
 
-[root.generateIncludes()/]
+[root.generateSourceIncludes()/]
 
 [for (frame : FrameType | root.gui.frame)]
 /* Code for frame "[frame.name/]" */
@@ -26,28 +27,15 @@
 [/file]
 [/template]
 
-[**
- * Source file includes
-*/]
-[template private generateIncludes(root : DocumentRoot)]
-#include <stdlib.h>
-
-#include "windowmanager/core/windowmanager.h"
-#include "windowmanager/graphics/color.h"
-
-#include "my_gui.h"
-#include "my_images.h"
-[/template]
-
 [template private frameInit(frame : FrameType)]
 struct Window [frame.name.cname()/];
 struct Widget [frame.name.cname()/]_widgets['['+frame.element->size()+']'/];
 [for (widget : Widget | frame.element) separator('\n') after('\n') ]
 struct [widget.widget_struct()/] [widget.pdata_name()/];[/for]
 
-void struct Window * createWindow_[frame.name.cname()/](){
+struct Window * createWindow_[frame.name.cname()/](){
 	struct Window * window = &[frame.name.cname()/];   //window's struct alias 
-	Widget * widgets = [frame.name.cname()/]_widgets;   //widgets' array alias
+	struct Widget * widgets = [frame.name.cname()/]_widgets;   //widgets' array alias
 [for (widget : Widget | frame.element) before('\n') separator('\n') after('\n') ]
 	[widget.createWidget(frame.element->lastIndexOf(widget)-1)/]
 [/for]
@@ -72,7 +60,7 @@ widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
 [/template]
 
 [template private widget_struct(widget : Widget) post(trim()) ]
-[widget.widget_libname()/]_WidgetData
+[widget.widget_libname()/]_Widget
 [/template]
 
 [**
@@ -80,17 +68,17 @@ widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
 */]
 [template private widget_libname(widget : Widget) post (trim()) ]
 [if (widget.type = 'button-image')]
-	button
-[elseif (widget.type = 'xxx')]
-	xx
+buttonImage
+[elseif (widget.type = 'buttonled')]
+buttonLed
 [elseif (widget.type = 'xx1')]
-	xx	
+xx	
 [elseif (widget.type = 'xx2')]
-	xx	
+xx	
 [elseif (widget.type = 'xx3')]
-	xx	
+xx	
 [else] [comment Default handling/]
-	dummy
+dummy
 [/if]
 [/template]
 
@@ -100,16 +88,16 @@ widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
 [template private widget_init_pdata(widget : Widget) post (trim()) ]
 [if (widget.type = 'button-image')]
 [widget.generateButtonImage_pdata()/]
-[elseif (widget.type = 'xxx')]
-	xx
+[elseif (widget.type = 'buttonled')]
+[widget.generateButtonLed_pdata()/]
 [elseif (widget.type = 'xx1')]
-	xx	
+xx	
 [elseif (widget.type = 'xx2')]
-	xx	
+xx	
 [elseif (widget.type = 'xx3')]
-	xx	
+xx	
 [else] [comment Default handling/]
-	dummy
+dummy
 [/if]
 [/template]
 

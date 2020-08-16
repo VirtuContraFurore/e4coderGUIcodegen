@@ -666,6 +666,10 @@ public class WidgetItemProvider
 			childrenFeatures.add(E4coderguiPackage.Literals.WIDGET__BACKGROUND_COLOR);
 			childrenFeatures.add(E4coderguiPackage.Literals.WIDGET__ACTIVE_IMAGE_PATH);
 			childrenFeatures.add(E4coderguiPackage.Literals.WIDGET__INACTIVE_IMAGE_PATH);
+			childrenFeatures.add(E4coderguiPackage.Literals.WIDGET__ACTIVE_PRESSED_IMAGE_PATH);
+			childrenFeatures.add(E4coderguiPackage.Literals.WIDGET__INACTIVE_PRESSED_IMAGE_PATH);
+			childrenFeatures.add(E4coderguiPackage.Literals.WIDGET__ACTIVE_RELEASED_IMAGE_PATH);
+			childrenFeatures.add(E4coderguiPackage.Literals.WIDGET__INACTIVE_RELEASED_IMAGE_PATH);
 		}
 		return childrenFeatures;
 	}
@@ -759,6 +763,10 @@ public class WidgetItemProvider
 			case E4coderguiPackage.WIDGET__BACKGROUND_COLOR:
 			case E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH:
 			case E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH:
+			case E4coderguiPackage.WIDGET__ACTIVE_PRESSED_IMAGE_PATH:
+			case E4coderguiPackage.WIDGET__INACTIVE_PRESSED_IMAGE_PATH:
+			case E4coderguiPackage.WIDGET__ACTIVE_RELEASED_IMAGE_PATH:
+			case E4coderguiPackage.WIDGET__INACTIVE_RELEASED_IMAGE_PATH:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -835,6 +843,26 @@ public class WidgetItemProvider
 			(createChildParameter
 				(E4coderguiPackage.Literals.WIDGET__INACTIVE_IMAGE_PATH,
 				 E4coderguiFactory.eINSTANCE.createPath()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(E4coderguiPackage.Literals.WIDGET__ACTIVE_PRESSED_IMAGE_PATH,
+				 E4coderguiFactory.eINSTANCE.createPath()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(E4coderguiPackage.Literals.WIDGET__INACTIVE_PRESSED_IMAGE_PATH,
+				 E4coderguiFactory.eINSTANCE.createPath()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(E4coderguiPackage.Literals.WIDGET__ACTIVE_RELEASED_IMAGE_PATH,
+				 E4coderguiFactory.eINSTANCE.createPath()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(E4coderguiPackage.Literals.WIDGET__INACTIVE_RELEASED_IMAGE_PATH,
+				 E4coderguiFactory.eINSTANCE.createPath()));
 	}
 
 	/**
@@ -858,6 +886,10 @@ public class WidgetItemProvider
 			childFeature == E4coderguiPackage.Literals.WIDGET__NEEDLE_IMAGE_PATH ||
 			childFeature == E4coderguiPackage.Literals.WIDGET__ACTIVE_IMAGE_PATH ||
 			childFeature == E4coderguiPackage.Literals.WIDGET__INACTIVE_IMAGE_PATH ||
+			childFeature == E4coderguiPackage.Literals.WIDGET__ACTIVE_PRESSED_IMAGE_PATH ||
+			childFeature == E4coderguiPackage.Literals.WIDGET__INACTIVE_PRESSED_IMAGE_PATH ||
+			childFeature == E4coderguiPackage.Literals.WIDGET__ACTIVE_RELEASED_IMAGE_PATH ||
+			childFeature == E4coderguiPackage.Literals.WIDGET__INACTIVE_RELEASED_IMAGE_PATH ||
 			childFeature == E4coderguiPackage.Literals.WIDGET__LINE_COLOR ||
 			childFeature == E4coderguiPackage.Literals.WIDGET__TEXT_COLOR ||
 			childFeature == E4coderguiPackage.Literals.WIDGET__BACKGROUND_COLOR;

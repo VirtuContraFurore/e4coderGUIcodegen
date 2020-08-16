@@ -12,25 +12,76 @@
     <name>MyFrame</name>
     <size x="320" y="240"/>
     <fullScreen>true</fullScreen>
-    <element type="buttonknob">
-      <name>rotella1</name>
-      <position x="233" y="28"/>
-      <size x="70" y="70"/>
-      <pressedImagePath defaultFolder="true">button-knob/KNOB_DN.png</pressedImagePath>
-      <releasedImagePath defaultFolder="true">button-knob/KNOB_UP.png</releasedImagePath>
-    </element>
-    <element type="button-widget">
-      <name>botton2</name>
-      <position x="46" y="181"/>
-      <size x="109" y="29"/>
-      <text>Non premere</text>
-    </element>
     <element type="button-image">
       <name>bottone1</name>
-      <position x="34" y="56"/>
+      <position x="15" y="78"/>
       <size x="109" y="29"/>
       <pressedImagePath defaultFolder="true">button-image/button-ON.png</pressedImagePath>
       <releasedImagePath defaultFolder="true">button-image/button-OFF.png</releasedImagePath>
+    </element>
+    <element type="button-image">
+      <name>bottone2</name>
+      <position x="15" y="126"/>
+      <size x="109" y="29"/>
+      <pressedImagePath defaultFolder="true">button-image/button-ON.png</pressedImagePath>
+      <releasedImagePath defaultFolder="true">button-image/button-OFF.png</releasedImagePath>
+    </element>
+    <element type="button-image">
+      <name>bottone3</name>
+      <position x="15" y="175"/>
+      <size x="109" y="29"/>
+      <pressedImagePath defaultFolder="true">button-image/button-ON.png</pressedImagePath>
+      <releasedImagePath defaultFolder="true">button-image/button-OFF.png</releasedImagePath>
+    </element>
+    <element type="buttonled">
+      <name>BottoneColLed</name>
+      <position x="89" y="22"/>
+      <size x="109" y="29"/>
+      <activePressedImagePath defaultFolder="true">button-led/button-DOWN-ON.png</activePressedImagePath>
+      <inactivePressedImagePath defaultFolder="true">button-led/button-DOWN-OFF.png</inactivePressedImagePath>
+      <activeReleasedImagePath defaultFolder="true">button-led/button-UP-ON.png</activeReleasedImagePath>
+      <inactiveReleasedImagePath defaultFolder="true">button-led/button-UP-OFF.png</inactiveReleasedImagePath>
+      <initialState>false</initialState>
+    </element>
+    <element type="buttonled">
+      <name>bottoneColLed2</name>
+      <position x="158" y="85"/>
+      <size x="109" y="29"/>
+      <activePressedImagePath defaultFolder="true">button-led/button-DOWN-ON.png</activePressedImagePath>
+      <inactivePressedImagePath defaultFolder="true">button-led/button-DOWN-OFF.png</inactivePressedImagePath>
+      <activeReleasedImagePath defaultFolder="true">button-led/button-UP-ON.png</activeReleasedImagePath>
+      <inactiveReleasedImagePath defaultFolder="true">button-led/button-UP-OFF.png</inactiveReleasedImagePath>
+      <initialState>false</initialState>
+    </element>
+    <element type="buttonled">
+      <name>BttoneColLed3</name>
+      <position x="194" y="126"/>
+      <size x="109" y="29"/>
+      <activePressedImagePath defaultFolder="true">button-led/button-DOWN-ON.png</activePressedImagePath>
+      <inactivePressedImagePath defaultFolder="true">button-led/button-DOWN-OFF.png</inactivePressedImagePath>
+      <activeReleasedImagePath defaultFolder="true">button-led/button-UP-ON.png</activeReleasedImagePath>
+      <inactiveReleasedImagePath defaultFolder="true">button-led/button-UP-OFF.png</inactiveReleasedImagePath>
+      <initialState>false</initialState>
+    </element>
+    <element type="buttonled">
+      <name>BottoneColLed4</name>
+      <position x="150" y="173"/>
+      <size x="109" y="29"/>
+      <activePressedImagePath defaultFolder="true">button-led/button-DOWN-ON.png</activePressedImagePath>
+      <inactivePressedImagePath defaultFolder="true">button-led/button-DOWN-OFF.png</inactivePressedImagePath>
+      <activeReleasedImagePath defaultFolder="true">button-led/button-UP-ON.png</activeReleasedImagePath>
+      <inactiveReleasedImagePath defaultFolder="true">button-led/button-UP-OFF.png</inactiveReleasedImagePath>
+      <initialState>false</initialState>
+    </element>
+    <element type="buttonled">
+      <name>BottoneColLed5</name>
+      <position x="89" y="209"/>
+      <size x="109" y="29"/>
+      <activePressedImagePath defaultFolder="true">button-led/button-DOWN-ON.png</activePressedImagePath>
+      <inactivePressedImagePath defaultFolder="true">button-led/button-DOWN-OFF.png</inactivePressedImagePath>
+      <activeReleasedImagePath defaultFolder="true">button-led/button-UP-ON.png</activeReleasedImagePath>
+      <inactiveReleasedImagePath defaultFolder="true">button-led/button-UP-OFF.png</inactiveReleasedImagePath>
+      <initialState>false</initialState>
     </element>
   </frame>
 </gui>

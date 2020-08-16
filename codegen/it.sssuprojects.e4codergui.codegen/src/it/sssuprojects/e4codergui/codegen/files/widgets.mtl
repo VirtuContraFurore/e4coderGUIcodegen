@@ -3,16 +3,23 @@
 
 [import it::sssuprojects::e4codergui::codegen::files::common /]
 
+[comment ButtonImage ************************************************************ /]
+
 [template public generateButtonImage_pdata(widget : Widget) post(trim()) ]
 [widget.pdata_name()/].dim.pos.x = [widget.position.x/];
 [widget.pdata_name()/].dim.pos.y = [widget.position.y/];
 [widget.pdata_name()/].dim.w = [widget.size.x/];
 [widget.pdata_name()/].dim.h = [widget.size.y/];
 [widget.pdata_name()/].onTouch = &[widget.callback('onTouch')/];
-[widget.pdata_name()/].Image.bmp = [widget.image_bitmap('pressed')/]; //TODO: img must be declared outside...
-[widget.pdata_name()/].Image.alpha = 0; //no alpha here
-[widget.pdata_name()/].Image.width = [widget.image_width('pressed')/]; //TODO
-[widget.pdata_name()/].Image.hight = [widget.image_height('pressed')/]; //TODO
+[widget.pdata_name()/].isPressed = false;
+[widget.pdata_name()/].pressedImage.bmp = [widget.image_bitmap('pressed')/];
+[widget.pdata_name()/].pressedImage.alpha = 0; //no alpha here
+[widget.pdata_name()/].pressedImage.width = [widget.image_width('pressed')/];
+[widget.pdata_name()/].pressedImage.height = [widget.image_height('pressed')/];
+[widget.pdata_name()/].releasedImage.bmp = [widget.image_bitmap('released')/];
+[widget.pdata_name()/].releasedImage.alpha = 0; //no alpha here
+[widget.pdata_name()/].releasedImage.width = [widget.image_width('released')/];
+[widget.pdata_name()/].releasedImage.height = [widget.image_height('released')/];
 [/template]
 
 [template public generateButtonImage_callbacks_decl(widget : Widget) post(trim()) ]
@@ -22,6 +29,45 @@ bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event
 [template public generateButtonImage_callbacks_def(widget : Widget) post(trim()) ]
 bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event){
 	//TODO: return true if the touch event was processed by this button
-	return true;
+	return false;
+}
+[/template]
+
+[comment ButtonLed ************************************************************ /]
+
+[template public generateButtonLed_pdata(widget : Widget) post(trim()) ]
+[widget.pdata_name()/].dim.pos.x = [widget.position.x/];
+[widget.pdata_name()/].dim.pos.y = [widget.position.y/];
+[widget.pdata_name()/].dim.w = [widget.size.x/];
+[widget.pdata_name()/].dim.h = [widget.size.y/];
+[widget.pdata_name()/].onTouch = &[widget.callback('onTouch')/];
+[widget.pdata_name()/].isPressed = false;
+[widget.pdata_name()/].isOn = [widget.initialState/];
+[widget.pdata_name()/].pressedOnImage.bmp = [widget.image_bitmap('pressed_on')/];
+[widget.pdata_name()/].pressedOnImage.alpha = 0; //no alpha here
+[widget.pdata_name()/].pressedOnImage.width = [widget.image_width('pressed_on')/];
+[widget.pdata_name()/].pressedOnImage.height = [widget.image_height('pressed_on')/];
+[widget.pdata_name()/].releasedOnImage.bmp = [widget.image_bitmap('released_on')/];
+[widget.pdata_name()/].releasedOnImage.alpha = 0; //no alpha here
+[widget.pdata_name()/].releasedOnImage.width = [widget.image_width('released_on')/];
+[widget.pdata_name()/].releasedOnImage.height = [widget.image_height('released_on')/];
+[widget.pdata_name()/].pressedOffImage.bmp = [widget.image_bitmap('pressed_off')/];
+[widget.pdata_name()/].pressedOffImage.alpha = 0; //no alpha here
+[widget.pdata_name()/].pressedOffImage.width = [widget.image_width('pressed_off')/];
+[widget.pdata_name()/].pressedOffImage.height = [widget.image_height('pressed_off')/];
+[widget.pdata_name()/].releasedOffImage.bmp = [widget.image_bitmap('released_off')/];
+[widget.pdata_name()/].releasedOffImage.alpha = 0; //no alpha here
+[widget.pdata_name()/].releasedOffImage.width = [widget.image_width('released_off')/];
+[widget.pdata_name()/].releasedOffImage.height = [widget.image_height('released_off')/];
+[/template]
+
+[template public generateButtonLed_callbacks_decl(widget : Widget) post(trim()) ]
+bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event);
+[/template]
+
+[template public generateButtonLed_callbacks_def(widget : Widget) post(trim()) ]
+bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event){
+	//TODO: return true if the touch event was processed by this button
+	return false;
 }
 [/template]

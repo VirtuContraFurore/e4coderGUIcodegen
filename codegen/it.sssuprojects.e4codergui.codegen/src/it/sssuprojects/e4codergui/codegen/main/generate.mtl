@@ -5,6 +5,7 @@
 [import it::sssuprojects::e4codergui::codegen::files::guiSource /]
 [import it::sssuprojects::e4codergui::codegen::files::images /]
 [import it::sssuprojects::e4codergui::codegen::files::mainSource /]
+[import it::sssuprojects::e4codergui::codegen::files::makefile /]
 
 [template public generateGUI(root : DocumentRoot)]
 [comment @main/]
@@ -13,4 +14,5 @@
 [root.generateHeaderCode()/]
 [root.generateImageCode()/]
 [root.generateMainSource()/]
+[root.generateMakefile()/]
 [/template]

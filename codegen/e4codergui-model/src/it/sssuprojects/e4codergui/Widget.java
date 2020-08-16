@@ -50,6 +50,10 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link it.sssuprojects.e4codergui.Widget#getPressedImagePath <em>Pressed Image Path</em>}</li>
  *   <li>{@link it.sssuprojects.e4codergui.Widget#getReleasedImagePath <em>Released Image Path</em>}</li>
  *   <li>{@link it.sssuprojects.e4codergui.Widget#getText <em>Text</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.Widget#getActivePressedImagePath <em>Active Pressed Image Path</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.Widget#getInactivePressedImagePath <em>Inactive Pressed Image Path</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.Widget#getActiveReleasedImagePath <em>Active Released Image Path</em>}</li>
+ *   <li>{@link it.sssuprojects.e4codergui.Widget#getInactiveReleasedImagePath <em>Inactive Released Image Path</em>}</li>
  * </ul>
  *
  * @see it.sssuprojects.e4codergui.E4coderguiPackage#getWidget()
@@ -1229,5 +1233,93 @@ public interface Widget extends EObject {
 	 * @generated
 	 */
 	void setText(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Active Pressed Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Active Pressed Image Path</em>' reference.
+	 * @see #setActivePressedImagePath(Path)
+	 * @see it.sssuprojects.e4codergui.E4coderguiPackage#getWidget_ActivePressedImagePath()
+	 * @model extendedMetaData="kind='element' name='activePressedImagePath' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	Path getActivePressedImagePath();
+
+	/**
+	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getActivePressedImagePath <em>Active Pressed Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Active Pressed Image Path</em>' reference.
+	 * @see #getActivePressedImagePath()
+	 * @generated
+	 */
+	void setActivePressedImagePath(Path value);
+
+	/**
+	 * Returns the value of the '<em><b>Inactive Pressed Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inactive Pressed Image Path</em>' reference.
+	 * @see #setInactivePressedImagePath(Path)
+	 * @see it.sssuprojects.e4codergui.E4coderguiPackage#getWidget_InactivePressedImagePath()
+	 * @model extendedMetaData="kind='element' name='inactivePressedImagePath' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	Path getInactivePressedImagePath();
+
+	/**
+	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getInactivePressedImagePath <em>Inactive Pressed Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Inactive Pressed Image Path</em>' reference.
+	 * @see #getInactivePressedImagePath()
+	 * @generated
+	 */
+	void setInactivePressedImagePath(Path value);
+
+	/**
+	 * Returns the value of the '<em><b>Active Released Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Active Released Image Path</em>' reference.
+	 * @see #setActiveReleasedImagePath(Path)
+	 * @see it.sssuprojects.e4codergui.E4coderguiPackage#getWidget_ActiveReleasedImagePath()
+	 * @model extendedMetaData="kind='element' name='activeReleasedImagePath' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	Path getActiveReleasedImagePath();
+
+	/**
+	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getActiveReleasedImagePath <em>Active Released Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Active Released Image Path</em>' reference.
+	 * @see #getActiveReleasedImagePath()
+	 * @generated
+	 */
+	void setActiveReleasedImagePath(Path value);
+
+	/**
+	 * Returns the value of the '<em><b>Inactive Released Image Path</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Inactive Released Image Path</em>' reference.
+	 * @see #setInactiveReleasedImagePath(Path)
+	 * @see it.sssuprojects.e4codergui.E4coderguiPackage#getWidget_InactiveReleasedImagePath()
+	 * @model extendedMetaData="kind='element' name='inactiveReleasedImagePath' namespace='##targetNamespace'"
+	 * @generated
+	 */
+	Path getInactiveReleasedImagePath();
+
+	/**
+	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getInactiveReleasedImagePath <em>Inactive Released Image Path</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Inactive Released Image Path</em>' reference.
+	 * @see #getInactiveReleasedImagePath()
+	 * @generated
+	 */
+	void setInactiveReleasedImagePath(Path value);
 
 } // Widget

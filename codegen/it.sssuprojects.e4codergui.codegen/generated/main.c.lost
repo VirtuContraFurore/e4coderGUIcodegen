@@ -1,0 +1,14 @@
+
+Sun Aug 16 23:45:47 CEST 2020
+================================================================================
+Start of user code custom callback implementation
+	//TODO: return true if the touch event was processed by this button
+	return false;
+	//End of user code
+
+Sun Aug 16 23:46:31 CEST 2020
+================================================================================
+Start of user code custom callback implementation
+	//TODO: return true if the touch event was processed by this button
+	return false;
+	//End of user code
