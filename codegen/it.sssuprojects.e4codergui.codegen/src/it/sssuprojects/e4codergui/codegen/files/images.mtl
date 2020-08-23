@@ -15,7 +15,7 @@
  * Auto generated header file for bitmap data
  */
 
-[for (widget : Widget | root.gui.frame.element->select(w:Widget|w.imageDecl().size() > 0))]
+[for (widget : Widget | root.gui.frame.element)]
 /* Image data declaration for widget "[widget.name/]" in frame "[widget.eContainer(FrameType).name/]" */
 [widget.imageDecl()/]
 [/for]
@@ -30,7 +30,7 @@
  * Auto generated source file for bitmap data
  */
 
-[for (widget : Widget | root.gui.frame.element->select(w:Widget|w.imageDef().size() > 0))]
+[for (widget : Widget | root.gui.frame.element)]
 /* Image data definition for widget "[widget.name/]" in frame "[widget.eContainer(FrameType).name/]" */
 [widget.imageDef()/]
 [/for]
@@ -39,27 +39,16 @@
 
 [template private imageDecl(widget : Widget) post(trim()) ]
 [if (widget.type = 'button-image')]
-#define [widget.image_width('pressed')/] [widget.pressedImagePath.img_width()/]
-#define [widget.image_height('pressed')/] [widget.pressedImagePath.img_height()/]
-extern const unsigned short [widget.image_bitmap('pressed')/]['[]'/];
-#define [widget.image_width('released')/] [widget.pressedImagePath.img_width()/]
-#define [widget.image_height('released')/] [widget.pressedImagePath.img_height()/]
-extern const unsigned short [widget.image_bitmap('released')/]['[]'/];
+[widget.pressedImagePath.imageBitmapDecl(widget, 'pressed')/]
+[widget.releasedImagePath.imageBitmapDecl(widget, 'released')/]
 [elseif (widget.type = 'buttonled')]
-#define [widget.image_width('pressed_on')/] [widget.activePressedImagePath.img_width()/]
-#define [widget.image_height('pressed_on')/] [widget.activePressedImagePath.img_height()/]
-extern const unsigned short [widget.image_bitmap('pressed_on')/]['[]'/];
-#define [widget.image_width('released_on')/] [widget.activeReleasedImagePath.img_width()/]
-#define [widget.image_height('released_on')/] [widget.activeReleasedImagePath.img_height()/]
-extern const unsigned short [widget.image_bitmap('released_on')/]['[]'/];
-#define [widget.image_width('pressed_off')/] [widget.inactivePressedImagePath.img_width()/]
-#define [widget.image_height('pressed_off')/] [widget.inactivePressedImagePath.img_height()/]
-extern const unsigned short [widget.image_bitmap('pressed_off')/]['[]'/];
-#define [widget.image_width('released_off')/] [widget.inactiveReleasedImagePath.img_width()/]
-#define [widget.image_height('released_off')/] [widget.inactiveReleasedImagePath.img_height()/]
-extern const unsigned short [widget.image_bitmap('released_off')/]['[]'/];
-[elseif (widget.type = 'xx1')]
-	xx	
+[widget.activePressedImagePath.imageBitmapDecl(widget, 'pressed_on')/]
+[widget.activeReleasedImagePath.imageBitmapDecl(widget, 'released_on')/]
+[widget.inactivePressedImagePath.imageBitmapDecl(widget, 'pressed_off')/]
+[widget.inactiveReleasedImagePath.imageBitmapDecl(widget, 'released_off')/]
+[elseif (widget.type = 'buttonknob')]
+[widget.pressedImagePath.imageBitmapDecl(widget, 'pressed')/]
+[widget.pressedImagePath.imageAlphaDecl(widget, 'pressed')/]
 [elseif (widget.type = 'xx2')]
 	xx	
 [elseif (widget.type = 'xx3')]
@@ -71,15 +60,16 @@ extern const unsigned short [widget.image_bitmap('released_off')/]['[]'/];
 
 [template private imageDef(widget : Widget) post(trim()) ]
 [if (widget.type = 'button-image')]
-const unsigned short [widget.image_bitmap('pressed')/][widget.pressedImagePath.img_bitmap()/];
-const unsigned short [widget.image_bitmap('released')/][widget.releasedImagePath.img_bitmap()/];
+[widget.pressedImagePath.imageBitmapDef(widget, 'pressed')/]
+[widget.releasedImagePath.imageBitmapDef(widget, 'released')/]
 [elseif (widget.type = 'buttonled')]
-const unsigned short [widget.image_bitmap('pressed_on')/][widget.activePressedImagePath.img_bitmap()/];
-const unsigned short [widget.image_bitmap('released_on')/][widget.activeReleasedImagePath.img_bitmap()/];
-const unsigned short [widget.image_bitmap('pressed_off')/][widget.inactivePressedImagePath.img_bitmap()/];
-const unsigned short [widget.image_bitmap('released_off')/][widget.inactiveReleasedImagePath.img_bitmap()/];
-[elseif (widget.type = 'xx1')]
-xx	
+[widget.activePressedImagePath.imageBitmapDef(widget, 'pressed_on')/]
+[widget.activeReleasedImagePath.imageBitmapDef(widget, 'released_on')/]
+[widget.inactivePressedImagePath.imageBitmapDef(widget, 'pressed_off')/]
+[widget.inactiveReleasedImagePath.imageBitmapDef(widget, 'released_off')/]
+[elseif (widget.type = 'buttonknob')]
+[widget.pressedImagePath.imageBitmapDef(widget, 'pressed')/]
+[widget.pressedImagePath.imageAlphaDef(widget, 'pressed')/]
 [elseif (widget.type = 'xx2')]
 xx	
 [elseif (widget.type = 'xx3')]
@@ -89,6 +79,23 @@ xx
 [/if]
 [/template]
 
+[template private imageBitmapDecl(path : Path, widget : Widget, name : String) post(trim()) ]
+#define [widget.image_width(name)/] [path.img_width()/]
+#define [widget.image_height(name)/] [path.img_height()/]
+extern const unsigned short [widget.image_bitmap(name)/]['[]'/];
+[/template]
+
+[template private imageBitmapDef(path : Path, widget : Widget, name : String) post(trim()) ]
+const unsigned short [widget.image_bitmap(name)/][path.img_bitmap()/];
+[/template]
+
+[template private imageAlphaDecl(path : Path, widget : Widget, name : String) post(trim()) ]
+extern const unsigned char [widget.image_alpha(name)/]['[]'/];
+[/template]
+
+[template private imageAlphaDef(path : Path, widget : Widget, name : String) post(trim()) ]
+const unsigned char [widget.image_alpha(name)/][path.img_alpha()/];
+[/template]
 
 [**
  * Queris used to retrieve data from images..
@@ -98,4 +105,15 @@ xx
 [query private img_width(path : Path) : Integer = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'getWidth(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
 [query private img_height(path : Path) : Integer = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'getHeight(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
 
+
+
+[**
+ * failed experiment to optimize images...
+*/]
+
+[query private img_bitmap_isDeclared(path : Path) : Boolean = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'isBitmapDeclared(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
+[query private img_alpha_isDeclared(path : Path) : Boolean = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'isAlphaDeclared(it.sssuprojects.e4codergui.Path)', Sequence{path}) /]
+
+[query private register_img_bitmap(path : Path, name : String) : Boolean = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'registerBitmap(it.sssuprojects.e4codergui.Path, java.lang.String)', Sequence{path, name}) /]
+[query private register_img_alpha(path : Path, name : String) : Boolean = invoke('it.sssuprojects.e4codergui.codegen.services.ImageConversion', 'registerAlpha(it.sssuprojects.e4codergui.Path, java.lang.String)', Sequence{path, name}) /]
 

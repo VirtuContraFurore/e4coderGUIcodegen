@@ -63,12 +63,28 @@
       <inactiveReleasedImagePath defaultFolder="true">button-led/button-UP-OFF.png</inactiveReleasedImagePath>
       <initialState>false</initialState>
     </element>
+    <element type="image">
+      <name>LaMiaImmagine</name>
+      <position x="215" y="3"/>
+      <size x="90" y="75"/>
+      <activeImagePath defaultFolder="true">image/placeholder.png</activeImagePath>
+      <initialState>true</initialState>
+    </element>
     <element type="buttonknob">
       <name>IlMioRoller</name>
       <position x="224" y="92"/>
       <size x="70" y="70"/>
       <pressedImagePath defaultFolder="true">button-knob/KNOB_DN.png</pressedImagePath>
       <releasedImagePath defaultFolder="true">button-knob/KNOB_UP.png</releasedImagePath>
+    </element>
+    <element type="spinbox">
+      <name>IlMioSpinBox</name>
+      <position x="239" y="188"/>
+      <size x="50" y="30"/>
+      <minimum>0</minimum>
+      <maximum>100</maximum>
+      <value>0</value>
+      <font>Sans Serif,9,-1,5,50,0,0,0,0,0</font>
     </element>
   </frame>
 </gui>

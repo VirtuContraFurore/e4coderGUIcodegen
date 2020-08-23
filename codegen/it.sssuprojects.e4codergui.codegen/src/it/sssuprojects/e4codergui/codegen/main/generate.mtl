@@ -10,8 +10,8 @@
 [template public generateGUI(root : DocumentRoot)]
 [comment @main/]
 
-[root.generateSourceCode()/]
 [root.generateHeaderCode()/]
+[root.generateSourceCode()/]
 [root.generateImageCode()/]
 [root.generateMainSource()/]
 [root.generateMakefile()/]

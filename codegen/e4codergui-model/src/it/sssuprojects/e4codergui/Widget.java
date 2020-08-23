@@ -1049,46 +1049,44 @@ public interface Widget extends EObject {
 	void setVerticalAlignment(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Active Image Path</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Active Image Path</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Active Image Path</em>' containment reference.
+	 * @return the value of the '<em>Active Image Path</em>' reference.
 	 * @see #setActiveImagePath(Path)
 	 * @see it.sssuprojects.e4codergui.E4coderguiPackage#getWidget_ActiveImagePath()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='activeImagePath' namespace='##targetNamespace'"
+	 * @model extendedMetaData="kind='element' name='activeImagePath' namespace='##targetNamespace'"
 	 * @generated
 	 */
 	Path getActiveImagePath();
 
 	/**
-	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getActiveImagePath <em>Active Image Path</em>}' containment reference.
+	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getActiveImagePath <em>Active Image Path</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Active Image Path</em>' containment reference.
+	 * @param value the new value of the '<em>Active Image Path</em>' reference.
 	 * @see #getActiveImagePath()
 	 * @generated
 	 */
 	void setActiveImagePath(Path value);
 
 	/**
-	 * Returns the value of the '<em><b>Inactive Image Path</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Inactive Image Path</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inactive Image Path</em>' containment reference.
+	 * @return the value of the '<em>Inactive Image Path</em>' reference.
 	 * @see #setInactiveImagePath(Path)
 	 * @see it.sssuprojects.e4codergui.E4coderguiPackage#getWidget_InactiveImagePath()
-	 * @model containment="true"
-	 *        extendedMetaData="kind='element' name='inactiveImagePath' namespace='##targetNamespace'"
+	 * @model extendedMetaData="kind='element' name='inactiveImagePath' namespace='##targetNamespace'"
 	 * @generated
 	 */
 	Path getInactiveImagePath();
 
 	/**
-	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getInactiveImagePath <em>Inactive Image Path</em>}' containment reference.
+	 * Sets the value of the '{@link it.sssuprojects.e4codergui.Widget#getInactiveImagePath <em>Inactive Image Path</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Inactive Image Path</em>' containment reference.
+	 * @param value the new value of the '<em>Inactive Image Path</em>' reference.
 	 * @see #getInactiveImagePath()
 	 * @generated
 	 */

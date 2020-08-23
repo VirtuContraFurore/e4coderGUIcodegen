@@ -9,6 +9,7 @@
 #include "windowmanager/graphics/color.h"
 #include "windowmanager/widget/buttonImage.h"
 #include "windowmanager/widget/buttonLed.h"
+#include "windowmanager/widget/knob.h"
 
 #include "my_gui.h"
 #include "my_images.h"
@@ -16,23 +17,22 @@
 /* Code for frame "MyFrame" */
 
 struct Window MyFrame;
-struct Widget MyFrame_widgets[8];
+struct Widget MyFrame_widgets[7];
 struct buttonImage_Widget MyFrame_bottone1_pdata;
 struct buttonImage_Widget MyFrame_bottone2_pdata;
 struct buttonImage_Widget MyFrame_bottone3_pdata;
 struct buttonLed_Widget MyFrame_BottoneColLed_pdata;
-struct buttonLed_Widget MyFrame_bottoneColLed2_pdata;
-struct buttonLed_Widget MyFrame_BttoneColLed3_pdata;
-struct buttonLed_Widget MyFrame_BottoneColLed4_pdata;
-struct buttonLed_Widget MyFrame_BottoneColLed5_pdata;
+struct buttonLed_Widget MyFrame_BottoneColLed2_pdata;
+struct buttonLed_Widget MyFrame_BottoneColLed3_pdata;
+struct knob_Widget MyFrame_IlMioRoller_pdata;
 
 struct Window * createWindow_MyFrame(){
 	struct Window * window = &MyFrame;   //window's struct alias 
 	struct Widget * widgets = MyFrame_widgets;   //widgets' array alias
 
 	// Initialization of widget "bottone1"
-	MyFrame_bottone1_pdata.dim.pos.x = 15;
-	MyFrame_bottone1_pdata.dim.pos.y = 78;
+	MyFrame_bottone1_pdata.dim.pos.x = 3;
+	MyFrame_bottone1_pdata.dim.pos.y = 135;
 	MyFrame_bottone1_pdata.dim.w = 109;
 	MyFrame_bottone1_pdata.dim.h = 29;
 	MyFrame_bottone1_pdata.onTouch = &MyFrame_bottone1_onTouch;
@@ -50,8 +50,8 @@ struct Window * createWindow_MyFrame(){
 	widgets[0].data = (void*) &MyFrame_bottone1_pdata;
 
 	// Initialization of widget "bottone2"
-	MyFrame_bottone2_pdata.dim.pos.x = 15;
-	MyFrame_bottone2_pdata.dim.pos.y = 126;
+	MyFrame_bottone2_pdata.dim.pos.x = 2;
+	MyFrame_bottone2_pdata.dim.pos.y = 170;
 	MyFrame_bottone2_pdata.dim.w = 109;
 	MyFrame_bottone2_pdata.dim.h = 29;
 	MyFrame_bottone2_pdata.onTouch = &MyFrame_bottone2_onTouch;
@@ -69,8 +69,8 @@ struct Window * createWindow_MyFrame(){
 	widgets[1].data = (void*) &MyFrame_bottone2_pdata;
 
 	// Initialization of widget "bottone3"
-	MyFrame_bottone3_pdata.dim.pos.x = 15;
-	MyFrame_bottone3_pdata.dim.pos.y = 175;
+	MyFrame_bottone3_pdata.dim.pos.x = 5;
+	MyFrame_bottone3_pdata.dim.pos.y = 205;
 	MyFrame_bottone3_pdata.dim.w = 109;
 	MyFrame_bottone3_pdata.dim.h = 29;
 	MyFrame_bottone3_pdata.onTouch = &MyFrame_bottone3_onTouch;
@@ -88,8 +88,8 @@ struct Window * createWindow_MyFrame(){
 	widgets[2].data = (void*) &MyFrame_bottone3_pdata;
 
 	// Initialization of widget "BottoneColLed"
-	MyFrame_BottoneColLed_pdata.dim.pos.x = 89;
-	MyFrame_BottoneColLed_pdata.dim.pos.y = 22;
+	MyFrame_BottoneColLed_pdata.dim.pos.x = 5;
+	MyFrame_BottoneColLed_pdata.dim.pos.y = 102;
 	MyFrame_BottoneColLed_pdata.dim.w = 109;
 	MyFrame_BottoneColLed_pdata.dim.h = 29;
 	MyFrame_BottoneColLed_pdata.onTouch = &MyFrame_BottoneColLed_onTouch;
@@ -115,121 +115,80 @@ struct Window * createWindow_MyFrame(){
 	widgets[3].funcs = &buttonLed_WidgetFunctions;
 	widgets[3].data = (void*) &MyFrame_BottoneColLed_pdata;
 
-	// Initialization of widget "bottoneColLed2"
-	MyFrame_bottoneColLed2_pdata.dim.pos.x = 158;
-	MyFrame_bottoneColLed2_pdata.dim.pos.y = 85;
-	MyFrame_bottoneColLed2_pdata.dim.w = 109;
-	MyFrame_bottoneColLed2_pdata.dim.h = 29;
-	MyFrame_bottoneColLed2_pdata.onTouch = &MyFrame_bottoneColLed2_onTouch;
-	MyFrame_bottoneColLed2_pdata.isPressed = false;
-	MyFrame_bottoneColLed2_pdata.isOn = false;
-	MyFrame_bottoneColLed2_pdata.pressedOnImage.bmp = Image_MyFrame_bottoneColLed2_pressed_on_bitmap;
-	MyFrame_bottoneColLed2_pdata.pressedOnImage.alpha = 0; //no alpha here
-	MyFrame_bottoneColLed2_pdata.pressedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_ON_WIDTH;
-	MyFrame_bottoneColLed2_pdata.pressedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_ON_HEIGHT;
-	MyFrame_bottoneColLed2_pdata.releasedOnImage.bmp = Image_MyFrame_bottoneColLed2_released_on_bitmap;
-	MyFrame_bottoneColLed2_pdata.releasedOnImage.alpha = 0; //no alpha here
-	MyFrame_bottoneColLed2_pdata.releasedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_ON_WIDTH;
-	MyFrame_bottoneColLed2_pdata.releasedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_ON_HEIGHT;
-	MyFrame_bottoneColLed2_pdata.pressedOffImage.bmp = Image_MyFrame_bottoneColLed2_pressed_off_bitmap;
-	MyFrame_bottoneColLed2_pdata.pressedOffImage.alpha = 0; //no alpha here
-	MyFrame_bottoneColLed2_pdata.pressedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_OFF_WIDTH;
-	MyFrame_bottoneColLed2_pdata.pressedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_OFF_HEIGHT;
-	MyFrame_bottoneColLed2_pdata.releasedOffImage.bmp = Image_MyFrame_bottoneColLed2_released_off_bitmap;
-	MyFrame_bottoneColLed2_pdata.releasedOffImage.alpha = 0; //no alpha here
-	MyFrame_bottoneColLed2_pdata.releasedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_OFF_WIDTH;
-	MyFrame_bottoneColLed2_pdata.releasedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_OFF_HEIGHT;
+	// Initialization of widget "BottoneColLed2"
+	MyFrame_BottoneColLed2_pdata.dim.pos.x = 4;
+	MyFrame_BottoneColLed2_pdata.dim.pos.y = 65;
+	MyFrame_BottoneColLed2_pdata.dim.w = 109;
+	MyFrame_BottoneColLed2_pdata.dim.h = 29;
+	MyFrame_BottoneColLed2_pdata.onTouch = &MyFrame_BottoneColLed2_onTouch;
+	MyFrame_BottoneColLed2_pdata.isPressed = false;
+	MyFrame_BottoneColLed2_pdata.isOn = false;
+	MyFrame_BottoneColLed2_pdata.pressedOnImage.bmp = Image_MyFrame_BottoneColLed2_pressed_on_bitmap;
+	MyFrame_BottoneColLed2_pdata.pressedOnImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed2_pdata.pressedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_ON_WIDTH;
+	MyFrame_BottoneColLed2_pdata.pressedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_ON_HEIGHT;
+	MyFrame_BottoneColLed2_pdata.releasedOnImage.bmp = Image_MyFrame_BottoneColLed2_released_on_bitmap;
+	MyFrame_BottoneColLed2_pdata.releasedOnImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed2_pdata.releasedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_ON_WIDTH;
+	MyFrame_BottoneColLed2_pdata.releasedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_ON_HEIGHT;
+	MyFrame_BottoneColLed2_pdata.pressedOffImage.bmp = Image_MyFrame_BottoneColLed2_pressed_off_bitmap;
+	MyFrame_BottoneColLed2_pdata.pressedOffImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed2_pdata.pressedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_OFF_WIDTH;
+	MyFrame_BottoneColLed2_pdata.pressedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_PRESSED_OFF_HEIGHT;
+	MyFrame_BottoneColLed2_pdata.releasedOffImage.bmp = Image_MyFrame_BottoneColLed2_released_off_bitmap;
+	MyFrame_BottoneColLed2_pdata.releasedOffImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed2_pdata.releasedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_OFF_WIDTH;
+	MyFrame_BottoneColLed2_pdata.releasedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED2_RELEASED_OFF_HEIGHT;
 	widgets[4].visible = true;
 	widgets[4].funcs = &buttonLed_WidgetFunctions;
-	widgets[4].data = (void*) &MyFrame_bottoneColLed2_pdata;
+	widgets[4].data = (void*) &MyFrame_BottoneColLed2_pdata;
 
-	// Initialization of widget "BttoneColLed3"
-	MyFrame_BttoneColLed3_pdata.dim.pos.x = 194;
-	MyFrame_BttoneColLed3_pdata.dim.pos.y = 126;
-	MyFrame_BttoneColLed3_pdata.dim.w = 109;
-	MyFrame_BttoneColLed3_pdata.dim.h = 29;
-	MyFrame_BttoneColLed3_pdata.onTouch = &MyFrame_BttoneColLed3_onTouch;
-	MyFrame_BttoneColLed3_pdata.isPressed = false;
-	MyFrame_BttoneColLed3_pdata.isOn = false;
-	MyFrame_BttoneColLed3_pdata.pressedOnImage.bmp = Image_MyFrame_BttoneColLed3_pressed_on_bitmap;
-	MyFrame_BttoneColLed3_pdata.pressedOnImage.alpha = 0; //no alpha here
-	MyFrame_BttoneColLed3_pdata.pressedOnImage.width = IMAGE_MYFRAME_BTTONECOLLED3_PRESSED_ON_WIDTH;
-	MyFrame_BttoneColLed3_pdata.pressedOnImage.height = IMAGE_MYFRAME_BTTONECOLLED3_PRESSED_ON_HEIGHT;
-	MyFrame_BttoneColLed3_pdata.releasedOnImage.bmp = Image_MyFrame_BttoneColLed3_released_on_bitmap;
-	MyFrame_BttoneColLed3_pdata.releasedOnImage.alpha = 0; //no alpha here
-	MyFrame_BttoneColLed3_pdata.releasedOnImage.width = IMAGE_MYFRAME_BTTONECOLLED3_RELEASED_ON_WIDTH;
-	MyFrame_BttoneColLed3_pdata.releasedOnImage.height = IMAGE_MYFRAME_BTTONECOLLED3_RELEASED_ON_HEIGHT;
-	MyFrame_BttoneColLed3_pdata.pressedOffImage.bmp = Image_MyFrame_BttoneColLed3_pressed_off_bitmap;
-	MyFrame_BttoneColLed3_pdata.pressedOffImage.alpha = 0; //no alpha here
-	MyFrame_BttoneColLed3_pdata.pressedOffImage.width = IMAGE_MYFRAME_BTTONECOLLED3_PRESSED_OFF_WIDTH;
-	MyFrame_BttoneColLed3_pdata.pressedOffImage.height = IMAGE_MYFRAME_BTTONECOLLED3_PRESSED_OFF_HEIGHT;
-	MyFrame_BttoneColLed3_pdata.releasedOffImage.bmp = Image_MyFrame_BttoneColLed3_released_off_bitmap;
-	MyFrame_BttoneColLed3_pdata.releasedOffImage.alpha = 0; //no alpha here
-	MyFrame_BttoneColLed3_pdata.releasedOffImage.width = IMAGE_MYFRAME_BTTONECOLLED3_RELEASED_OFF_WIDTH;
-	MyFrame_BttoneColLed3_pdata.releasedOffImage.height = IMAGE_MYFRAME_BTTONECOLLED3_RELEASED_OFF_HEIGHT;
+	// Initialization of widget "BottoneColLed3"
+	MyFrame_BottoneColLed3_pdata.dim.pos.x = 2;
+	MyFrame_BottoneColLed3_pdata.dim.pos.y = 24;
+	MyFrame_BottoneColLed3_pdata.dim.w = 109;
+	MyFrame_BottoneColLed3_pdata.dim.h = 29;
+	MyFrame_BottoneColLed3_pdata.onTouch = &MyFrame_BottoneColLed3_onTouch;
+	MyFrame_BottoneColLed3_pdata.isPressed = false;
+	MyFrame_BottoneColLed3_pdata.isOn = false;
+	MyFrame_BottoneColLed3_pdata.pressedOnImage.bmp = Image_MyFrame_BottoneColLed3_pressed_on_bitmap;
+	MyFrame_BottoneColLed3_pdata.pressedOnImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed3_pdata.pressedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED3_PRESSED_ON_WIDTH;
+	MyFrame_BottoneColLed3_pdata.pressedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED3_PRESSED_ON_HEIGHT;
+	MyFrame_BottoneColLed3_pdata.releasedOnImage.bmp = Image_MyFrame_BottoneColLed3_released_on_bitmap;
+	MyFrame_BottoneColLed3_pdata.releasedOnImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed3_pdata.releasedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED3_RELEASED_ON_WIDTH;
+	MyFrame_BottoneColLed3_pdata.releasedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED3_RELEASED_ON_HEIGHT;
+	MyFrame_BottoneColLed3_pdata.pressedOffImage.bmp = Image_MyFrame_BottoneColLed3_pressed_off_bitmap;
+	MyFrame_BottoneColLed3_pdata.pressedOffImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed3_pdata.pressedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED3_PRESSED_OFF_WIDTH;
+	MyFrame_BottoneColLed3_pdata.pressedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED3_PRESSED_OFF_HEIGHT;
+	MyFrame_BottoneColLed3_pdata.releasedOffImage.bmp = Image_MyFrame_BottoneColLed3_released_off_bitmap;
+	MyFrame_BottoneColLed3_pdata.releasedOffImage.alpha = 0; //no alpha here
+	MyFrame_BottoneColLed3_pdata.releasedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED3_RELEASED_OFF_WIDTH;
+	MyFrame_BottoneColLed3_pdata.releasedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED3_RELEASED_OFF_HEIGHT;
 	widgets[5].visible = true;
 	widgets[5].funcs = &buttonLed_WidgetFunctions;
-	widgets[5].data = (void*) &MyFrame_BttoneColLed3_pdata;
+	widgets[5].data = (void*) &MyFrame_BottoneColLed3_pdata;
 
-	// Initialization of widget "BottoneColLed4"
-	MyFrame_BottoneColLed4_pdata.dim.pos.x = 150;
-	MyFrame_BottoneColLed4_pdata.dim.pos.y = 173;
-	MyFrame_BottoneColLed4_pdata.dim.w = 109;
-	MyFrame_BottoneColLed4_pdata.dim.h = 29;
-	MyFrame_BottoneColLed4_pdata.onTouch = &MyFrame_BottoneColLed4_onTouch;
-	MyFrame_BottoneColLed4_pdata.isPressed = false;
-	MyFrame_BottoneColLed4_pdata.isOn = false;
-	MyFrame_BottoneColLed4_pdata.pressedOnImage.bmp = Image_MyFrame_BottoneColLed4_pressed_on_bitmap;
-	MyFrame_BottoneColLed4_pdata.pressedOnImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed4_pdata.pressedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED4_PRESSED_ON_WIDTH;
-	MyFrame_BottoneColLed4_pdata.pressedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED4_PRESSED_ON_HEIGHT;
-	MyFrame_BottoneColLed4_pdata.releasedOnImage.bmp = Image_MyFrame_BottoneColLed4_released_on_bitmap;
-	MyFrame_BottoneColLed4_pdata.releasedOnImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed4_pdata.releasedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED4_RELEASED_ON_WIDTH;
-	MyFrame_BottoneColLed4_pdata.releasedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED4_RELEASED_ON_HEIGHT;
-	MyFrame_BottoneColLed4_pdata.pressedOffImage.bmp = Image_MyFrame_BottoneColLed4_pressed_off_bitmap;
-	MyFrame_BottoneColLed4_pdata.pressedOffImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed4_pdata.pressedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED4_PRESSED_OFF_WIDTH;
-	MyFrame_BottoneColLed4_pdata.pressedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED4_PRESSED_OFF_HEIGHT;
-	MyFrame_BottoneColLed4_pdata.releasedOffImage.bmp = Image_MyFrame_BottoneColLed4_released_off_bitmap;
-	MyFrame_BottoneColLed4_pdata.releasedOffImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed4_pdata.releasedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED4_RELEASED_OFF_WIDTH;
-	MyFrame_BottoneColLed4_pdata.releasedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED4_RELEASED_OFF_HEIGHT;
+	// Initialization of widget "IlMioRoller"
+	MyFrame_IlMioRoller_pdata.imagePosition.x = 224;
+	MyFrame_IlMioRoller_pdata.imagePosition.y = 92;
+	MyFrame_IlMioRoller_pdata.pivotPosition.x = (70)/2;
+	MyFrame_IlMioRoller_pdata.pivotPosition.y = (70)/2;
+	MyFrame_IlMioRoller_pdata.onChange = &MyFrame_IlMioRoller_onChange;
+	MyFrame_IlMioRoller_pdata.angle = 0;
+	MyFrame_IlMioRoller_pdata.image.bmp = Image_MyFrame_IlMioRoller_pressed_bitmap;
+	MyFrame_IlMioRoller_pdata.image.alpha = Image_MyFrame_IlMioRoller_pressed_alpha;
+	MyFrame_IlMioRoller_pdata.image.width = IMAGE_MYFRAME_ILMIOROLLER_PRESSED_WIDTH;
+	MyFrame_IlMioRoller_pdata.image.height = IMAGE_MYFRAME_ILMIOROLLER_PRESSED_HEIGHT;
 	widgets[6].visible = true;
-	widgets[6].funcs = &buttonLed_WidgetFunctions;
-	widgets[6].data = (void*) &MyFrame_BottoneColLed4_pdata;
-
-	// Initialization of widget "BottoneColLed5"
-	MyFrame_BottoneColLed5_pdata.dim.pos.x = 89;
-	MyFrame_BottoneColLed5_pdata.dim.pos.y = 209;
-	MyFrame_BottoneColLed5_pdata.dim.w = 109;
-	MyFrame_BottoneColLed5_pdata.dim.h = 29;
-	MyFrame_BottoneColLed5_pdata.onTouch = &MyFrame_BottoneColLed5_onTouch;
-	MyFrame_BottoneColLed5_pdata.isPressed = false;
-	MyFrame_BottoneColLed5_pdata.isOn = false;
-	MyFrame_BottoneColLed5_pdata.pressedOnImage.bmp = Image_MyFrame_BottoneColLed5_pressed_on_bitmap;
-	MyFrame_BottoneColLed5_pdata.pressedOnImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed5_pdata.pressedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED5_PRESSED_ON_WIDTH;
-	MyFrame_BottoneColLed5_pdata.pressedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED5_PRESSED_ON_HEIGHT;
-	MyFrame_BottoneColLed5_pdata.releasedOnImage.bmp = Image_MyFrame_BottoneColLed5_released_on_bitmap;
-	MyFrame_BottoneColLed5_pdata.releasedOnImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed5_pdata.releasedOnImage.width = IMAGE_MYFRAME_BOTTONECOLLED5_RELEASED_ON_WIDTH;
-	MyFrame_BottoneColLed5_pdata.releasedOnImage.height = IMAGE_MYFRAME_BOTTONECOLLED5_RELEASED_ON_HEIGHT;
-	MyFrame_BottoneColLed5_pdata.pressedOffImage.bmp = Image_MyFrame_BottoneColLed5_pressed_off_bitmap;
-	MyFrame_BottoneColLed5_pdata.pressedOffImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed5_pdata.pressedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED5_PRESSED_OFF_WIDTH;
-	MyFrame_BottoneColLed5_pdata.pressedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED5_PRESSED_OFF_HEIGHT;
-	MyFrame_BottoneColLed5_pdata.releasedOffImage.bmp = Image_MyFrame_BottoneColLed5_released_off_bitmap;
-	MyFrame_BottoneColLed5_pdata.releasedOffImage.alpha = 0; //no alpha here
-	MyFrame_BottoneColLed5_pdata.releasedOffImage.width = IMAGE_MYFRAME_BOTTONECOLLED5_RELEASED_OFF_WIDTH;
-	MyFrame_BottoneColLed5_pdata.releasedOffImage.height = IMAGE_MYFRAME_BOTTONECOLLED5_RELEASED_OFF_HEIGHT;
-	widgets[7].visible = true;
-	widgets[7].funcs = &buttonLed_WidgetFunctions;
-	widgets[7].data = (void*) &MyFrame_BottoneColLed5_pdata;
+	widgets[6].funcs = &knob_WidgetFunctions;
+	widgets[6].data = (void*) &MyFrame_IlMioRoller_pdata;
 
     //setting window frame properties
 	window->widgets = widgets;
-	window->n_widgets = 8;
+	window->n_widgets = 7;
 	window->background = WHITE;
 	return window;
 }

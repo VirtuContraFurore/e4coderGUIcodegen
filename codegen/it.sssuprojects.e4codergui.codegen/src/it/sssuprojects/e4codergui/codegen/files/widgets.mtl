@@ -71,3 +71,44 @@ bool [widget.callback('onTouch')/](struct Widget *self, struct TouchEvent *event
 	return false;
 }
 [/template]
+
+[comment Image ************************************************************ /]
+
+[template public generateImage_pdata(widget : Widget) post(trim()) ]
+[widget.pdata_name()/].dim.pos.x = [widget.position.x/];
+[widget.pdata_name()/].dim.pos.y = [widget.position.y/];
+[widget.pdata_name()/].dim.w = [widget.size.x/];
+[widget.pdata_name()/].dim.h = [widget.size.y/];
+[widget.pdata_name()/].onTouch = &[widget.callback('onTouch')/];
+[widget.pdata_name()/].isPressed = false;
+[widget.pdata_name()/].isOn = [widget.initialState/];
+[widget.pdata_name()/].pressedOnImage.bmp = [widget.image_bitmap('pressed_on')/];
+[widget.pdata_name()/].pressedOnImage.alpha = 0; //no alpha here
+[widget.pdata_name()/].pressedOnImage.width = [widget.image_width('pressed_on')/];
+[widget.pdata_name()/].pressedOnImage.height = [widget.image_height('pressed_on')/];
+[/template]
+
+[comment Knob ****************************************************************/]
+
+[template public generateButtonKnob_pdata(widget : Widget) post(trim()) ]
+[widget.pdata_name()/].imagePosition.x = [widget.position.x/];
+[widget.pdata_name()/].imagePosition.y = [widget.position.y/];
+[widget.pdata_name()/].pivotPosition.x = ([widget.size.x/])/2;
+[widget.pdata_name()/].pivotPosition.y = ([widget.size.y/])/2;
+[widget.pdata_name()/].onChange = &[widget.callback('onChange')/];
+[widget.pdata_name()/].angle = 0;
+[widget.pdata_name()/].image.bmp = [widget.image_bitmap('pressed')/];
+[widget.pdata_name()/].image.alpha = [widget.image_alpha('pressed')/];
+[widget.pdata_name()/].image.width = [widget.image_width('pressed')/];
+[widget.pdata_name()/].image.height = [widget.image_height('pressed')/];
+[/template]
+
+[template public generateButtonKnob_callbacks_decl(widget : Widget) post(trim()) ]
+void [widget.callback('onChange')/](struct Widget *self, float new_value, float old_value);
+[/template]
+
+[template public generateButtonKnob_callbacks_def(widget : Widget) post(trim()) ]
+void [widget.callback('onChange')/](struct Widget *self, float new_value, float old_value){
+	//TODO: write the body of the callback for this knob
+}
+[/template]

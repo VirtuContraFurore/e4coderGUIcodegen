@@ -27,23 +27,17 @@ void loop(){
 //Start of user code callbacks implementations
 
 bool MyFrame_bottone1_onTouch(struct Widget *self, struct TouchEvent *event){
-	struct buttonLed_Widget * data = (struct buttonLed_Widget *) MyFrame.widgets[MyFrame_BottoneColLed_IDX].data;
-	data->isOn = !data->isOn;
-	WM_Widget_redraw(&MyFrame.widgets[MyFrame_BottoneColLed_IDX]);
-	return true;
+	//TODO: return true if the touch event was processed by this button
+	return false;
 }
 
 bool MyFrame_bottone2_onTouch(struct Widget *self, struct TouchEvent *event){
-	struct buttonLed_Widget * data = (struct buttonLed_Widget *) MyFrame.widgets[MyFrame_bottoneColLed2_IDX].data;
-	data->isOn = !data->isOn;
-	WM_Widget_redraw(&MyFrame.widgets[MyFrame_bottoneColLed2_IDX]);
-	return true;
+	//TODO: return true if the touch event was processed by this button
+	return false;
 }
 
 bool MyFrame_bottone3_onTouch(struct Widget *self, struct TouchEvent *event){
-	struct buttonLed_Widget * data = (struct buttonLed_Widget *) MyFrame.widgets[MyFrame_BttoneColLed3_IDX].data;
-	data->isOn = !data->isOn;
-	WM_Widget_redraw(&MyFrame.widgets[MyFrame_BttoneColLed3_IDX]);
+	//TODO: return true if the touch event was processed by this button
 	return false;
 }
 
@@ -52,24 +46,18 @@ bool MyFrame_BottoneColLed_onTouch(struct Widget *self, struct TouchEvent *event
 	return false;
 }
 
-bool MyFrame_bottoneColLed2_onTouch(struct Widget *self, struct TouchEvent *event){
+bool MyFrame_BottoneColLed2_onTouch(struct Widget *self, struct TouchEvent *event){
 	//TODO: return true if the touch event was processed by this button
 	return false;
 }
 
-bool MyFrame_BttoneColLed3_onTouch(struct Widget *self, struct TouchEvent *event){
+bool MyFrame_BottoneColLed3_onTouch(struct Widget *self, struct TouchEvent *event){
 	//TODO: return true if the touch event was processed by this button
 	return false;
 }
 
-bool MyFrame_BottoneColLed4_onTouch(struct Widget *self, struct TouchEvent *event){
-	//TODO: return true if the touch event was processed by this button
-	return false;
-}
-
-bool MyFrame_BottoneColLed5_onTouch(struct Widget *self, struct TouchEvent *event){
-	//TODO: return true if the touch event was processed by this button
-	return false;
+void MyFrame_IlMioRoller_onChange(struct Widget *self, float new_value, float old_value){
+	//TODO: write the body of the callback for this knob
 }
 
 //End of user code

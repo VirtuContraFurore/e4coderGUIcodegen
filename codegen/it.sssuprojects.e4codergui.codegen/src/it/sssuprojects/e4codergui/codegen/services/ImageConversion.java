@@ -4,6 +4,10 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 
@@ -11,20 +15,18 @@ import it.sssuprojects.e4codergui.Path;
 
 public class ImageConversion {
 	
-	public static void Prova(Path path) {
-		try {
-			BufferedImage img = ImageIO.read(new File(path.getPath()));
-			
-			System.out.println("Has alpha: "+(img.getAlphaRaster() != null));
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	/* These arrays keep a list of images already used to avoid double array declaration in order to decrease code size */
+	private static List<Path> bitmaps_processed = new ArrayList<Path>();
+	private static List<Path> alpha_processed = new ArrayList<Path>();
+	private static Map<String, String> bitmaps_names = new HashMap<String, String>();
+	private static Map<String, String> alpha_names = new HashMap<String, String>();
 	
 	//colore rgb 565
 	public static String getBitmap(Path path) {
+		if(isBitmapDeclared(path)) {
+			return bitmaps_names.get(path.getPath());
+		}
+		
 		try {
 			BufferedImage img = ImageIO.read(new File(path.getPath()));
 			
@@ -76,8 +78,12 @@ public class ImageConversion {
 		return "ERROR WRITING IMAGE BITMAP";
 	}
 	
-	//1->presente 0->assente
+	//1->present 0->absent
 	public static String getAlpha(Path path) {
+		if(isAlphaDeclared(path)) {
+			return alpha_names.get(path.getPath());
+		}
+		
 		try {
 			BufferedImage img = ImageIO.read(new File(path.getPath()));
 			
@@ -150,13 +156,6 @@ public class ImageConversion {
 	}
 	
 	public static int getHeight(Path path) {
-		if(path.getPath() == null) {
-			System.out.println("path is null");
-			System.out.println(path.getValue());
-			System.out.println(path.eIsProxy());
-			return 0;
-		}
-		
 		try {
 			BufferedImage img = ImageIO.read(new File(path.getPath()));
 			return img.getHeight();
@@ -167,6 +166,24 @@ public class ImageConversion {
 		return -1;
 	}
 	
+	public static boolean isBitmapDeclared(Path path) {
+//		retrun = bitmaps_processed.stream().anyMatch(p->p.getPath().equals(path.getPath()));
+		return false;
+	}
 	
+	public static boolean isAlphaDeclared(Path path) {
+//		return alpha_processed.stream().anyMatch(p->p.getPath().equals(path.getPath()));
+		return false;
+	}
+	
+	public static void registerBitmap(Path path, String name) {
+		bitmaps_processed.add(path);
+		bitmaps_names.put(path.getPath(), name);
+	}
+	
+	public static void registerAlpha(Path path, String name) {
+		alpha_processed.add(path);
+		alpha_names.put(path.getPath(), name);
+	}
 	
 }

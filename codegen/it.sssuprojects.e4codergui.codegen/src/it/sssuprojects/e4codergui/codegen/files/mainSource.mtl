@@ -57,10 +57,10 @@ void loop(){
 [widget.generateButtonImage_callbacks_def()/]
 [elseif (widget.type = 'buttonled')]
 [widget.generateButtonLed_callbacks_def()/]
-[elseif (widget.type = 'xx1')]
-xx	
-[elseif (widget.type = 'xx2')]
-xx	
+[elseif (widget.type = 'image')]
+[comment: No callback for this widget type/]
+[elseif (widget.type = 'buttonknob')]
+[widget.generateButtonKnob_callbacks_def()/]
 [elseif (widget.type = 'xx3')]
 xx	
 [else] [comment Default handling/]

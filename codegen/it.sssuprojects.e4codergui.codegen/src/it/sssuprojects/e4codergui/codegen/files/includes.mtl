@@ -12,6 +12,7 @@
 
 #include "windowmanager/widget/buttonImage.h"
 #include "windowmanager/widget/buttonLed.h"
+#include "windowmanager/widget/knob.h"
 [/template]
 
 [**
@@ -24,6 +25,7 @@
 #include "windowmanager/graphics/color.h"
 #include "windowmanager/widget/buttonImage.h"
 #include "windowmanager/widget/buttonLed.h"
+#include "windowmanager/widget/knob.h"
 
 #include "my_gui.h"
 #include "my_images.h"

@@ -71,10 +71,10 @@ widgets['['+index+']'/].data = (void*) &[widget.pdata_name()/];
 buttonImage
 [elseif (widget.type = 'buttonled')]
 buttonLed
-[elseif (widget.type = 'xx1')]
-xx	
-[elseif (widget.type = 'xx2')]
-xx	
+[elseif (widget.type = 'image')]
+image
+[elseif (widget.type = 'buttonknob')]
+knob
 [elseif (widget.type = 'xx3')]
 xx	
 [else] [comment Default handling/]
@@ -90,10 +90,10 @@ dummy
 [widget.generateButtonImage_pdata()/]
 [elseif (widget.type = 'buttonled')]
 [widget.generateButtonLed_pdata()/]
-[elseif (widget.type = 'xx1')]
-xx	
-[elseif (widget.type = 'xx2')]
-xx	
+[elseif (widget.type = 'image')]
+[widget.generateImage_pdata()/]
+[elseif (widget.type = 'buttonknob')]
+[widget.generateButtonKnob_pdata()/]	
 [elseif (widget.type = 'xx3')]
 xx	
 [else] [comment Default handling/]

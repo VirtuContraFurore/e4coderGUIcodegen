@@ -671,7 +671,7 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	protected String verticalAlignment = VERTICAL_ALIGNMENT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getActiveImagePath() <em>Active Image Path</em>}' containment reference.
+	 * The cached value of the '{@link #getActiveImagePath() <em>Active Image Path</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getActiveImagePath()
@@ -681,7 +681,7 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	protected Path activeImagePath;
 
 	/**
-	 * The cached value of the '{@link #getInactiveImagePath() <em>Inactive Image Path</em>}' containment reference.
+	 * The cached value of the '{@link #getInactiveImagePath() <em>Inactive Image Path</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInactiveImagePath()
@@ -2052,6 +2052,14 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 */
 	@Override
 	public Path getActiveImagePath() {
+		if (activeImagePath != null && activeImagePath.eIsProxy()) {
+			InternalEObject oldActiveImagePath = (InternalEObject)activeImagePath;
+			activeImagePath = (Path)eResolveProxy(oldActiveImagePath);
+			if (activeImagePath != oldActiveImagePath) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH, oldActiveImagePath, activeImagePath));
+			}
+		}
 		return activeImagePath;
 	}
 
@@ -2060,14 +2068,8 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetActiveImagePath(Path newActiveImagePath, NotificationChain msgs) {
-		Path oldActiveImagePath = activeImagePath;
-		activeImagePath = newActiveImagePath;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH, oldActiveImagePath, newActiveImagePath);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Path basicGetActiveImagePath() {
+		return activeImagePath;
 	}
 
 	/**
@@ -2077,17 +2079,10 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 */
 	@Override
 	public void setActiveImagePath(Path newActiveImagePath) {
-		if (newActiveImagePath != activeImagePath) {
-			NotificationChain msgs = null;
-			if (activeImagePath != null)
-				msgs = ((InternalEObject)activeImagePath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH, null, msgs);
-			if (newActiveImagePath != null)
-				msgs = ((InternalEObject)newActiveImagePath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH, null, msgs);
-			msgs = basicSetActiveImagePath(newActiveImagePath, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH, newActiveImagePath, newActiveImagePath));
+		Path oldActiveImagePath = activeImagePath;
+		activeImagePath = newActiveImagePath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH, oldActiveImagePath, activeImagePath));
 	}
 
 	/**
@@ -2097,6 +2092,14 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 */
 	@Override
 	public Path getInactiveImagePath() {
+		if (inactiveImagePath != null && inactiveImagePath.eIsProxy()) {
+			InternalEObject oldInactiveImagePath = (InternalEObject)inactiveImagePath;
+			inactiveImagePath = (Path)eResolveProxy(oldInactiveImagePath);
+			if (inactiveImagePath != oldInactiveImagePath) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH, oldInactiveImagePath, inactiveImagePath));
+			}
+		}
 		return inactiveImagePath;
 	}
 
@@ -2105,14 +2108,8 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInactiveImagePath(Path newInactiveImagePath, NotificationChain msgs) {
-		Path oldInactiveImagePath = inactiveImagePath;
-		inactiveImagePath = newInactiveImagePath;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH, oldInactiveImagePath, newInactiveImagePath);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public Path basicGetInactiveImagePath() {
+		return inactiveImagePath;
 	}
 
 	/**
@@ -2122,17 +2119,10 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 	 */
 	@Override
 	public void setInactiveImagePath(Path newInactiveImagePath) {
-		if (newInactiveImagePath != inactiveImagePath) {
-			NotificationChain msgs = null;
-			if (inactiveImagePath != null)
-				msgs = ((InternalEObject)inactiveImagePath).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH, null, msgs);
-			if (newInactiveImagePath != null)
-				msgs = ((InternalEObject)newInactiveImagePath).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH, null, msgs);
-			msgs = basicSetInactiveImagePath(newInactiveImagePath, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH, newInactiveImagePath, newInactiveImagePath));
+		Path oldInactiveImagePath = inactiveImagePath;
+		inactiveImagePath = newInactiveImagePath;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH, oldInactiveImagePath, inactiveImagePath));
 	}
 
 	/**
@@ -2499,10 +2489,6 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 				return basicSetTextColor(null, msgs);
 			case E4coderguiPackage.WIDGET__BACKGROUND_COLOR:
 				return basicSetBackgroundColor(null, msgs);
-			case E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH:
-				return basicSetActiveImagePath(null, msgs);
-			case E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH:
-				return basicSetInactiveImagePath(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -2576,9 +2562,11 @@ public class WidgetImpl extends MinimalEObjectImpl.Container implements Widget {
 			case E4coderguiPackage.WIDGET__VERTICAL_ALIGNMENT:
 				return getVerticalAlignment();
 			case E4coderguiPackage.WIDGET__ACTIVE_IMAGE_PATH:
-				return getActiveImagePath();
+				if (resolve) return getActiveImagePath();
+				return basicGetActiveImagePath();
 			case E4coderguiPackage.WIDGET__INACTIVE_IMAGE_PATH:
-				return getInactiveImagePath();
+				if (resolve) return getInactiveImagePath();
+				return basicGetInactiveImagePath();
 			case E4coderguiPackage.WIDGET__INITIAL_STATE:
 				return isInitialState();
 			case E4coderguiPackage.WIDGET__TYPE:

@@ -796,7 +796,7 @@ public interface E4coderguiPackage extends EPackage {
 	int WIDGET__VERTICAL_ALIGNMENT = 29;
 
 	/**
-	 * The feature id for the '<em><b>Active Image Path</b></em>' containment reference.
+	 * The feature id for the '<em><b>Active Image Path</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -805,7 +805,7 @@ public interface E4coderguiPackage extends EPackage {
 	int WIDGET__ACTIVE_IMAGE_PATH = 30;
 
 	/**
-	 * The feature id for the '<em><b>Inactive Image Path</b></em>' containment reference.
+	 * The feature id for the '<em><b>Inactive Image Path</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1619,10 +1619,10 @@ public interface E4coderguiPackage extends EPackage {
 	EAttribute getWidget_VerticalAlignment();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link it.sssuprojects.e4codergui.Widget#getActiveImagePath <em>Active Image Path</em>}'.
+	 * Returns the meta object for the reference '{@link it.sssuprojects.e4codergui.Widget#getActiveImagePath <em>Active Image Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Active Image Path</em>'.
+	 * @return the meta object for the reference '<em>Active Image Path</em>'.
 	 * @see it.sssuprojects.e4codergui.Widget#getActiveImagePath()
 	 * @see #getWidget()
 	 * @generated
@@ -1630,10 +1630,10 @@ public interface E4coderguiPackage extends EPackage {
 	EReference getWidget_ActiveImagePath();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link it.sssuprojects.e4codergui.Widget#getInactiveImagePath <em>Inactive Image Path</em>}'.
+	 * Returns the meta object for the reference '{@link it.sssuprojects.e4codergui.Widget#getInactiveImagePath <em>Inactive Image Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Inactive Image Path</em>'.
+	 * @return the meta object for the reference '<em>Inactive Image Path</em>'.
 	 * @see it.sssuprojects.e4codergui.Widget#getInactiveImagePath()
 	 * @see #getWidget()
 	 * @generated
@@ -2301,7 +2301,7 @@ public interface E4coderguiPackage extends EPackage {
 		EAttribute WIDGET__VERTICAL_ALIGNMENT = eINSTANCE.getWidget_VerticalAlignment();
 
 		/**
-		 * The meta object literal for the '<em><b>Active Image Path</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Active Image Path</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2309,7 +2309,7 @@ public interface E4coderguiPackage extends EPackage {
 		EReference WIDGET__ACTIVE_IMAGE_PATH = eINSTANCE.getWidget_ActiveImagePath();
 
 		/**
-		 * The meta object literal for the '<em><b>Inactive Image Path</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Inactive Image Path</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
