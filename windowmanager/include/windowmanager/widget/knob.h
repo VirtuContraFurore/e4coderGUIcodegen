@@ -12,6 +12,8 @@ struct knob_Widget{
 		struct Point imagePosition;
 		struct Point pivotPosition;
 		float angle;
+		float base_angle;
+		float zero_angle;
     void (*onChange)(struct Widget *self, float new_value, float old_value);
 };
 
