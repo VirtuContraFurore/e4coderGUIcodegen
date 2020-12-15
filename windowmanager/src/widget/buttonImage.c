@@ -15,7 +15,7 @@ void buttonImage_draw(struct Widget *self){
 }
 
 bool buttonImage_onTouch(struct Widget *self, struct TouchEvent *event){
-    struct buttonImage_Widget* data = (struct buttonLed_Widget*) self->data;
+    struct buttonImage_Widget* data = (struct buttonImage_Widget*) self->data;
 
     if (event->type == SINGLE_TOUCH){
         struct SingleTouchData* touch_data = (struct SingleTouchData*) event->event_data;
