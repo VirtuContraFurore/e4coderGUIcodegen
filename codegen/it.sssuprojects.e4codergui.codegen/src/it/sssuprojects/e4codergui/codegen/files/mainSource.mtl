@@ -8,23 +8,20 @@
  * Generate the main.c file which also contains the callbacks
 */]
 [template public generateMainSource(root : DocumentRoot)]
-[file ('main.c', false, 'UTF-8')]
+[file ('implementation.c', false, 'UTF-8')]
 /*
- * main.c
- * Main file to run the gui and with the callbacks implementations
+ * implementation.c
+ * Main file with the callbacks implementations
  */
 
 [root.generateIncludes()/]
 
-//forward decl of loop function
-void loop();
 
-int main(int argc, char ** argv){	
+void my_init(){	
 	WM_init(createWindow_[root.gui.frame->at(1).name.cname()/](), 1, 320, 240);
-	WM_SCRIF_initEmulation(argc, argv, loop);
 }
 
-void loop(){
+void my_loop(){
 	WM_handleEvents();
     WM_update();
 }
@@ -34,6 +31,24 @@ void loop(){
 [root.generateCallbacks_def()/]
 
 //[/protected]
+
+[/file]
+[file ('main.c', false, 'UTF-8')]
+/*
+ * main.c
+ * Main file to run the gui
+ */
+
+[root.generateIncludes()/]
+
+// from implementation.c
+extern void my_loop();
+extern void my_init();
+
+int main(int argc, char ** argv){	
+	my_init();
+	WM_SCRIF_initEmulation(argc, argv, my_loop);
+}
 
 [/file]
 [/template]
