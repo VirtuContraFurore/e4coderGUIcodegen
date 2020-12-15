@@ -7,6 +7,8 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
+extern struct WidgetFunctions knob_WidgetFunctions;
+
 struct knob_Widget{
 		struct Bitmap image;
 		struct Point imagePosition;
@@ -16,8 +18,6 @@ struct knob_Widget{
 		float zero_angle;
     void (*onChange)(struct Widget *self, float new_value, float old_value);
 };
-
-extern struct WidgetFunctions knob_WidgetFunctions;
 
 void knob_draw(struct Widget *self);
 bool knob_onTouch(struct Widget *self, struct TouchEvent *type);

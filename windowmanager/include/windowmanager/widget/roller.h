@@ -7,7 +7,9 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
-struct roller_widget_data{
+// NOT IMPLEMENTED
+
+struct roller_Widget{
     struct Point pos;
 		int radius;
 		bool visible;
@@ -15,7 +17,7 @@ struct roller_widget_data{
     double minimum;
     double maximum;
     double value;
-    void (*value_changed_callback)(struct Widget *self, double new_value, double old_value);
+    void (*valueChangedCallback)(struct Widget *self, double new_value, double old_value);
 };
 
 void roller_draw(struct Widget *self);

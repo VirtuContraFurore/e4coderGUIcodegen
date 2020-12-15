@@ -7,7 +7,9 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
-struct plot_widget_data{
+// NOT IMPLEMENTED
+
+struct plot_Widget{
     struct Rect dim;
 		bool visible;
 		struct Color lineColor;
@@ -15,7 +17,7 @@ struct plot_widget_data{
     double yMinimum;
     double yMaximum;
     double scrollWindow;
-    void (*value_changed_callback)(struct Widget *self, double new_value, double old_value);
+    void (*valueChangedCallback)(struct Widget *self, double new_value, double old_value);
 };
 
 void plot_draw(struct Widget *self);

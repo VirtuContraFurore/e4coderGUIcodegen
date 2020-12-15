@@ -7,6 +7,8 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
+extern struct WidgetFunctions text_WidgetFunctions;
+
 struct text_Widget{
 	struct Rect dim;
 	struct Font *font;
@@ -17,7 +19,5 @@ struct text_Widget{
 
 void text_draw(struct Widget *self);
 bool text_onTouch(struct Widget *self, struct TouchEvent *type);
-
-extern struct WidgetFunctions text_WidgetFunctions;
 
 #endif

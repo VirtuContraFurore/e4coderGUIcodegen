@@ -73,7 +73,7 @@ struct roller_widget_data{
     double min;
     double max;
     double value;
-    void (*value_changed_callback)(int new_value);
+    void (*valueChangedCallback)(int new_value);
 };
 
 void roller_draw(struct widget *self);
@@ -98,8 +98,8 @@ void roller_on_touch(struct widget *self, touch_event type, void * event_data){
     if(type == DRAG_TOUCH){
 	int newval = complex_algorithm(event_data);
 	if(newval != self->value){
-    		if(self->value_changed_callback != 0 ) //check if the callback is provided for this widget instance
-			*(self->value_changed_callback))(newval);
+    		if(self->valueChangedCallback != 0 ) //check if the callback is provided for this widget instance
+			*(self->valueChangedCallback))(newval);
 		self->value = newval;
 	}
     }
@@ -122,7 +122,7 @@ struct roller_widget_data mRoller_data = {
     .min = 0,
     .max = 90,
     .value = 45,
-    .value_changed_callback = &user_defined_callback_for_mRoller
+    .valueChangedCallback = &user_defined_callback_for_mRoller
 };
 
 struct widget mRoller = {

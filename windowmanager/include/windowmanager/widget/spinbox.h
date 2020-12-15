@@ -7,14 +7,16 @@
 #include "windowmanager/core/touch.h"
 #include "windowmanager/utility/geometry.h"
 
-struct spinbox_widget_data{
+// NOT IMPLEMENTED
+
+struct spinbox_Widget{
     struct Rect dim;
 		bool visible;
 		char* font;
     double minimum;
     double maximum;
     double value;
-    void (*value_changed_callback)(struct Widget *self, int new_value, int old_value);
+    void (*valueChangedCallback)(struct Widget *self, int new_value, int old_value);
 };
 
 void spinbox_draw(struct Widget *self);

@@ -12,13 +12,13 @@ struct WidgetFunctions rectangle_WidgetFunctions = {
 };
 
 void rectangle_draw(struct Widget *self){
-    struct rectangle_WidgetData* data = (struct rectangle_WidgetData*) self->data;
+    struct rectangle_Widget* data = (struct rectangle_Widget*) self->data;
 
     WM_SCRIF_fillRect(data->rect, data->color);
 }
 
 bool rectangle_onTouch(struct Widget *self, struct TouchEvent *event){
-    struct rectangle_WidgetData* data = (struct rectangle_WidgetData*) self->data;
+    struct rectangle_Widget* data = (struct rectangle_Widget*) self->data;
 
     if (event->type == SINGLE_TOUCH){
         struct SingleTouchData* touch_data = (struct SingleTouchData*) event->event_data;

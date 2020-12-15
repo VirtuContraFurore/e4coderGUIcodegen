@@ -10,7 +10,9 @@
 #include "windowmanager/utility/geometry.h"
 #include "windowmanager/graphics/color.h"
 
-struct rectangle_WidgetData{
+extern struct WidgetFunctions rectangle_WidgetFunctions;
+
+struct rectangle_Widget{
     bool (*onTouch)(struct Widget *self, struct TouchEvent *event);
     struct Rect rect;
     struct Color color;
@@ -18,7 +20,5 @@ struct rectangle_WidgetData{
 
 void rectangle_draw(struct Widget *self);
 bool rectangle_onTouch(struct Widget *self, struct TouchEvent *event);
-
-extern struct WidgetFunctions rectangle_WidgetFunctions;
 
 #endif
