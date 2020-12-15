@@ -53,7 +53,8 @@
 #include "my_gui.h"
 
 
-extern void loop();
+extern void my_loop();
+extern void my_init();
 
 
 /*
@@ -71,7 +72,7 @@ ISR2(systick_handler)
  */
 TASK(Task1)
 {
-    loop();
+    my_loop();
 }
 /**
   * @brief  Inserts a delay time.
@@ -114,7 +115,7 @@ int main(void)
 
 	Lcd_Touch_Calibration();
 
-	WM_init(createWindow_MyFrame(), 1, 320, 240);
+	my_init();
 
 	/* Program cyclic alarms which will fire after an initial offset,
 	 * and after that periodically
